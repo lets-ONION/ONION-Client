@@ -1,9 +1,11 @@
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 const Main = () => {
     return (
-        <View>Main</View>
-    )
+        <View>
+        <Text>Main
+        </Text>
+        </View>    )
 };
 
 export default Main;
