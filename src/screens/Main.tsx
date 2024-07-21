@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 const Main = () => {
     return (
         <View>
-        <Text>Main
+        <Text>Mainasdasd
         </Text>
         </View>    )
 };
