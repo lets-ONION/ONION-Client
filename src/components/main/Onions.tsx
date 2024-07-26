@@ -1,9 +1,7 @@
-import { View } from 'react-native';
+import { View } from "react-native";
 
 const Onions = () => {
-    return (
-        <View>Onions</View>
-    )
-}
+  return <View>Onions</View>;
+};
 
 export default Onions;

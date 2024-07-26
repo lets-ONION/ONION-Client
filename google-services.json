@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366585132398",
+    "project_id": "lets-onion",
+    "storage_bucket": "lets-onion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366585132398:android:2e1dadd17885d231cabd7f",
+        "android_client_info": {
+          "package_name": "com.dup33333.letsonion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_utBu912kRw0tgSM2xT2sztTunjv7OyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
