@@ -1,11 +1,19 @@
-import { ThemeProvider } from 'styled-components';
-import { theme } from './src/style/theme';
-import { GlobalStyle } from './src/style/global';
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 
-export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-    </ThemeProvider>
-  );
+const App = () => {
+  const [result, setResult] = useState<string>("");
+
+  return <Text>테스트</Text>;
 };
+
+export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingBottom: 100,
+  },
+});
