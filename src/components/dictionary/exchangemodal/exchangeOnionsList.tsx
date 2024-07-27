@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { OnionCardListType, OnionCardType } from "../../../types/onionCard";
 import { ExchangeOnion } from "./exchangeOnions";
 import { ExchangeOnionListType } from "../../../types/exchangeOnion";
@@ -8,19 +8,20 @@ export const ExchangeOnionsList: React.FC<ExchangeOnionListType> = ({
   reqOnion,
 }) => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {onions.map((onion) => {
-        return <ExchangeOnion onion={onion} reqOnion={reqOnion} />;
-      })}
+    <ScrollView contentContainerStyle={styles.contentContainer}>
+      <View onStartShouldSetResponder={() => true} style={{ width: "100%" }}>
+        {onions.map((onion) => {
+          return <ExchangeOnion onion={onion} reqOnion={reqOnion} />;
+        })}
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     width: "100%",
     flexWrap: "wrap",
-    flexDirection: "column",
     gap: 5,
   },
 });

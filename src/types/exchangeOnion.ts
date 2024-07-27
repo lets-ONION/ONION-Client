@@ -1,5 +1,6 @@
 export type ExchangeOnionType = {
   reqOnion: string;
+  setShowExchangeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type ExchangeOnionsType = {

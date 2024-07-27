@@ -33,11 +33,16 @@ const OnionCard: React.FC<OnionCardType> = ({
           <Text>교환하기</Text>
         </TouchableOpacity>
       )}
-      {showExchangeModal && (
-        <Modal animationType="slide">
-          <ExchangeModal reqOnion={onion.onion_type} />
-        </Modal>
-      )}
+      <Modal
+        animationType="slide"
+        visible={showExchangeModal}
+        transparent={true}
+      >
+        <ExchangeModal
+          reqOnion={onion.onion_type}
+          setShowExchangeModal={setShowExchangeModal}
+        />
+      </Modal>
     </View>
   );
 };
