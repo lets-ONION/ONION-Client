@@ -7,9 +7,9 @@ const useFetch = <T>(request: () => Promise<T>) => {
   const [result, setResult] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const resolve = (newResult: T) => {
+  const resolve = (fetchedData: T) => {
     setStatus("FULFILLED");
-    setResult(newResult);
+    setResult(fetchedData);
   };
 
   const reject = (error: Error) => {
