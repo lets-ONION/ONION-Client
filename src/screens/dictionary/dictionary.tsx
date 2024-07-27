@@ -1,187 +1,21 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import OnionCard from "../../components/dictionary/onionCard";
-import { FriendCard } from "../../components/dictionary/friendCard";
+import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
+import OnionCard from "../../components/dictionary/myOnionCards/onionCard";
+import { useState } from "react";
+import { ExchangeModal } from "../../components/dictionary/exchangemodal/exchangeModal";
+import { FriendsCardList } from "../../components/dictionary/friendsCard/friendsCardList";
+import { dummyFriendsData, dummyOnionsData } from "../../components/dummyData";
+import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
 
 export default function Dictionary() {
+  const [ismodelVisible, setModalVisible] = useState<boolean>(false);
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.friendsListWrapper}
-        contentContainerStyle={styles.friendsList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      >
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-        <FriendCard
-          friend={{
-            id: 6,
-            profile_image:
-              "https://i.namu.wiki/i/jtQmllGb5XztKurgXD3gIH-o874OJN_LrCr37LiIhB6zhWKhWOR6Fy-VeBWtTlJtRXnvfgNkoBq4x__gGM6F6w.webp",
-            nickname: "민수",
-          }}
-        />
-      </ScrollView>
-      <ScrollView
-        contentContainerStyle={styles.dictionaryContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-        <OnionCard
-          onion={{
-            onion_image:
-              "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp",
-            onion_type: "양파링",
-            amount: 4,
-            can_trade: true,
-          }}
-        />
-      </ScrollView>
+      <Text>친구들의 양파 보기</Text>
+      <FriendsCardList friends={dummyFriendsData.frineds} />
+      <OnionCardList onions={dummyOnionsData.onions} />
+      {/* <Modal animationType="slide" visible={ismodelVisible}>
+        <ExchangeModal onions={onion} />
+      </Modal> */}
     </View>
   );
 }

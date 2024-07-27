@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { FriendCardType } from "../../types/friendcard";
+import { FriendCardType } from "../../../types/friendcard";
 
-export const FriendCard: React.FC<FriendCardType> = ({
-  friend,
-}: FriendCardType) => {
+export const FriendCard: React.FC<FriendCardType> = (
+  friend: FriendCardType
+) => {
   return (
     <TouchableOpacity style={styles.container}>
       <Image

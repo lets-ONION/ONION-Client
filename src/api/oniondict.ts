@@ -23,10 +23,6 @@ export const acceptTrade = async (tradeId: string) => {
 
 export const postTodayMemo = async (memo: string) => {
   return await httpClient.post(`/book/trade/`, {
-    msg: memo,
-    code: 200,
-    data: {
-      memo: memo,
-    },
+    memo: memo,
   });
 };

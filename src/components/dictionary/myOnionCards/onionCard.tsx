@@ -7,13 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { OnionCardType } from "../../types/onionCard";
+import { OnionCardType } from "../../../types/onionCard";
 
-interface OnionCardProps {
-  onion: OnionCardType;
-}
-
-const OnionCard: React.FC<OnionCardProps> = ({ onion }) => {
+const OnionCard: React.FC<OnionCardType> = (onion: OnionCardType) => {
   console.log(onion.onion_image);
   return (
     <View style={styles.container}>

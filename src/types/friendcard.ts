@@ -1,7 +1,9 @@
 export type FriendCardType = {
-  friend: {
-    id: number;
-    profile_image: string;
-    nickname: string;
-  };
+  id: number;
+  profile_image: string;
+  nickname: string;
+};
+
+export type FriendCardListType = {
+  friends: FriendCardType[];
 };

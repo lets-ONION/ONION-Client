@@ -4,3 +4,7 @@ export type OnionCardType = {
   amount: number;
   can_trade: boolean;
 };
+
+export type OnionCardListType = {
+  onions: OnionCardType[];
+};

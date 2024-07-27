@@ -2,7 +2,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import messaging from "@react-native-firebase/messaging";
 import useToken from "./src/hooks/useToken";
-import OnionCard from "./src/components/dictionary/onionCard";
+import OnionCard from "./src/components/dictionary/myOnionCards/onionCard";
 import MainTab from "./src/screens/MainTab";
 import { NavigationContainer } from "@react-navigation/native";
 
