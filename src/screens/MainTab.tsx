@@ -3,15 +3,33 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { Home } from "./home";
 import Dictionary from "./dictionary/dictionary";
 import Setting from "./setting/setting";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function MainTab() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="홈" component={Home} />
-      <Tab.Screen name="도감" component={Dictionary} />
-      <Tab.Screen name="설정" component={Setting} />
+      <Tab.Screen
+        name="home"
+        component={Home}
+        options={{ tabBarLabel: "홈" }}
+      />
+      <Tab.Screen
+        name="dictionary"
+        component={Dictionary}
+        options={{
+          tabBarLabel: "도감",
+          tabBarIcon: () => {
+            return <Entypo name="open-book" size={30} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="setting"
+        component={Setting}
+        options={{ tabBarLabel: "설정" }}
+      />
     </Tab.Navigator>
   );
 }
