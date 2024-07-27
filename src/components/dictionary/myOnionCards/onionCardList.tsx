@@ -4,20 +4,19 @@ import OnionCard from "./onionCard";
 
 export const OnionCardList: React.FC<OnionCardListType> = ({
   onions,
+  showFriendsOnion,
 }: OnionCardListType) => {
   return (
     <ScrollView
       contentContainerStyle={styles.dictionaryContent}
       showsVerticalScrollIndicator={false}
     >
-      {onions.map((onion: OnionCardType, idx) => {
+      {onions.map((onion, idx) => {
         return (
           <OnionCard
-            onion_type={onion.onion_type}
-            amount={onion.amount}
-            can_trade={onion.can_trade}
-            onion_image={onion.onion_image}
+            onion={onion}
             key={idx}
+            showFriendsOnion={showFriendsOnion}
           />
         );
       })}

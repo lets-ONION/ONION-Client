@@ -1,10 +1,12 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { FriendCardListType, FriendCardType } from "../../../types/friendcard";
 import { FriendCard } from "./friendCard";
+import { dummyMyProfile } from "../../dummyData";
 
 export const FriendsCardList: React.FC<FriendCardListType> = ({
   friends,
-}: FriendCardListType) => {
+  setShowFriendsOnion,
+}) => {
   return (
     <ScrollView
       style={styles.friendsListWrapper}
@@ -12,12 +14,18 @@ export const FriendsCardList: React.FC<FriendCardListType> = ({
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     >
-      {friends.map((friend) => {
+      <FriendCard
+        friend={dummyMyProfile}
+        isMyProfile={true}
+        setShowFriendsOnion={setShowFriendsOnion}
+      />
+      {friends.map((friend, idx) => {
         return (
           <FriendCard
-            id={friend.id}
-            profile_image={friend.profile_image}
-            nickname={friend.nickname}
+            friend={friend}
+            setShowFriendsOnion={setShowFriendsOnion}
+            isMyProfile={false}
+            key={idx}
           />
         );
       })}

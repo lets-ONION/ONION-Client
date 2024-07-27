@@ -9,15 +9,17 @@ import {
 } from "react-native";
 import { OnionCardType } from "../../../types/onionCard";
 
-const OnionCard: React.FC<OnionCardType> = (onion: OnionCardType) => {
-  console.log(onion.onion_image);
+const OnionCard: React.FC<OnionCardType> = ({
+  onion,
+  showFriendsOnion,
+}: OnionCardType) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
         <Image source={{ uri: onion.onion_image }} style={styles.image} />
         <Text>{onion.onion_type}</Text>
       </View>
-      {onion.can_trade && (
+      {showFriendsOnion && onion.can_trade && (
         <TouchableOpacity style={styles.tradeButton}>
           <Text>교환하기</Text>
         </TouchableOpacity>

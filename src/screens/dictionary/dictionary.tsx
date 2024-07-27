@@ -3,16 +3,28 @@ import OnionCard from "../../components/dictionary/myOnionCards/onionCard";
 import { useState } from "react";
 import { ExchangeModal } from "../../components/dictionary/exchangemodal/exchangeModal";
 import { FriendsCardList } from "../../components/dictionary/friendsCard/friendsCardList";
-import { dummyFriendsData, dummyOnionsData } from "../../components/dummyData";
+import {
+  dummyFriendsData,
+  dummyFriendsOnion,
+  dummyOnionsData,
+} from "../../components/dummyData";
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
 
 export default function Dictionary() {
   const [ismodelVisible, setModalVisible] = useState<boolean>(false);
+  const [showFriendsOnion, setShowFriendsOnion] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <Text>친구들의 양파 보기</Text>
-      <FriendsCardList friends={dummyFriendsData.frineds} />
-      <OnionCardList onions={dummyOnionsData.onions} />
+      <FriendsCardList
+        friends={dummyFriendsData.friends}
+        setShowFriendsOnion={setShowFriendsOnion}
+      />
+      <OnionCardList
+        onions={dummyOnionsData.onions}
+        showFriendsOnion={showFriendsOnion}
+      />
+
       {/* <Modal animationType="slide" visible={ismodelVisible}>
         <ExchangeModal onions={onion} />
       </Modal> */}

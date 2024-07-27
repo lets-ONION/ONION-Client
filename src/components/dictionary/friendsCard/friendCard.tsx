@@ -1,11 +1,16 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FriendCardType } from "../../../types/friendcard";
 
-export const FriendCard: React.FC<FriendCardType> = (
-  friend: FriendCardType
-) => {
+export const FriendCard: React.FC<FriendCardType> = ({
+  friend,
+  isMyProfile,
+  setShowFriendsOnion,
+}) => {
+  const onPressFriendProfile = () =>
+    isMyProfile ? setShowFriendsOnion(false) : setShowFriendsOnion(true);
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPressFriendProfile}>
       <Image
         style={styles.profileImage}
         source={{ uri: friend.profile_image }}
