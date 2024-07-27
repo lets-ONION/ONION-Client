@@ -80,8 +80,8 @@ const Login = () => {
           signOutWithKakao();
         }}
       >
-        {/* <Image source={require("../assets/Kakaotalk.png")}/> */}
-        <Text style={styles.text}>로그아웃</Text>
+        <Text style={styles.text}>로그아웃</Text>  
+        {/* 로그아웃은 개발할 때 편하라고 임시로 넣어뒀어요 */}
       </Pressable>
     </View>
   );
