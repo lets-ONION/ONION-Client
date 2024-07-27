@@ -188,6 +188,7 @@ export default function Dictionary() {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     padding: 20,
     width: "100%",
     alignItems: "center",
