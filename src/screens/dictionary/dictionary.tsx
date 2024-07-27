@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 60,
+    marginBottom: 80,
     backgroundColor: "white",
   },
   dictionaryContent: {
