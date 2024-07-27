@@ -1,49 +1,15 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import messaging from "@react-native-firebase/messaging";
+import useToken from "./src/hooks/useToken";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
-  const requestUserPermission = async () => {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-    if (enabled) {
-      console.log("status:", authStatus);
-    }
-  };
+  const [token, requestPermission, handleMessaging] = useToken();
 
-  useEffect(() => {
-    if (requestUserPermission()) {
-      messaging()
-        .getToken()
-        .then((token) => {
-          console.log(token);
-        });
-    } else {
-      console.log("failed get token");
-    }
-  });
+  console.log(token);
+  useEffect(() => {}, []);
 
-  messaging()
-    .getInitialNotification()
-    .then(async (remoteMessage) => {
-      if (remoteMessage) console.log(remoteMessage);
-      setLoading(false);
-    });
-
-  messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-    console.log(remoteMessage);
-  });
-
-  messaging().onNotificationOpenedApp(async (remoteMessage) => {
-    console.log(remoteMessage);
-  });
-
-  const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-    console.log("onMessage", JSON.stringify(remoteMessage));
-  });
   return (
     <View>
       <Text>테스트</Text>
