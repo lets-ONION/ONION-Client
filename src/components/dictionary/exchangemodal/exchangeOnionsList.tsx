@@ -1,12 +1,16 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { OnionCardListType, OnionCardType } from "../../../types/onionCard";
-import { ExchangeOnions } from "./exchangeOnions";
+import { ExchangeOnion } from "./exchangeOnions";
+import { ExchangeOnionListType } from "../../../types/exchangeOnion";
 
-export const ExchangeOnionsList: React.FC<OnionCardListType> = ({ onions }) => {
+export const ExchangeOnionsList: React.FC<ExchangeOnionListType> = ({
+  onions,
+  reqOnion,
+}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {onions.map((onion) => {
-        return <ExchangeOnions onion={onion} />;
+        return <ExchangeOnion onion={onion} reqOnion={reqOnion} />;
       })}
     </ScrollView>
   );

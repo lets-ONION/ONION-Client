@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Image,
+  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { OnionCardType } from "../../../types/onionCard";
+import { ExchangeModal } from "../exchangemodal/exchangeModal";
 
 const OnionCard: React.FC<OnionCardType> = ({
   onion,
   showFriendsOnion,
 }: OnionCardType) => {
+  const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
@@ -25,6 +28,11 @@ const OnionCard: React.FC<OnionCardType> = ({
         <TouchableOpacity style={styles.tradeButton}>
           <Text>교환하기</Text>
         </TouchableOpacity>
+      )}
+      {showExchangeModal && (
+        <Modal animationType="slide">
+          <ExchangeModal reqOnion={onion.onion_type} />
+        </Modal>
       )}
     </View>
   );

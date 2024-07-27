@@ -24,10 +24,6 @@ export default function Dictionary() {
         onions={dummyOnionsData.onions}
         showFriendsOnion={showFriendsOnion}
       />
-
-      {/* <Modal animationType="slide" visible={ismodelVisible}>
-        <ExchangeModal onions={onion} />
-      </Modal> */}
     </View>
   );
 }

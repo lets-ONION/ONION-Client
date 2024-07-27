@@ -1,11 +1,13 @@
 import { StyleSheet, View } from "react-native";
 import { ExchangeOnionsList } from "./exchangeOnionsList";
 import { OnionCardListType } from "../../../types/onionCard";
+import { ExchangeOnionType } from "../../../types/exchangeOnion";
+import { dummyOnionsData } from "../../dummyData";
 
-export const ExchangeModal = ({ onions }: OnionCardListType) => {
+export const ExchangeModal = ({ reqOnion }: ExchangeOnionType) => {
   return (
     <View style={styles.container}>
-      <ExchangeOnionsList onions={onions} />
+      <ExchangeOnionsList onions={dummyOnionsData.onions} reqOnion={reqOnion} />
     </View>
   );
 };

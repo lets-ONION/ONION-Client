@@ -1,9 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { OnionCardType } from "../../../types/onionCard";
+import { ExchangeOnionsType } from "../../../types/exchangeOnion";
 
-export const ExchangeOnions: React.FC<OnionCardType> = ({
-  onion,
-}: OnionCardType) => {
+export const ExchangeOnion = ({ onion }: ExchangeOnionsType) => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: onion.onion_image }} style={styles.image} />
