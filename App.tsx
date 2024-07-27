@@ -1,10 +1,22 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import messaging from "@react-native-firebase/messaging";
+import useToken from "./src/hooks/useToken";
+import OnionCard from "./src/components/dictionary/onionCard";
+import MainTab from "./src/screens/MainTab";
+import { NavigationContainer } from "@react-navigation/native";
 
 const App = () => {
-  const [result, setResult] = useState<string>("");
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [token] = useToken();
 
-  return <Text>테스트</Text>;
+  console.log(token);
+
+  return (
+    <NavigationContainer>
+      <MainTab />
+    </NavigationContainer>
+  );
 };
 
 export default App;
