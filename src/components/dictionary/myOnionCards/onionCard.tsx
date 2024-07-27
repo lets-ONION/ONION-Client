@@ -17,7 +17,9 @@ const OnionCard: React.FC<OnionCardType> = ({
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
         <Image source={{ uri: onion.onion_image }} style={styles.image} />
-        <Text>{onion.onion_type}</Text>
+        <Text style={styles.text}>
+          {onion.onion_type} ({onion.amount}/5)
+        </Text>
       </View>
       {showFriendsOnion && onion.can_trade && (
         <TouchableOpacity style={styles.tradeButton}>
@@ -32,17 +34,18 @@ export default OnionCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
-    height: 150,
+    width: 160,
+    height: 160,
     padding: 10,
     borderWidth: 1,
     borderColor: "gray",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     borderRadius: 14,
   },
   imageAndNameWrapper: {
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -50,10 +53,16 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
   },
+  text: {
+    fontSize: 16,
+    height: 30,
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
   tradeButton: {
     width: "100%",
     height: 30,
-    borderRadius: 14,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "orange",
