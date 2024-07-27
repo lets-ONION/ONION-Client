@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import {
   login,
@@ -8,12 +8,14 @@ import {
   unlink,
 } from "@react-native-seoul/kakao-login";
 
+
 const Login = () => {
   const [result, setResult] = useState<string>("");
 
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
+      console.log(token);
       setResult(JSON.stringify(token));
     } catch (err) {
       console.error("login err", err);
@@ -23,7 +25,7 @@ const Login = () => {
   const signOutWithKakao = async (): Promise<void> => {
     try {
       const message = await logout();
-
+      console.log(message);
       setResult(message);
     } catch (err) {
       console.error("signOut error", err);
@@ -62,31 +64,24 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.resultContainer}>
-        <ScrollView>
-          <Text>{result}</Text>
-          <View style={{ height: 100 }} />
-        </ScrollView>
-      </View>
+      <Image source={require("../assets/logo.png")} style={{width: 200, height: 200, marginBottom: 150}}/>
       <Pressable
         style={styles.button}
         onPress={() => {
           signInWithKakao();
         }}
       >
-        <Text style={styles.text}>카카오 로그인</Text>
+        <Image source={require("../assets/kakao.png")}  style={{width : 30, height : 30, marginRight: 10}}/>
+        <Text style={styles.text}>카카오톡으로 로그인하기</Text>
       </Pressable>
-      <Pressable style={styles.button} onPress={() => getProfile()}>
-        <Text style={styles.text}>프로필 조회</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => getShippingAddresses()}>
-        <Text style={styles.text}>배송주소록 조회</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => unlinkKakao()}>
-        <Text style={styles.text}>링크 해제</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => signOutWithKakao()}>
-        <Text style={styles.text}>카카오 로그아웃</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          signOutWithKakao();
+        }}
+      >
+        {/* <Image source={require("../assets/Kakaotalk.png")}/> */}
+        <Text style={styles.text}>로그아웃</Text>
       </Pressable>
     </View>
   );
@@ -101,22 +96,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 100,
   },
-  resultContainer: {
-    flexDirection: "column",
-    width: "100%",
-    padding: 24,
-  },
   button: {
-    backgroundColor: "#FEE500",
+    flexDirection: 'row',
+    backgroundColor: "#FFEB3B",
     borderRadius: 40,
-    borderWidth: 1,
     width: 250,
     height: 40,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    // paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 10,
   },
   text: {
     textAlign: "center",
+    fontSize: 16,
   },
 });

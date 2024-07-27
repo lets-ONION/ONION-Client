@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
  
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import SignInScreen from '../screens/SigninScreen';
+import Login from '../screens/login';
+import SigninScreen from '../screens/SigninScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,7 @@ const AuthStackNav = () => {
       <Stack.Navigator
         initialRouteName="SignInScreen"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen name="SignInScreen" component={Login} />
       </Stack.Navigator>
     );
   };
