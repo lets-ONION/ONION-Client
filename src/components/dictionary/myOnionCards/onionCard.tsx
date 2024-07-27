@@ -16,6 +16,7 @@ const OnionCard: React.FC<OnionCardType> = ({
   showFriendsOnion,
 }: OnionCardType) => {
   const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false);
+  const onPressExchangeButton = () => setShowExchangeModal(true);
   return (
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
@@ -25,7 +26,10 @@ const OnionCard: React.FC<OnionCardType> = ({
         </Text>
       </View>
       {showFriendsOnion && onion.can_trade && (
-        <TouchableOpacity style={styles.tradeButton}>
+        <TouchableOpacity
+          style={styles.tradeButton}
+          onPress={onPressExchangeButton}
+        >
           <Text>교환하기</Text>
         </TouchableOpacity>
       )}
