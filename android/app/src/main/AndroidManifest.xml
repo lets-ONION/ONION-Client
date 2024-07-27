@@ -28,6 +28,17 @@
         <data android:scheme="exp+lets-onion"/>
       </intent-filter>
     </activity>
+    <activity
+   android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+   android:exported="true">
+  <intent-filter>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:host="oauth"
+          android:scheme="kakaocdb3b3bffba750cac911c152916fdbd4" />
+  </intent-filter>
+</activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>
   </application>
 </manifest>
