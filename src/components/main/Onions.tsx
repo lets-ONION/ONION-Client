@@ -1,12 +1,11 @@
-import { View, Text } from 'react-native';
+import { View, Text } from "react-native";
 
 const Onions = () => {
-    return (
-        <View>
-            <Text>Onions
-            </Text>
-            </View>
-    )
-}
+  return (
+    <View>
+      <Text>Onions</Text>
+    </View>
+  );
+};
 
 export default Onions;

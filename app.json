@@ -16,7 +16,7 @@
       "bundleIdentifier": "com.dup33333.lets-onion"
     },
     "android": {
-      "package": "com.onion.app",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -43,6 +43,11 @@
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "16efa3f7-9a78-4082-a393-7dcf4e002c16"
+      }
+    }
   }
 }

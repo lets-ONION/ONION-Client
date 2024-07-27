@@ -1,18 +1,31 @@
-import { ThemeProvider } from 'styled-components';
-import { theme } from './src/style/theme';
-// import { GlobalStyle } from './src/style/global';
-import Main from "./src/screens/Main";
-import AuthStackNav from './src/navigator/AuthStackNav';
-import {NavigationContainer} from '@react-navigation/native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import messaging from "@react-native-firebase/messaging";
+import useToken from "./src/hooks/useToken";
+import OnionCard from "./src/components/dictionary/onionCard";
+import MainTab from "./src/screens/MainTab";
+import { NavigationContainer } from "@react-navigation/native";
 
+const App = () => {
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [token] = useToken();
 
-export default function App() {
+  console.log(token);
+
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <AuthStackNav/>
-      </NavigationContainer>
-
-    </ThemeProvider>
+    <NavigationContainer>
+      <MainTab />
+    </NavigationContainer>
   );
 };
+
+export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingBottom: 100,
+  },
+});
