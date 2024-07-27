@@ -5,7 +5,7 @@ import useToken from "./src/hooks/useToken";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [token, requestPermission, handleMessaging] = useToken();
+  const [token] = useToken();
 
   console.log(token);
   useEffect(() => {}, []);
