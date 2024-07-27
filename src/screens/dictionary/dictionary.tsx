@@ -34,11 +34,13 @@ export default function Dictionary() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: 30,
     padding: 20,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 50,
+    backgroundColor: "white",
   },
   dictionaryContent: {
     flexWrap: "wrap",
