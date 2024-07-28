@@ -10,9 +10,10 @@ import {
 } from "../../components/dummyData";
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
 import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Dictionary() {
-  const [ismodelVisible, setModalVisible] = useState<boolean>(false);
+  const [ismodalVisible, setModalVisible] = useState<boolean>(false);
   const [showFriendsOnion, setShowFriendsOnion] = useState<boolean>(false);
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -24,7 +25,10 @@ export default function Dictionary() {
         />
       </View>
       <CommentDay comment={dummyOnionsData.memo} />
-      <Text style={styles.text}>내 양파도감</Text>
+      <View style={styles.requestIconWrapper}>
+        <Text style={styles.text}>내 양파도감</Text>
+        <MaterialCommunityIcons name="mailbox-open-outline" size={30} />
+      </View>
       {!dummyOnionsData.onions.length && (
         <View style={styles.noContentWrapper}>
           <Text style={{ color: "gray" }}>아직 도감을 모으지 못했어요 =3</Text>
@@ -66,13 +70,18 @@ const styles = StyleSheet.create({
     borderBottomColor: "lightgrey",
     borderBottomWidth: 1,
   },
-  text: {
-    padding: 20,
-  },
+  text: {},
   noContentWrapper: {
     width: "100%",
     height: 400,
     alignItems: "center",
     justifyContent: "center",
+  },
+  requestIconWrapper: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 20,
+    alignItems: "center",
   },
 });
