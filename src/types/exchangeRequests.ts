@@ -1,4 +1,4 @@
-export type receivedTrade = {
+export type ReceivedTrade = {
   id: number;
   requester: {
     id: number;
@@ -9,15 +9,15 @@ export type receivedTrade = {
   is_accepted: number; // 0 : 수락/거절 전, 1 : 수락, 2 : 거절
   requested_at: string;
 };
-export type receivedTradeType = {
-  trade: receivedTrade;
+export type ReceivedTradeType = {
+  trade: ReceivedTrade;
 };
 
-export type receivedTradeListType = {
-  trades: receivedTrade[];
+export type ReceivedTradeListType = {
+  trades: ReceivedTrade[];
 };
 
-export type reqTrade = {
+export type ReqTrade = {
   id: number;
   receiver: {
     id: number;
@@ -29,10 +29,10 @@ export type reqTrade = {
   date: string;
 };
 
-export type reqTradeType = {
-  trade: reqTrade;
+export type ReqTradeType = {
+  trade: ReqTrade;
 };
 
-export type reqTradeListType = {
-  trades: reqTrade[];
+export type ReqTradeListType = {
+  trades: ReqTrade[];
 };
