@@ -20,6 +20,7 @@ export default function Dictionary() {
         friends={dummyFriendsData.friends}
         setShowFriendsOnion={setShowFriendsOnion}
       />
+      <Text style={styles.text}>내 양파도감</Text>
       <OnionCardList
         onions={dummyOnionsData.onions}
         showFriendsOnion={showFriendsOnion}
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 80,
+    marginBottom: 100,
     backgroundColor: "white",
   },
   dictionaryContent: {
@@ -55,5 +56,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderBottomColor: "lightgrey",
     borderBottomWidth: 1,
+  },
+  text: {
+    padding: 20,
   },
 });

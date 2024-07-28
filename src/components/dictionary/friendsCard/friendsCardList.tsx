@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   friendsListWrapper: {
     paddingHorizontal: 10,
     paddingVertical: 20,
-    marginBottom: 20,
     borderBottomColor: "lightgrey",
     borderBottomWidth: 1,
   },
