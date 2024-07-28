@@ -7,14 +7,24 @@ import {
 } from "react-native";
 import { ExchangeOnionsList } from "./exchangeOnionsList";
 import { OnionCardListType } from "../../../types/onionCard";
-import { ExchangeOnionType } from "../../../types/exchangeOnion";
+import { ExchangeOnionType, OnionsInfo } from "../../../types/exchangeOnion";
 import { dummyOnionsData } from "../../dummyData";
+import { useState } from "react";
+import { ExchangeConfirm } from "./exchangeConfirm";
 
 export const ExchangeModal = ({
   reqOnion,
   setShowExchangeModal,
 }: ExchangeOnionType) => {
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const onPressOuterContent = () => setShowExchangeModal(false);
+  const [selectedOnion, setSelectedOnion] = useState<OnionsInfo>({
+    amount: 0,
+    can_trade: false,
+    onion_image: "",
+    onion_type: "",
+  });
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPressOuterContent}>
       <TouchableWithoutFeedback onPress={() => {}}>
@@ -22,10 +32,16 @@ export const ExchangeModal = ({
           <View style={styles.textWrapper}>
             <Text style={styles.text}>내 양파와 교환하기</Text>
           </View>
-          <ExchangeOnionsList
-            onions={dummyOnionsData.onions}
-            reqOnion={reqOnion}
-          />
+          {showConfirmModal ? (
+            <ExchangeConfirm reqOnion={reqOnion} resOnion={selectedOnion} />
+          ) : (
+            <ExchangeOnionsList
+              onions={dummyOnionsData.onions}
+              reqOnion={reqOnion}
+              setShowConfimModal={setShowConfirmModal}
+              setSelectedOnion={setSelectedOnion}
+            />
+          )}
         </View>
       </TouchableWithoutFeedback>
     </TouchableOpacity>

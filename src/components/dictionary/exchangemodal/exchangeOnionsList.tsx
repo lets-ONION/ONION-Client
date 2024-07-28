@@ -6,12 +6,22 @@ import { ExchangeOnionListType } from "../../../types/exchangeOnion";
 export const ExchangeOnionsList: React.FC<ExchangeOnionListType> = ({
   onions,
   reqOnion,
+  setShowConfimModal,
+  setSelectedOnion,
 }) => {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View onStartShouldSetResponder={() => true} style={{ width: "100%" }}>
         {onions.map((onion, idx) => {
-          return <ExchangeOnion onion={onion} reqOnion={reqOnion} key={idx} />;
+          return (
+            <ExchangeOnion
+              onion={onion}
+              reqOnion={reqOnion}
+              key={idx}
+              setShowConfimModal={setShowConfimModal}
+              setSelectedOnion={setSelectedOnion}
+            />
+          );
         })}
       </View>
     </ScrollView>

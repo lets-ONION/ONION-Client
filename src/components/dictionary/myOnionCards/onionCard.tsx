@@ -39,7 +39,7 @@ const OnionCard: React.FC<OnionCardType> = ({
         transparent={true}
       >
         <ExchangeModal
-          reqOnion={onion.onion_type}
+          reqOnion={onion}
           setShowExchangeModal={setShowExchangeModal}
         />
       </Modal>
