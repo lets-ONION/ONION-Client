@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { ButtonType } from "../../types/common/buttonType";
 
-export const button: React.FC<ButtonType> = ({
+export const Button: React.FC<ButtonType> = ({
   background,
   onPress,
   text,
@@ -19,10 +19,13 @@ const createStyles = (background: string) => {
   return StyleSheet.create({
     button: {
       backgroundColor: background,
-      padding: 20,
+      padding: 10,
+      width: 100,
+      borderRadius: 14,
     },
     text: {
-      fontSize: 20,
+      fontSize: 15,
+      textAlign: "center",
     },
   });
 };

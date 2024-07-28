@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ExchangeConfirmModalType } from "../../../types/exchangeOnion";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { Button } from "../../common/button";
 
 export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
   reqOnion,
@@ -10,7 +11,7 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
   console.log(reqOnion, resOnion);
   return (
     <View style={styles.container}>
-      <Text>내 양파와 상대의 양파를 교환합니다.</Text>
+      <Text style={styles.text}>내 양파와 상대의 양파를 교환합니다.</Text>
       <View style={styles.exchangeContainer}>
         <View style={styles.onionWrapper}>
           <Text>보내는 양파</Text>
@@ -25,16 +26,12 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
         </View>
       </View>
       <View style={styles.confirmWrapper}>
-        <TouchableOpacity
-          style={{ ...styles.button, backgroundColor: "orange" }}
-        >
-          <Text style={styles.text}>취소</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ ...styles.button, backgroundColor: "orange" }}
-        >
-          <Text style={styles.text}>확인</Text>
-        </TouchableOpacity>
+        <Button
+          background="lightgray"
+          text="취소"
+          onPress={() => setShowExchangeModal(false)}
+        />
+        <Button background="orange" text="확인" onPress={() => {}} />
       </View>
     </View>
   );
@@ -42,13 +39,16 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
 
 const styles = StyleSheet.create({
   container: {
+    height: 300,
     alignItems: "center",
+    justifyContent: "center",
   },
   exchangeContainer: {
     justifyContent: "center",
     padding: 20,
     flexDirection: "row",
     alignItems: "center",
+    gap: 10,
   },
   onionWrapper: {
     justifyContent: "center",
@@ -70,5 +70,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
+    fontSize: 16,
+    paddingBottom: 20,
   },
 });
