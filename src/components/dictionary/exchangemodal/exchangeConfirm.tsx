@@ -27,11 +27,17 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
       </View>
       <View style={styles.confirmWrapper}>
         <Button
+          width={100}
           background="lightgray"
           text="취소"
           onPress={() => setShowExchangeModal(false)}
         />
-        <Button background="orange" text="확인" onPress={() => {}} />
+        <Button
+          background="orange"
+          text="확인"
+          onPress={() => {}}
+          width={100}
+        />
       </View>
     </View>
   );

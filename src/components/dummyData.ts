@@ -50,7 +50,7 @@ export const dummyOnionsData = {
       can_trade: false,
     },
   ],
-  memo: "아 잠좀 푹 자고 싶다",
+  memo: "",
 };
 
 export const dummyFriendsData = {

@@ -1,12 +1,18 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  DimensionValue,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { ButtonType } from "../../types/common/buttonType";
 
 export const Button: React.FC<ButtonType> = ({
   background,
+  width,
   onPress,
   text,
 }: ButtonType) => {
-  const styles = createStyles(background);
+  const styles = createStyles(background, width);
   const onPressHandler = () => onPress();
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -15,12 +21,12 @@ export const Button: React.FC<ButtonType> = ({
   );
 };
 
-const createStyles = (background: string) => {
+const createStyles = (background: string, width: DimensionValue) => {
   return StyleSheet.create({
     button: {
       backgroundColor: background,
       padding: 10,
-      width: 100,
+      width: width,
       borderRadius: 14,
     },
     text: {

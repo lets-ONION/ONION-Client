@@ -9,7 +9,7 @@ import {
   dummyOnionsData,
 } from "../../components/dummyData";
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
-import { CommentDay } from "../../components/dictionary/commentDay";
+import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
 
 export default function Dictionary() {
   const [ismodelVisible, setModalVisible] = useState<boolean>(false);
