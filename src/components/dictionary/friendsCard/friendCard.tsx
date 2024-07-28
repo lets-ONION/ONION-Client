@@ -23,7 +23,7 @@ export const FriendCard: React.FC<FriendCardType> = ({
 const styles = StyleSheet.create({
   container: {
     width: 80,
-    height: 110,
+    height: 120,
     alignItems: "center",
   },
   profileImage: {

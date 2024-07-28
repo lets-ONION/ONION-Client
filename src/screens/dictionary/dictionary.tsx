@@ -9,34 +9,42 @@ import {
   dummyOnionsData,
 } from "../../components/dummyData";
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
+import { CommentDay } from "../../components/dictionary/commentDay";
 
 export default function Dictionary() {
   const [ismodelVisible, setModalVisible] = useState<boolean>(false);
   const [showFriendsOnion, setShowFriendsOnion] = useState<boolean>(false);
   return (
-    <View style={styles.container}>
-      <Text>친구들의 양파 보기</Text>
-      <FriendsCardList
-        friends={dummyFriendsData.friends}
-        setShowFriendsOnion={setShowFriendsOnion}
-      />
+    <ScrollView contentContainerStyle={styles.contentContainer}>
+      <View style={styles.friendsList}>
+        <Text>친구들의 양파 보기</Text>
+        <FriendsCardList
+          friends={dummyFriendsData.friends}
+          setShowFriendsOnion={setShowFriendsOnion}
+        />
+      </View>
+      <CommentDay comment={dummyOnionsData.memo} />
       <Text style={styles.text}>내 양파도감</Text>
+      {!dummyOnionsData.onions.length && (
+        <View style={styles.noContentWrapper}>
+          <Text style={{ color: "gray" }}>아직 도감을 모으지 못했어요 =3</Text>
+        </View>
+      )}
       <OnionCardList
         onions={dummyOnionsData.onions}
         showFriendsOnion={showFriendsOnion}
       />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     marginTop: 30,
     padding: 20,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 100,
     backgroundColor: "white",
   },
   dictionaryContent: {
@@ -47,8 +55,9 @@ const styles = StyleSheet.create({
   },
   friendsList: {
     flexWrap: "nowrap",
-    flexDirection: "row",
-    gap: 5,
+    flexDirection: "column",
+    alignItems: "center",
+    height: 120,
   },
   friendsListWrapper: {
     paddingLeft: 20,
@@ -59,5 +68,11 @@ const styles = StyleSheet.create({
   },
   text: {
     padding: 20,
+  },
+  noContentWrapper: {
+    width: "100%",
+    height: 400,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

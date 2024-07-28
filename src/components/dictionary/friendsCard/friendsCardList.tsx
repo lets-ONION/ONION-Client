@@ -36,7 +36,7 @@ export const FriendsCardList: React.FC<FriendCardListType> = ({
 const styles = StyleSheet.create({
   friendsListWrapper: {
     paddingHorizontal: 10,
-    paddingVertical: 20,
+    paddingTop: 10,
     borderBottomColor: "lightgrey",
     borderBottomWidth: 1,
   },
