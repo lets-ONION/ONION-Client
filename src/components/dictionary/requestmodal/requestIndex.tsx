@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CustomModal } from "../../common/modal";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SentReqs } from "./sentReqs";
-import { ReceivedReqs } from "./receivedReqs";
+import { ReceivedReqs } from "./receivedReq/receivedReqs";
 
 export const RequestIndex = () => {
   const [showRequestModal, setShowRequestModal] = useState<boolean>(false);

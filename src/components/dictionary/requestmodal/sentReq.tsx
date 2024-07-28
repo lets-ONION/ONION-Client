@@ -1,7 +1,11 @@
 import { StyleSheet, View } from "react-native";
 
-export const SentReqItem = () => {
-  return <View></View>;
+export const SentReqItem = ({ trade }) => {
+  return (
+    <View>
+      <></>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
