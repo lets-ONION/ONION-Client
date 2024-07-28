@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { ReceivedTradeListType } from "../../../../types/exchangeRequests";
 import { ReceivedReqItem } from "./receivedReqsItem";
 
-export const receivedReqsList = ({ trades }: ReceivedTradeListType) => {
+export const ReceivedReqsList = ({ trades }: ReceivedTradeListType) => {
   return (
     <ScrollView>
       {trades.map((trade) => {

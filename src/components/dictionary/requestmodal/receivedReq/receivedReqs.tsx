@@ -1,9 +1,16 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { dummyReceivedData } from "../../../dummyData";
+import { ReceivedReqsList } from "./receivedReqList";
 
 export const ReceivedReqs = () => {
   return (
-    <View>
-      <Text>내가 받은 요청</Text>
+    <View style={styles.container}>
+      <ReceivedReqsList trades={dummyReceivedData.trades} />
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
+});
