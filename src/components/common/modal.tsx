@@ -14,7 +14,7 @@ export const CustomModal = ({
 }: ModalType) => {
   const onPressOuterContent = () => touchOuterContent(false);
   return (
-    <Modal visible={visible} transparent={true}>
+    <Modal visible={visible} transparent={true} animationType="slide">
       <TouchableOpacity
         onPress={onPressOuterContent}
         style={styles.outerContent}

@@ -11,6 +11,7 @@ import {
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
 import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RequestIndex } from "../../components/dictionary/requestmodal/requestIndex";
 
 export default function Dictionary() {
   const [ismodalVisible, setModalVisible] = useState<boolean>(false);
@@ -26,8 +27,8 @@ export default function Dictionary() {
       </View>
       <CommentDay comment={dummyOnionsData.memo} />
       <View style={styles.requestIconWrapper}>
-        <Text style={styles.text}>내 양파도감</Text>
-        <MaterialCommunityIcons name="mailbox-open-outline" size={30} />
+        <Text>내 양파도감</Text>
+        <RequestIndex />
       </View>
       {!dummyOnionsData.onions.length && (
         <View style={styles.noContentWrapper}>
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "lightgrey",
     borderBottomWidth: 1,
   },
-  text: {},
   noContentWrapper: {
     width: "100%",
     height: 400,
