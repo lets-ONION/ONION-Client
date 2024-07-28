@@ -33,7 +33,11 @@ export const ExchangeModal = ({
             <Text style={styles.text}>내 양파와 교환하기</Text>
           </View>
           {showConfirmModal ? (
-            <ExchangeConfirm reqOnion={reqOnion} resOnion={selectedOnion} />
+            <ExchangeConfirm
+              reqOnion={reqOnion}
+              resOnion={selectedOnion}
+              setShowExchangeModal={setShowExchangeModal}
+            />
           ) : (
             <ExchangeOnionsList
               onions={dummyOnionsData.onions}

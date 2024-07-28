@@ -25,4 +25,5 @@ export type ExchangeOnionListType = {
 export type ExchangeConfirmModalType = {
   reqOnion: OnionsInfo;
   resOnion: OnionsInfo;
+  setShowExchangeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
