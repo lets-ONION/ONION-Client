@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { CustomModal } from "../../common/modal";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SentReqs } from "./sentReqs";
+import { SentReqs } from "./sentReq/sentReqs";
 import { ReceivedReqs } from "./receivedReq/receivedReqs";
 
 export const RequestIndex = () => {

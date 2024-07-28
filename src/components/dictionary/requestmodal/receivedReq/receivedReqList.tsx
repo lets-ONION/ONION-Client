@@ -1,12 +1,18 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { ReceivedTradeListType } from "../../../../types/exchangeRequests";
 import { ReceivedReqItem } from "./receivedReqsItem";
 
 export const ReceivedReqsList = ({ trades }: ReceivedTradeListType) => {
   return (
-    <ScrollView>
-      {trades.map((trade) => {
-        return <ReceivedReqItem trade={trade} />;
+    <ScrollView contentContainerStyle={styles.container}>
+      {trades.map((trade, idx) => {
+        return <ReceivedReqItem trade={trade} key={idx} />;
       })}
     </ScrollView>
   );
