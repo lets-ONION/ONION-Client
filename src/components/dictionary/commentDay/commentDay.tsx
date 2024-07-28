@@ -3,6 +3,7 @@ import { CommentType } from "../../../types/comment";
 import { useState } from "react";
 import { NewComment } from "./newComment";
 import { dummyMyProfile } from "../../dummyData";
+import { CustomModal } from "../../common/modal";
 
 export const CommentDay = ({ comment }: CommentType) => {
   const [showWriteModal, setShowWriteModal] = useState<boolean>(false);
@@ -19,13 +20,16 @@ export const CommentDay = ({ comment }: CommentType) => {
         )}
       </View>
       <View style={styles.commentArrow} />
-      <Modal visible={showWriteModal} animationType="slide" transparent={true}>
+      <CustomModal
+        visible={showWriteModal}
+        touchOuterContent={setShowWriteModal}
+      >
         <NewComment
           setShowWriteModal={setShowWriteModal}
           myOnionImage={dummyMyProfile.profile_image}
           nickname={dummyMyProfile.nickname}
         />
-      </Modal>
+      </CustomModal>
     </View>
   );
 };
