@@ -10,8 +10,8 @@ export const ExchangeOnionsList: React.FC<ExchangeOnionListType> = ({
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View onStartShouldSetResponder={() => true} style={{ width: "100%" }}>
-        {onions.map((onion) => {
-          return <ExchangeOnion onion={onion} reqOnion={reqOnion} />;
+        {onions.map((onion, idx) => {
+          return <ExchangeOnion onion={onion} reqOnion={reqOnion} key={idx} />;
         })}
       </View>
     </ScrollView>

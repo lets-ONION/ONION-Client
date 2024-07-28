@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -18,6 +19,9 @@ export const ExchangeModal = ({
     <TouchableOpacity style={styles.container} onPress={onPressOuterContent}>
       <TouchableWithoutFeedback onPress={() => {}}>
         <View style={styles.exchangeListWrapper}>
+          <View style={styles.textWrapper}>
+            <Text style={styles.text}>내 양파와 교환하기</Text>
+          </View>
           <ExchangeOnionsList
             onions={dummyOnionsData.onions}
             reqOnion={reqOnion}
@@ -40,5 +44,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     borderWidth: 2,
+    alignItems: "center",
+  },
+  textWrapper: {
+    paddingVertical: 15,
+  },
+  text: {
+    fontSize: 15,
   },
 });
