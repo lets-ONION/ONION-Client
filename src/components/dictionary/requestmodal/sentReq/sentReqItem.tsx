@@ -13,8 +13,8 @@ export const SentReqItem = ({ trade }: ReqTradeType) => {
         <Button
           background="lightgray"
           onPress={() => {}}
-          text="취소"
-          width={50}
+          text="취소하기"
+          width={80}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: 10,
   },
   text: {
-    width: "80%",
+    width: "70%",
   },
 });

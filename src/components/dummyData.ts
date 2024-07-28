@@ -181,11 +181,88 @@ export const dummyReqData = {
       is_accepted: 0,
       date: "240730",
     },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
+    {
+      id: 3,
+      receiver: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0,
+      date: "240730",
+    },
   ],
 };
 
 export const dummyReceivedData = {
   trades: [
+    {
+      id: 3,
+      requester: {
+        id: 4,
+        nickname: "닉네임",
+      },
+      req_onion: "양파깡",
+      res_onion: "양파링",
+      is_accepted: 0, // 0 : 수락/거절 전, 1 : 수락, 2 : 거절
+      requested_at: "240730",
+    },
     {
       id: 3,
       requester: {

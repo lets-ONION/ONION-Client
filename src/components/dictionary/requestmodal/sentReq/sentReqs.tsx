@@ -12,6 +12,7 @@ export const SentReqs = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    height: "90%",
     padding: 10,
   },
 });

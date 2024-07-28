@@ -11,7 +11,7 @@ import { SentReqItem } from "./sentReqItem";
 
 export const SentReqsList = ({ trades }: ReqTradeListType) => {
   return (
-    <ScrollView contentContainerStyle={styles.contentContainer}>
+    <ScrollView>
       {trades.map((trade, idx) => {
         return <SentReqItem trade={trade} key={idx} />;
       })}
@@ -22,10 +22,5 @@ export const SentReqsList = ({ trades }: ReqTradeListType) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-  },
-  contentContainer: {
-    width: "100%",
-    padding: 10,
-    height: "100%",
   },
 });
