@@ -5,16 +5,19 @@ import useToken from "./src/hooks/useToken";
 import OnionCard from "./src/components/dictionary/onionCard";
 import MainTab from "./src/screens/MainTab";
 import { NavigationContainer } from "@react-navigation/native";
+import AuthStackNav from "./src/navigator/AuthStackNav";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // 로그인 상태를 관리
+
   const [token] = useToken();
 
   console.log(token);
 
   return (
     <NavigationContainer>
-      <MainTab />
+      {isLoggedIn ? <MainTab /> : <AuthStackNav />}
     </NavigationContainer>
   );
 };
