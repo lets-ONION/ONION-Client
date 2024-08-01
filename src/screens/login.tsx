@@ -1,4 +1,11 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import {
   login,
@@ -11,6 +18,7 @@ import { backLogin, getUser } from "../api/auth";
 import { AxiosError } from "axios";
 import { httpClient } from "../api/http";
 import { useIsLogin } from "../store/authStore";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const Login = () => {
   const setIsLogin = useIsLogin((state) => state.setIsLogin);
@@ -28,19 +36,23 @@ export const Login = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.resultContainer}>
-        <ScrollView>
-          <Text></Text>
-          <View style={{ height: 100 }} />
-        </ScrollView>
-      </View>
+      <Image
+        source={{ uri: "https://i.imgur.com/wFI6Whf.png" }}
+        style={styles.image}
+      />
       <Pressable
         style={styles.button}
         onPress={() => {
           signInWithKakao();
         }}
       >
-        <Text style={styles.text}>카카오 로그인</Text>
+        <Image
+          source={{
+            uri: "https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff5d7b9d3-6faa-4fbd-92fb-abc13883f4ac%2Fkakao.png&blockId=845a0760-d543-46ae-965d-018c4289eb32&width=256",
+          }}
+          style={{ width: 40, height: 40 }}
+        />
+        <Text style={styles.text}>카카오톡으로 로그인하기</Text>
       </Pressable>
     </View>
   );
@@ -50,27 +62,33 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     height: "100%",
-    justifyContent: "flex-end",
+    paddingTop: 50,
+    justifyContent: "space-between",
     alignItems: "center",
     paddingBottom: 100,
   },
-  resultContainer: {
-    flexDirection: "column",
-    width: "100%",
-    padding: 24,
+  image: {
+    width: 300,
+    height: 500,
+    objectFit: "contain",
   },
   button: {
-    backgroundColor: "#FEE500",
-    borderRadius: 40,
-    borderWidth: 1,
-    width: 250,
-    height: 40,
+    backgroundColor: "#FDDC3F",
+    borderRadius: 14,
+    width: "70%",
+    height: 50,
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    justifyContent: "center",
   },
   text: {
     textAlign: "center",
+    fontSize: 17,
   },
 });
