@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Home } from "./home";
+import { Diary } from "./diary";
 import Dictionary from "./dictionary/dictionary";
 import Setting from "./setting/setting";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -14,6 +15,16 @@ export default function MainTab() {
         name="home"
         component={Home}
         options={{ tabBarLabel: "홈" }}
+      />
+      <Tab.Screen
+        name="diary"
+        component={Diary}
+        options={{
+          tabBarLabel: "긍정일기",
+          tabBarIcon: () => {
+            return <Entypo name="open-book" size={30} />;
+          },
+        }}
       />
       <Tab.Screen
         name="dictionary"

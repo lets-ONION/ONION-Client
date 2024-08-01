@@ -9,7 +9,7 @@ import AuthStackNav from "./src/navigator/AuthStackNav";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // 로그인 상태를 관리
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
 
   const [token] = useToken();
 
@@ -18,6 +18,7 @@ const App = () => {
   return (
     <NavigationContainer>
       {isLoggedIn ? <MainTab /> : <AuthStackNav />}
+      {/* <MainTab /> */}
     </NavigationContainer>
   );
 };
