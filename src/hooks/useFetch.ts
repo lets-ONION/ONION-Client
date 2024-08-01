@@ -1,36 +1,28 @@
-import { useEffect, useState } from "react";
+import { AxiosError } from "axios";
+import { ErrorInfo, useCallback, useEffect, useState } from "react";
 
-type Status = "PENDING" | "FULFILLED" | "REJECTED";
-
-const useFetch = <T>(request: () => Promise<T>) => {
-  const [status, setStatus] = useState<Status>("PENDING");
+export const useFetch = <T>(request: () => Promise<T>) => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [result, setResult] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const resolve = (fetchedData: T) => {
-    setStatus("FULFILLED");
-    setResult(fetchedData);
-  };
-
-  const reject = (error: Error) => {
-    setStatus("REJECTED");
-    setError(error);
-  };
-
-  const fetch = () => {
-    setStatus("PENDING");
-    request().then(resolve, reject);
-  };
-
   useEffect(() => {
-    fetch();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const data = await request();
+        setResult(data);
+      } catch (err) {
+        console.log(err);
+        setError(err);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, [request]);
 
   return {
     result,
-    status,
-    isLoading: status === "PENDING",
-    isError: status === "REJECTED",
+    loading,
     error,
   };
 };

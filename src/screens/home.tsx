@@ -1,7 +1,12 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import useToken from "../hooks/useToken";
+import Login from "./login";
 
 export function Home() {
   const [token] = useToken();
-  return <Text>홈</Text>;
+  return (
+    <View>
+      <Text>www</Text>
+    </View>
+  );
 }

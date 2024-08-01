@@ -5,16 +5,19 @@ import useToken from "./src/hooks/useToken";
 import OnionCard from "./src/components/dictionary/myOnionCards/onionCard";
 import MainTab from "./src/screens/MainTab";
 import { NavigationContainer } from "@react-navigation/native";
+import { useIsLogin } from "./src/store/authStore";
+import Login from "./src/screens/login";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [token] = useToken();
+  const isLogin = useIsLogin((state) => state.isLogin);
 
-  console.log(token);
+  console.log("www", isLogin);
 
   return (
     <NavigationContainer>
-      <MainTab />
+      {isLogin ? <MainTab /> : <Login />}
     </NavigationContainer>
   );
 };
