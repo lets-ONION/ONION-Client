@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   onion: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 60,
+    marginBottom: 80,
   }
 });
 
