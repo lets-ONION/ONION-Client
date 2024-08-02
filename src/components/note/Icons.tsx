@@ -1,15 +1,19 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated } from 'react-native';
 
-const Icons = () => {
+interface Props {
+    micIcon: 'mic-circle-outline' | 'mic-circle';
+    setMicIcon: React.Dispatch<React.SetStateAction<'mic-circle-outline' | 'mic-circle'>>;
+}
+
+const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
     const animation = useRef(new Animated.Value(1)).current;
     const [selected, setSelected] = useState<string | null>(null);
 
     const animationMic = useRef(new Animated.Value(0)).current;
     const [enabled, setEnabled] = useState(false);
-    const [micIcon, setMicIcon] = useState<'mic-circle-outline' | 'mic-circle'>('mic-circle-outline');
 
     useEffect(() => {
         Animated.timing(animationMic, {
@@ -60,7 +64,9 @@ const Icons = () => {
 const styles = StyleSheet.create({
     icons: {
         flexDirection: 'row',
-        gap: 60
+        gap: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     icon: {
         justifyContent: 'center',
