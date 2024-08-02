@@ -19,6 +19,10 @@ const Icons = () => {
     }, [animationMic, enabled]);
 
     const handlePress = (iconName: string) => {
+        if (enabled && iconName === "mic") {
+            setMicIcon(micIcon === 'mic-circle-outline' ? 'mic-circle' : 'mic-circle-outline')
+        }
+
         if (iconName === "mic" && selected !== "mic") {
             Animated.timing(animation, {
                 toValue: 0,
@@ -37,7 +41,9 @@ const Icons = () => {
                 <TouchableOpacity style={styles.icon} onPress={() => handlePress("mic")}>
                     <Ionicons name={micIcon} size={70} color="black" />
                     <Text style={styles.text}>
-                        {enabled ? '마이크를 누른 후, 당신의\n이야기를 들려주세요' : '말로 하기'}
+                        {micIcon === 'mic-circle' ?
+                            '당신의 이야기를\n듣고 있습니다.' :
+                            (enabled ? '마이크를 누른 후, 당신의\n이야기를 들려주세요' : '말로 하기')}
                     </Text>
                 </TouchableOpacity>
             </Animated.View>
