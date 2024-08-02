@@ -5,23 +5,25 @@ import { getUser } from "../../api/auth";
 import { useFetch } from "../../hooks/useFetch";
 
 export function Profile() {
-  const { result, loading, error } = useFetch(getUser);
-  if (error) {
-    return <Text>dpfj</Text>;
+  const { data, loading, error } = useFetch(getUser);
+  if (error) return <Text>www</Text>;
+  if (data) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.profileImageWrapper}>
+          <Image
+            source={{ uri: "https://i.imgur.com/cpH5jvA.png" }}
+            style={styles.profileImage}
+          />
+        </View>
+        <View style={styles.profile}>
+          <Text style={styles.nickname}>
+            {error ? "정보를 가져오지 못했습니다." : data.data.nickname}
+          </Text>
+        </View>
+      </View>
+    );
   }
-  return (
-    <View style={styles.container}>
-      <View style={styles.profileImageWrapper}>
-        <Image
-          source={{ uri: "https://i.imgur.com/cpH5jvA.png" }}
-          style={styles.profileImage}
-        />
-      </View>
-      <View style={styles.profile}>
-        <Text style={styles.nickname}>nickname</Text>
-      </View>
-    </View>
-  );
 }
 const styles = StyleSheet.create({
   container: {

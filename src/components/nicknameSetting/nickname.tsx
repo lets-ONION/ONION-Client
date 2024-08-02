@@ -34,7 +34,6 @@ export function Nickname({ navigation, route }: NicknameScreenProps) {
       await patchUserNickname(nickname);
       setLogin();
     } catch (error) {
-      console.log(error);
       Alert.alert("오류", "닉네임 설정 과정에서 오류가 발생했습니다.");
     }
   };

@@ -27,13 +27,11 @@ export const Login = ({ navigation }: LoginScreenProps) => {
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
-      console.log(token);
-      httpClient.defaults.headers.common["Authorization"] = "";
       const { data } = await backLogin({
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
       });
-      if (!data.nickname) navigation.navigate("NicknameSetting");
+      if (!data.member.nickname) navigation.navigate("NicknameSetting");
       else setIsLogin();
     } catch (err) {
       console.error("login err", err);
