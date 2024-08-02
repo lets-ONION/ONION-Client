@@ -12,7 +12,7 @@ import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCar
 import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RequestIndex } from "../../components/dictionary/requestmodal/requestIndex";
-import { FriendsRequest } from "../../components/dictionary/friendsCard/friendsRequest";
+import { FriendsRequest } from "../../components/dictionary/friendsCard/friendsreq/friendsRequest";
 
 export default function Dictionary() {
   const [ismodalVisible, setModalVisible] = useState<boolean>(false);
