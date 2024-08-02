@@ -12,6 +12,7 @@ import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCar
 import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RequestIndex } from "../../components/dictionary/requestmodal/requestIndex";
+import { FriendsRequest } from "../../components/dictionary/friendsCard/friendsRequest";
 
 export default function Dictionary() {
   const [ismodalVisible, setModalVisible] = useState<boolean>(false);
@@ -20,6 +21,7 @@ export default function Dictionary() {
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.friendsList}>
         <Text>친구들의 양파 보기</Text>
+        <FriendsRequest />
         <FriendsCardList
           friends={dummyFriendsData.friends}
           setShowFriendsOnion={setShowFriendsOnion}

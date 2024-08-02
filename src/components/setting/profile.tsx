@@ -10,10 +10,12 @@ export function Profile() {
   useState(() => {});
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: "https://i.imgur.com/cpH5jvA.png" }}
-        style={styles.profileImage}
-      />
+      <View style={styles.profileImageWrapper}>
+        <Image
+          source={{ uri: "https://i.imgur.com/cpH5jvA.png" }}
+          style={styles.profileImage}
+        />
+      </View>
       <View style={styles.profile}>
         <Text style={styles.nickname}>nickname</Text>
       </View>
@@ -26,17 +28,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     height: 150,
-    backgroundColor: "lightgray",
+    backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
   },
-  profileImage: {
+  profileImageWrapper: {
     width: 100,
     height: 100,
     resizeMode: "contain",
-    backgroundColor: "gray",
+    backgroundColor: "lightgray",
     borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  profileImage: {
+    width: 70,
+    height: 70,
   },
   profile: {
     width: "50%",

@@ -1,6 +1,7 @@
 import {
   Image,
   Pressable,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -62,9 +63,8 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
     paddingTop: 50,
+    height: "100%",
     justifyContent: "space-between",
     alignItems: "center",
     paddingBottom: 100,
