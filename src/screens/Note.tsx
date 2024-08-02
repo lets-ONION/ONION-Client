@@ -1,15 +1,19 @@
 import { View, StyleSheet, Image } from "react-native";
 import TextBalloon from "../components/note/TextBalloon";
 import Icons from "../components/note/Icons";
+import React, { useState } from 'react';
+import Onions from "../components/note/Onions";
 
 export function Note() {
+    const positive1 = require("../../assets/positive/1.png");
     const negative1 = require("../../assets/negative/1.png");
+    const [micIcon, setMicIcon] = useState<'mic-circle-outline' | 'mic-circle'>('mic-circle-outline');
 
     return (
         <View style={styles.noteStyle}>
-            <TextBalloon type="negative" speaking={false} />
-            <Image source={negative1} style={styles.onion} />
-            <Icons />
+            <TextBalloon type="negative" micIcon={micIcon} />
+            <Onions type="negative" />
+            <Icons micIcon={micIcon} setMicIcon={setMicIcon}/>
         </View>
     );
 };
