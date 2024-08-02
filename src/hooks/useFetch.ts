@@ -1,6 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { AxiosError } from "axios";
 import { ErrorInfo, useCallback, useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { keyframes } from "styled-components";
 
 export const useFetch = <T>(request: () => Promise<T>) => {
@@ -12,10 +13,15 @@ export const useFetch = <T>(request: () => Promise<T>) => {
     try {
       setLoading(true);
       const data = await request();
-      console.log(data);
       setData(data);
     } catch (err) {
-      setError(err as Error);
+      console.log(err);
+      Alert.alert("오류", "정보를 불러들이다 실패했어요", [
+        {
+          text: "새로고침",
+          onPress: fetchData,
+        },
+      ]);
     } finally {
       setLoading(false);
     }

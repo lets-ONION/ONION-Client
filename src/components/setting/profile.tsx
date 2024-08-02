@@ -1,12 +1,12 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { getUser } from "../../api/auth";
 import { useFetch } from "../../hooks/useFetch";
 
 export function Profile() {
-  const { data, loading, error } = useFetch(getUser);
-  if (error) return <Text>www</Text>;
+  let { data, loading, error } = useFetch(getUser);
+
   if (data) {
     return (
       <View style={styles.container}>

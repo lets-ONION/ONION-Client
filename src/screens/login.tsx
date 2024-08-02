@@ -17,13 +17,13 @@ import {
 } from "@react-native-seoul/kakao-login";
 import { backLogin, getUser } from "../api/auth";
 import { httpClient } from "../api/http";
-import { useIsLogin } from "../store/authStore";
+import { useLogin } from "../store/authStore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LoginStackParamList } from "./loginStack";
 
 type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, "Login">;
 export const Login = ({ navigation }: LoginScreenProps) => {
-  const setIsLogin = useIsLogin((state) => state.setIsLogin);
+  const { setIsLogin, setToken } = useLogin.getState();
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
@@ -31,6 +31,7 @@ export const Login = ({ navigation }: LoginScreenProps) => {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
       });
+      setToken(data.access_token);
       if (!data.member.nickname) navigation.navigate("NicknameSetting");
       else setIsLogin();
     } catch (err) {

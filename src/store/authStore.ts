@@ -2,22 +2,30 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface loginState {
+interface LoginState {
   isLogin: boolean;
+  accessToken: string;
   setIsLogin: () => void;
+  setToken: (token: string) => void;
 }
-export const useIsLogin = create<loginState>()(
+
+export const useLogin = create<LoginState>()(
   persist(
     (set) => ({
       isLogin: false,
+      accessToken: "",
       setIsLogin: () =>
         set((state) => ({
           isLogin: !state.isLogin,
         })),
+      setToken: (token: string) =>
+        set(() => ({
+          accessToken: token,
+        })),
     }),
     {
-      name: "isLogin", // 저장될 상태의 이름
-      storage: createJSONStorage(() => AsyncStorage), // AsyncStorage를 사용하여 상태를 저장
+      name: "loginStorage",
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );

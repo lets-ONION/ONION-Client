@@ -10,10 +10,13 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Diary } from "./diary/diary";
+import { useLogin } from "../store/authStore";
+import { useAccess } from "../hooks/useAccess";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function MainTab() {
+  const { accessToken } = useAccess();
   return (
     <Tab.Navigator>
       <Tab.Screen

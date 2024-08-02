@@ -1,9 +1,9 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
-import { useIsLogin } from "../../store/authStore";
+import { useLogin } from "../../store/authStore";
 
 export function Logout() {
-  const logout = useIsLogin((state) => state.setIsLogin);
+  const logout = useLogin((state) => state.setIsLogin);
   const onPressLogout = () => {
     Alert.alert("로그아웃", "로그아웃 하시나요?", [
       {
