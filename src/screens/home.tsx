@@ -3,15 +3,19 @@ import useToken from "../hooks/useToken";
 import Onions from "../components/main/Onions";
 import { getFormattedDate } from '../utils/dateUtils';
 import Button from "../components/main/Button";
+import { useState } from "react";
 
 export function Home() {
   const [token] = useToken();
+  const [is_spoken, setis_spoken] = useState(false);
 
   return (
     <View style={styles.homeStyle}>
       <Text style={styles.date}>{getFormattedDate()}</Text>
       <Onions />
-      <Button>양파에게 말하기</Button>
+      <Button>
+        {is_spoken ? '이미 양파에게 말했어요.' : '양파에게 말하기'}
+      </Button>
     </View>
   );
 };
