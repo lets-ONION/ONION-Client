@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ExchangeConfirmModalType } from "../../../types/exchangeOnion";
+import { ExchangeConfirmModalType } from "../../../types/exchange/exchangeOnion";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Button } from "../../common/button";
 

@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { ReqTradeListType } from "../../../../types/exchangeRequests";
+import { ReqTradeListType } from "../../../../types/exchange/exchangeRequests";
 import { dummyReqData } from "../../../dummyData";
 import { SentReqItem } from "./sentReqItem";
 

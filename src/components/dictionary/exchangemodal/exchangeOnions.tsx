@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ExchangeOnionsType } from "../../../types/exchangeOnion";
+import { ExchangeOnionsType } from "../../../types/exchange/exchangeOnion";
 
 export const ExchangeOnion = ({
   onion,

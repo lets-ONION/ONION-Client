@@ -7,7 +7,10 @@ import {
 } from "react-native";
 import { ExchangeOnionsList } from "./exchangeOnionsList";
 import { OnionCardListType } from "../../../types/onionCard";
-import { ExchangeOnionType, OnionsInfo } from "../../../types/exchangeOnion";
+import {
+  ExchangeOnionType,
+  OnionsInfo,
+} from "../../../types/exchange/exchangeOnion";
 import { dummyOnionsData } from "../../dummyData";
 import { useState } from "react";
 import { ExchangeConfirm } from "./exchangeConfirm";

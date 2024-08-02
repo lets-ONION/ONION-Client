@@ -1,13 +1,12 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { Button } from "../../../../common/button";
 
-export const ReceivedReqItem = ({ trade }: ReceivedTradeType) => {
+export const ReceivedReqItem = ({ req }: FriendReqType) => {
   return (
     <TouchableWithoutFeedback>
       <View style={styles.container}>
         <Text style={styles.text}>
-          {trade.requester.nickname}님이 자신의 {trade.req_onion}을{" "}
-          {trade.res_onion}과 교환하기를 원해요!
+          {req.member.nickname}님이 친구요청을 보냈어요!
         </Text>
         <View style={styles.buttonWrapper}>
           <Button

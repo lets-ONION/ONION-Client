@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import { ReceivedTradeType } from "../../../../types/exchangeRequests";
+import { ReceivedTradeType } from "../../../../types/exchange/exchangeRequests";
 import { Button } from "../../../common/button";
 
 export const ReceivedReqItem = ({ trade }: ReceivedTradeType) => {

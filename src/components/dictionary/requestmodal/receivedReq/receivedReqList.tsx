@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { ReceivedTradeListType } from "../../../../types/exchangeRequests";
+import { ReceivedTradeListType } from "../../../../types/exchange/exchangeRequests";
 import { ReceivedReqItem } from "./receivedReqsItem";
 
 export const ReceivedReqsList = ({ trades }: ReceivedTradeListType) => {

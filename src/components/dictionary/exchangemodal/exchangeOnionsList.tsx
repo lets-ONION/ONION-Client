@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { OnionCardListType, OnionCardType } from "../../../types/onionCard";
 import { ExchangeOnion } from "./exchangeOnions";
-import { ExchangeOnionListType } from "../../../types/exchangeOnion";
+import { ExchangeOnionListType } from "../../../types/exchange/exchangeOnion";
 
 export const ExchangeOnionsList: React.FC<ExchangeOnionListType> = ({
   onions,
