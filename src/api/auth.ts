@@ -16,3 +16,11 @@ export const getUser = async () => {
   console.log("???", result.data);
   return result.data;
 };
+
+export const patchUserNickname = async (nickname: string) => {
+  console.log(nickname);
+  const result = await httpClient.put(`/member/nickname/update`, {
+    nickname: nickname,
+  });
+  console.log(result);
+};
