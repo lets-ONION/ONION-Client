@@ -1,21 +1,21 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import messaging from "@react-native-firebase/messaging";
+import { StyleSheet } from "react-native";
+import React, { useState } from "react";
 import useToken from "./src/hooks/useToken";
-import OnionCard from "./src/components/dictionary/onionCard";
 import MainTab from "./src/screens/MainTab";
 import { NavigationContainer } from "@react-navigation/native";
+import { ThemeProvider } from 'styled-components/native';
+import { theme } from './src/style/theme';
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [token] = useToken();
 
-  console.log(token);
-
   return (
-    <NavigationContainer>
-      <MainTab />
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <MainTab />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
