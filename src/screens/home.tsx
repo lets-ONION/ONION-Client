@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   date: {
-    marginVertical: 50,
-    marginBottom: 20,
+    marginVertical: 70,
+    marginBottom: 40,
     fontSize: 20,
   }
 });
