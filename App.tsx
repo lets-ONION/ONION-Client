@@ -7,6 +7,7 @@ import MainTab from "./src/screens/MainTab";
 import { NavigationContainer } from "@react-navigation/native";
 import { useIsLogin } from "./src/store/authStore";
 import Login from "./src/screens/login";
+import { LoginStack } from "./src/screens/loginStack";
 
 const App = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -17,7 +18,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {isLogin ? <MainTab /> : <Login />}
+      {isLogin ? <MainTab /> : <LoginStack />}
     </NavigationContainer>
   );
 };

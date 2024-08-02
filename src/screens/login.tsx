@@ -16,20 +16,25 @@ import {
   unlink,
 } from "@react-native-seoul/kakao-login";
 import { backLogin, getUser } from "../api/auth";
-import { AxiosError } from "axios";
 import { httpClient } from "../api/http";
 import { useIsLogin } from "../store/authStore";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { LoginStackParamList } from "./loginStack";
 
-export const Login = () => {
+type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, "Login">;
+export const Login = ({ navigation }: LoginScreenProps) => {
   const setIsLogin = useIsLogin((state) => state.setIsLogin);
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
-      httpClient.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxZGUwOTY5My02YmNkLTQyNGUtYTg3Ny04ODE0N2Q4NmM5ODUiLCJpc3MiOiJsZXRzLW9uaW9uQXBwIiwic3ViIjoiMyIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3MjI1MzMwOTcsImV4cCI6MTcyMjUzNjY5N30.WCXyX7ct39G0J6O14BfddokhpTqDlGzYp-1R96fugv_FjaT7Yyem_pOkGktv_bsqrzDZg8s2DEZf2x451SzLmQ`;
-      setIsLogin();
+      console.log(token);
+      httpClient.defaults.headers.common["Authorization"] = "";
+      const { data } = await backLogin({
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+      });
+      if (!data.nickname) navigation.navigate("NicknameSetting");
+      else setIsLogin();
     } catch (err) {
       console.error("login err", err);
     }

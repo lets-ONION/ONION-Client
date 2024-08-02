@@ -6,8 +6,9 @@ import { useFetch } from "../../hooks/useFetch";
 
 export function Profile() {
   const { result, loading, error } = useFetch(getUser);
-  console.log(result, loading, error);
-  useState(() => {});
+  if (error) {
+    return <Text>dpfj</Text>;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.profileImageWrapper}>
