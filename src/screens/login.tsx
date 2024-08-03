@@ -23,7 +23,7 @@ import { LoginStackParamList } from "./loginStack";
 
 type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, "Login">;
 export const Login = ({ navigation }: LoginScreenProps) => {
-  const { setIsLogin, setToken } = useLogin.getState();
+  const { setIsLogin, setToken, setRefresh } = useLogin.getState();
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
@@ -32,6 +32,7 @@ export const Login = ({ navigation }: LoginScreenProps) => {
         refreshToken: token.refreshToken,
       });
       setToken(data.access_token);
+      setRefresh(data.refresh_token);
       if (!data.member.nickname) navigation.navigate("NicknameSetting");
       else setIsLogin();
     } catch (err) {

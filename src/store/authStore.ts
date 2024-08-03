@@ -5,8 +5,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 interface LoginState {
   isLogin: boolean;
   accessToken: string;
+  refreshToken: string;
   setIsLogin: () => void;
   setToken: (token: string) => void;
+  setRefresh: (token: string) => void;
 }
 
 export const useLogin = create<LoginState>()(
@@ -14,6 +16,7 @@ export const useLogin = create<LoginState>()(
     (set) => ({
       isLogin: false,
       accessToken: "",
+      refreshToken: "",
       setIsLogin: () =>
         set((state) => ({
           isLogin: !state.isLogin,
@@ -21,6 +24,10 @@ export const useLogin = create<LoginState>()(
       setToken: (token: string) =>
         set(() => ({
           accessToken: token,
+        })),
+      setRefresh: (token: string) =>
+        set(() => ({
+          refreshToken: token,
         })),
     }),
     {
