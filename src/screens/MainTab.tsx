@@ -12,6 +12,7 @@ import {
 import { Diary } from "./diary/diary";
 import { useLogin } from "../store/authStore";
 import { useAccess } from "../hooks/useAccess";
+import { DiaryStack } from "./diary/diaryStack";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,7 +32,7 @@ export default function MainTab() {
       />
       <Tab.Screen
         name="diary"
-        component={Diary}
+        component={DiaryStack}
         options={{
           tabBarLabel: "일기",
           tabBarIcon: () => {
