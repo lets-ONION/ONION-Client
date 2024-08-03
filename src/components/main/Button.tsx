@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, StyleSheet, View, ViewStyle, TextStyle } from '
 interface Props {
     children: React.ReactNode;
     disabled?: boolean;
-    onPress?: () => void; // onPress handler 추가
+    onPress?: () => void;
 }
 
 const Button = ({ children, disabled, onPress, ...props }: Props) => {
@@ -23,11 +23,13 @@ const Button = ({ children, disabled, onPress, ...props }: Props) => {
 
 const styles = StyleSheet.create({
     button: {
-        padding: 20,
+        padding: 15,
+        margin: 5,
         backgroundColor: '#cad3ff',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        width: 170
     } as ViewStyle,
     disabled: {
         opacity: 0.5,
