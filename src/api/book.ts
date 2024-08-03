@@ -53,11 +53,11 @@ export const patchCancelTrade = async (tradeId: number) => {
 };
 
 export const acceptTrade = async (tradeId: number) => {
-  await httpClient.post(`/trade/accept/${tradeId}`);
+  await httpClient.patch(`/trade/accept/${tradeId}`);
   return;
 };
 
 export const rejectTrade = async (tradeId: number) => {
-  await httpClient.post(`/trade/reject/${tradeId}`);
+  await httpClient.patch(`/trade/reject/${tradeId}`);
   return;
 };

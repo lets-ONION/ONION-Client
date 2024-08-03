@@ -10,13 +10,11 @@ type FriendsListType = {
 };
 
 type FriendReqType = {
-  req: {
-    member: {
-      nickname: string;
-      member_id: number;
-    };
-    request_id: number;
+  member: {
+    nickname: string;
+    member_id: number;
   };
+  request_id: number;
 };
 
 type FriendReqsListType = {

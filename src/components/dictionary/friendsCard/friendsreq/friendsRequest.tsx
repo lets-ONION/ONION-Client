@@ -2,13 +2,15 @@ import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomModal } from "../../../common/modal";
 import { useState } from "react";
+import { RecommendFriends } from "./recommendFriends/recommendFriends";
+import { RequestedFriends } from "./requestedFriends/requestedFriends";
 
 export function FriendsRequest() {
   const [showFriendsModal, setShowFriendsModal] = useState<boolean>(false);
-  const [showSentReqs, setShowSentReqs] = useState<boolean>(false);
+  const [showRecommendList, setShowRecommendList] = useState<boolean>(false);
+  const onPressRecommendList = () => setShowRecommendList(true);
+  const onPressRequested = () => setShowRecommendList(false);
   const onPressIcon = () => setShowFriendsModal(true);
-  const onPressReceivedReqs = () => setShowSentReqs(false);
-  const onPressSentReqs = () => setShowSentReqs(true);
   return (
     <>
       <FontAwesome
@@ -26,15 +28,15 @@ export function FriendsRequest() {
           <View style={styles.selectWrapper}>
             <TouchableOpacity
               style={{ ...styles.menu, borderRightWidth: 2 }}
-              onPress={onPressReceivedReqs}
+              onPress={onPressRecommendList}
             >
-              <Text>받은 요청</Text>
+              <Text>추천하는 친구</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.menu} onPress={onPressSentReqs}>
+            <TouchableOpacity style={styles.menu} onPress={onPressRequested}>
               <Text>보낸 요청</Text>
             </TouchableOpacity>
           </View>
-          {showSentReqs ? <SentReqs /> : <ReceivedReqs />}
+          {showRecommendList ? <RequestedFriends /> : <RecommendFriends />}
         </View>
       </CustomModal>
     </>

@@ -23,7 +23,7 @@ export const ReceivedReqItem = ({ trade, fetchData }: ReceivedTradeType) => {
       await rejectTrade(trade.id);
       await fetchData();
     } catch (error) {
-      Alert.alert("오류", "수락하는 과정에서 오류가 발생했어요!");
+      Alert.alert("오류", "거절하는 과정에서 오류가 발생했어요!");
     }
   };
   return (

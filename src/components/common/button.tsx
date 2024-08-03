@@ -28,6 +28,8 @@ const createStyles = (background: string, width: DimensionValue) => {
       padding: 10,
       width: width,
       borderRadius: 14,
+      justifyContent: "center",
+      alignItems: "center",
     },
     text: {
       fontSize: 15,
