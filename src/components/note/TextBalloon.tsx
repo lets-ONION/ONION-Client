@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 20,
         borderRadius: 20,
+        width: 250
     },
     text: {
         textAlign: 'center',
