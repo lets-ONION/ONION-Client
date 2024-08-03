@@ -1,5 +1,6 @@
 import messaging from "@react-native-firebase/messaging";
 import { useEffect, useState } from "react";
+
 function useToken() {
   const [token, setToken] = useState<string>("");
   const requestUserPermission = async () => {
@@ -7,11 +8,9 @@ function useToken() {
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-    console.log(enabled);
     if (enabled) {
       const token = await messaging().getToken();
       setToken(token);
-      console.log("토큰", token);
     }
   };
   useEffect(() => {
