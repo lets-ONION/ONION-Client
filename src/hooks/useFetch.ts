@@ -20,6 +20,7 @@ export const useFetch = <T>(request: () => Promise<T>) => {
       console.log("데이타", data);
       setData(data);
     } catch (err) {
+      console.log("fetch중 에러", err);
       reFetch();
     } finally {
       setLoading(false);
@@ -31,6 +32,7 @@ export const useFetch = <T>(request: () => Promise<T>) => {
       await tokenRefresh(refreshToken);
       fetchData();
     } catch (error) {
+      console.log("refetch 중 오류 발생", error);
       Alert.alert("오류", "정보를 불러들이다 실패했어요", [
         {
           text: "확인",
@@ -49,5 +51,7 @@ export const useFetch = <T>(request: () => Promise<T>) => {
     data,
     loading,
     error,
+    fetchData,
+    setData,
   };
 };

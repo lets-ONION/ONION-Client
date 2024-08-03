@@ -22,7 +22,7 @@ export const ExchangeModal = ({
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const onPressOuterContent = () => setShowExchangeModal(false);
   const [selectedOnion, setSelectedOnion] = useState<OnionsInfo>({
-    amount: 0,
+    quantity: 0,
     can_trade: false,
     onion_image: "",
     onion_type: "",

@@ -1,24 +1,35 @@
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { CommentType } from "../../../types/comment";
 import { useState } from "react";
 import { NewComment } from "./newComment";
 import { dummyMyProfile } from "../../dummyData";
 import { CustomModal } from "../../common/modal";
 
-export const CommentDay = ({ comment }: CommentType) => {
+export const CommentDay = ({
+  comment,
+  fetchData,
+  showFriendsOnion,
+}: CommentType) => {
   const [showWriteModal, setShowWriteModal] = useState<boolean>(false);
-  const onPressNewComment = () => setShowWriteModal(true);
+  const onPressNewComment = () => {
+    if (!showFriendsOnion) setShowWriteModal(true);
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.commentWrapper}>
+      <Pressable style={styles.commentWrapper} onPress={onPressNewComment}>
         {comment ? (
           <Text>{comment}</Text>
         ) : (
-          <TouchableOpacity onPress={onPressNewComment}>
-            <Text>📝 오늘 상태를 한 마디로 하자면? 📝</Text>
-          </TouchableOpacity>
+          <Text>📝 오늘 상태를 한 마디로 하자면? 📝</Text>
         )}
-      </View>
+      </Pressable>
       <View style={styles.commentArrow} />
       <CustomModal
         visible={showWriteModal}
@@ -28,6 +39,7 @@ export const CommentDay = ({ comment }: CommentType) => {
           setShowWriteModal={setShowWriteModal}
           myOnionImage={dummyMyProfile.profile_image}
           nickname={dummyMyProfile.nickname}
+          fetchData={fetchData}
         />
       </CustomModal>
     </View>

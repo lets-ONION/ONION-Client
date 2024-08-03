@@ -1,19 +1,15 @@
+export type OnionInfo = {
+  onion_type: string;
+  onion_image: string;
+  quantity: number;
+  can_trade: boolean;
+};
 export type OnionCardType = {
-  onion: {
-    onion_type: string;
-    onion_image: string;
-    amount: number;
-    can_trade: boolean;
-  };
+  onion: OnionInfo;
   showFriendsOnion: boolean;
 };
 
 export type OnionCardListType = {
-  onions: {
-    onion_type: string;
-    onion_image: string;
-    amount: number;
-    can_trade: boolean;
-  }[];
+  onions: OnionInfo[];
   showFriendsOnion: boolean;
 };

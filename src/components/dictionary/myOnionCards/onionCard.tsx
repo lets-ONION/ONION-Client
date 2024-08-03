@@ -20,9 +20,12 @@ const OnionCard: React.FC<OnionCardType> = ({
   return (
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
-        <Image source={{ uri: onion.onion_image }} style={styles.image} />
+        <Image
+          source={{ uri: `${onion.onion_image}.png` }}
+          style={styles.image}
+        />
         <Text style={styles.text}>
-          {onion.onion_type} ({onion.amount}/5)
+          {onion.onion_type} ({onion.quantity})
         </Text>
       </View>
       {showFriendsOnion && onion.can_trade && (
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    height: 30,
+
     textAlign: "center",
     textAlignVertical: "center",
   },

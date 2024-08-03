@@ -1,8 +1,9 @@
 import { httpClient } from "./http";
 
-export const getMyOnionBook = async () => {
-  const result = await httpClient.get("/book");
-  return result.data;
+export const getBook = async () => {
+  const { data } = await httpClient.get("/book");
+  console.log("책 보기", data.data);
+  return data.data;
 };
 
 export const getSentTrade = async () => {
@@ -25,4 +26,12 @@ export const postTodayMemo = async (memo: string) => {
   return await httpClient.post(`/book/trade/`, {
     memo: memo,
   });
+};
+
+export const postStatusMessage = async (content: string) => {
+  const { data } = await httpClient.post(`member/status-message/update`, {
+    status_message: content,
+  });
+  console.log(data);
+  return data;
 };

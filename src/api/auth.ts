@@ -12,9 +12,8 @@ export const backLogin = async (user: any) => {
 };
 
 export const getUser = async () => {
-  const result = await httpClient.get(`/member/info/get`);
-  console.log("???????", result);
-  return result.data;
+  const { data } = await httpClient.get(`/member/info/get`);
+  return data;
 };
 
 export const patchUserNickname = async (nickname: string) => {
@@ -31,7 +30,5 @@ export const tokenRefresh = async (refreshToken: string) => {
   httpClient.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${data.data.access_token}`;
-  console.log("???머ㅗ요ㅕ", data.data.access_token);
-  console.log("리프셋깅", data.data.refresh_token);
   setRefresh(data.data.refresh_token);
 };

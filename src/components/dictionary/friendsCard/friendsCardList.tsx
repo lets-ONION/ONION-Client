@@ -1,12 +1,18 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import { FriendCardListType, FriendCardType } from "../../../types/friendcard";
 import { FriendCard } from "./friendCard";
 import { dummyMyProfile } from "../../dummyData";
+import { useFetch } from "../../../hooks/useFetch";
+import { getUser } from "../../../api/auth";
 
 export const FriendsCardList: React.FC<FriendCardListType> = ({
   friends,
   setShowFriendsOnion,
+  setData,
 }) => {
+  const myProfile = useFetch(getUser);
+  if (myProfile.loading)
+    return <ActivityIndicator size={"large"} color={"orange"} />;
   return (
     <ScrollView
       style={styles.friendsListWrapper}
@@ -15,20 +21,27 @@ export const FriendsCardList: React.FC<FriendCardListType> = ({
       showsHorizontalScrollIndicator={false}
     >
       <FriendCard
-        friend={dummyMyProfile}
+        setData={setData}
+        friend={{
+          member_id: myProfile.data.data.member_id,
+          nickname: myProfile.data.data.nickname,
+          profile_image: "https://imgur.com/vfcZzfs",
+        }}
         isMyProfile={true}
         setShowFriendsOnion={setShowFriendsOnion}
       />
-      {friends.map((friend, idx) => {
-        return (
-          <FriendCard
-            friend={friend}
-            setShowFriendsOnion={setShowFriendsOnion}
-            isMyProfile={false}
-            key={idx}
-          />
-        );
-      })}
+      {friends &&
+        friends.map((friend, idx) => {
+          return (
+            <FriendCard
+              friend={friend}
+              setShowFriendsOnion={setShowFriendsOnion}
+              isMyProfile={false}
+              setData={setData}
+              key={idx}
+            />
+          );
+        })}
     </ScrollView>
   );
 };

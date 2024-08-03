@@ -1,7 +1,7 @@
 export type OnionsInfo = {
   onion_type: string;
   onion_image: string;
-  amount: number;
+  quantity: number;
   can_trade: boolean;
 };
 export type ExchangeOnionType = {

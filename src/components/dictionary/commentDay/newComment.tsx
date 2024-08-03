@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -9,25 +10,45 @@ import {
 } from "react-native";
 import { NewCommentType } from "../../../types/comment";
 import { Button } from "../../common/button";
+import { useState } from "react";
+import { postStatusMessage } from "../../../api/book";
 
 export const NewComment = ({
   myOnionImage,
   nickname,
   setShowWriteModal,
+  fetchData,
 }: NewCommentType) => {
   const onPressOuterContent = () => setShowWriteModal(false);
+  const [content, setContent] = useState<string>("");
+  const onPressSubmit = async () => {
+    try {
+      await postStatusMessage(content);
+      Alert.alert("상태메시지 작성", "작성이 완료되었습니다");
+      onPressOuterContent();
+      await fetchData();
+    } catch (error) {
+      Alert.alert("오류", "글 작성 중 오류가 발생했습니다.");
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.myOnionWrapper}>
         <Image source={{ uri: myOnionImage }} style={styles.image} />
         <Text>오늘 {nickname}님의 하루는 어땠나요?</Text>
       </View>
-      <TextInput style={styles.commentWrapper} multiline />
+      <TextInput
+        style={styles.commentWrapper}
+        onChangeText={setContent}
+        value={content}
+        placeholder="하루를 적어보세요."
+        multiline
+      />
       <Text style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</Text>
       <Button
         background="orange"
         width={"80%"}
-        onPress={() => {}}
+        onPress={onPressSubmit}
         text="작성하기"
       />
     </View>
