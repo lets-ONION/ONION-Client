@@ -1,19 +1,12 @@
 import React from 'react';
-import { Modal, View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { Modal, View, Text, StyleSheet } from 'react-native';
+import CustomButton from './CustomButton';
 
 interface AlertProps {
     visible: boolean;
     onConfirm: () => void;
     onCancel: () => void;
     text: string;
-}
-
-const CustomButton = ({ onPress, title }: { onPress: () => void; title: string }) => {
-    return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text style={styles.buttonText}>{title}</Text>
-        </TouchableOpacity>
-    );
 };
 
 export function Alert({ visible, onConfirm, onCancel, text }: AlertProps) {
