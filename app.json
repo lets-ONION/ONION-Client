@@ -42,6 +42,13 @@
             ]
           }
         }
+      ],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphone": "CUSTOM: Allow let's onion to access the microphone",
+          "speechRecognition": "CUSTOM: Allow let's onion to securely recognize user speech"
+        }
       ]
     ],
     "extra": {
