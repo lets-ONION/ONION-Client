@@ -9,11 +9,11 @@ import { ReqTradeListType } from "../../../../types/exchange/exchangeRequests";
 import { dummyReqData } from "../../../dummyData";
 import { SentReqItem } from "./sentReqItem";
 
-export const SentReqsList = ({ trades }: ReqTradeListType) => {
+export const SentReqsList = ({ trades, fetchData }: ReqTradeListType) => {
   return (
     <ScrollView>
       {trades.map((trade, idx) => {
-        return <SentReqItem trade={trade} key={idx} />;
+        return <SentReqItem trade={trade} key={idx} fetchData={fetchData} />;
       })}
     </ScrollView>
   );

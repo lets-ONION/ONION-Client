@@ -8,11 +8,16 @@ import {
 import { ReceivedTradeListType } from "../../../../types/exchange/exchangeRequests";
 import { ReceivedReqItem } from "./receivedReqsItem";
 
-export const ReceivedReqsList = ({ trades }: ReceivedTradeListType) => {
+export const ReceivedReqsList = ({
+  trades,
+  fetchData,
+}: ReceivedTradeListType) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {trades.map((trade, idx) => {
-        return <ReceivedReqItem trade={trade} key={idx} />;
+        return (
+          <ReceivedReqItem trade={trade} key={idx} fetchData={fetchData} />
+        );
       })}
     </ScrollView>
   );

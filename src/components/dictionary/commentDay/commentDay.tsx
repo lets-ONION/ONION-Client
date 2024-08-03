@@ -27,7 +27,11 @@ export const CommentDay = ({
         {comment ? (
           <Text>{comment}</Text>
         ) : (
-          <Text>📝 오늘 상태를 한 마디로 하자면? 📝</Text>
+          <Text>
+            {showFriendsOnion
+              ? "친구가 오늘의 상태를 적지 않았어요🥲"
+              : "📝 오늘 상태를 한 마디로 하자면? 📝"}
+          </Text>
         )}
       </Pressable>
       <View style={styles.commentArrow} />

@@ -1,38 +1,42 @@
 export type ReceivedTrade = {
   id: number;
-  requester: {
-    id: number;
+  req_member: {
     nickname: string;
+    member_id: number;
   };
   req_onion: string;
   res_onion: string;
-  is_accepted: number; // 0 : 수락/거절 전, 1 : 수락, 2 : 거절
+  trade_status: string;
   requested_at: string;
 };
 export type ReceivedTradeType = {
   trade: ReceivedTrade;
+  fetchData: () => Promise<void>;
 };
 
 export type ReceivedTradeListType = {
   trades: ReceivedTrade[];
+  fetchData: () => Promise<void>;
 };
 
 export type ReqTrade = {
   id: number;
-  receiver: {
-    id: number;
+  res_member: {
     nickname: string;
+    member_id: number;
   };
   req_onion: string;
   res_onion: string;
-  is_accepted: number; // 0 : 수락/거절 전, 1 : 수락, 2 : 거절
-  date: string;
+  trade_status: string;
+  requested_at: string;
 };
 
 export type ReqTradeType = {
   trade: ReqTrade;
+  fetchData: () => Promise<void>;
 };
 
 export type ReqTradeListType = {
   trades: ReqTrade[];
+  fetchData: () => Promise<void>;
 };

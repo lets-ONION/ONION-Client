@@ -6,14 +6,19 @@ export const getBook = async () => {
   return data.data;
 };
 
+//보낸 교환 요청 조회
 export const getSentTrade = async () => {
-  return httpClient.get("/book/trade_reqs/sent");
+  const { data } = await httpClient.get("/trade/get/sent");
+  return data;
 };
 
+//받은 교환 요청 조회
 export const getRecievedTrade = async () => {
-  return await httpClient.get("/book/trade_reqs/received");
+  const { data } = await httpClient.get("/trade/get/received");
+  return data;
 };
 
+//교환 요청 보내기
 export const postTrade = async (
   receiver: number,
   reqOnion: string,
@@ -24,10 +29,6 @@ export const postTrade = async (
     res_onion: resOnion,
   });
   return result.data;
-};
-
-export const acceptTrade = async (tradeId: string) => {
-  return await httpClient.post(`/book/trade_reqs/${tradeId}/accept`);
 };
 
 export const postTodayMemo = async (memo: string) => {
@@ -42,4 +43,21 @@ export const postStatusMessage = async (content: string) => {
   });
   console.log(data);
   return data;
+};
+
+//교환 요청 취소(보낸 사람이)
+export const patchCancelTrade = async (tradeId: number) => {
+  const { data } = await httpClient.patch(`/trade/cancel/${tradeId}`);
+  console.log(data);
+  return data;
+};
+
+export const acceptTrade = async (tradeId: number) => {
+  await httpClient.post(`/trade/accept/${tradeId}`);
+  return;
+};
+
+export const rejectTrade = async (tradeId: number) => {
+  await httpClient.post(`/trade/reject/${tradeId}`);
+  return;
 };
