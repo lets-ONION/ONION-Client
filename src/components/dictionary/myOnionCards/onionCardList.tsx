@@ -5,6 +5,7 @@ import OnionCard from "./onionCard";
 export const OnionCardList: React.FC<OnionCardListType> = ({
   onions,
   showFriendsOnion,
+  resId,
 }: OnionCardListType) => {
   return (
     <View style={styles.dictionaryContent}>
@@ -14,6 +15,7 @@ export const OnionCardList: React.FC<OnionCardListType> = ({
             onion={onion}
             key={idx}
             showFriendsOnion={showFriendsOnion}
+            resId={resId}
           />
         );
       })}

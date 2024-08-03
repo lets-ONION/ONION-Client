@@ -14,16 +14,14 @@ import { ExchangeModal } from "../exchangemodal/exchangeModal";
 const OnionCard: React.FC<OnionCardType> = ({
   onion,
   showFriendsOnion,
+  resId,
 }: OnionCardType) => {
   const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false);
   const onPressExchangeButton = () => setShowExchangeModal(true);
   return (
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
-        <Image
-          source={{ uri: `${onion.onion_image}.png` }}
-          style={styles.image}
-        />
+        <Image source={{ uri: onion.onion_image }} style={styles.image} />
         <Text style={styles.text}>
           {onion.onion_type} ({onion.quantity})
         </Text>
@@ -42,8 +40,9 @@ const OnionCard: React.FC<OnionCardType> = ({
         transparent={true}
       >
         <ExchangeModal
-          reqOnion={onion}
+          resOnion={onion}
           setShowExchangeModal={setShowExchangeModal}
+          resId={resId}
         />
       </Modal>
     </View>

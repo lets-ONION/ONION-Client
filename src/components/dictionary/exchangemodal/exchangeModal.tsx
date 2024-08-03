@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -14,10 +15,13 @@ import {
 import { dummyOnionsData } from "../../dummyData";
 import { useState } from "react";
 import { ExchangeConfirm } from "./exchangeConfirm";
+import { useFetch } from "../../../hooks/useFetch";
+import { getBook } from "../../../api/book";
 
 export const ExchangeModal = ({
-  reqOnion,
+  resOnion,
   setShowExchangeModal,
+  resId,
 }: ExchangeOnionType) => {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const onPressOuterContent = () => setShowExchangeModal(false);
@@ -27,7 +31,9 @@ export const ExchangeModal = ({
     onion_image: "",
     onion_type: "",
   });
-
+  const myOnions = useFetch(getBook);
+  if (myOnions.loading)
+    return <ActivityIndicator size={"large"} color={"orange"} />;
   return (
     <TouchableOpacity style={styles.container} onPress={onPressOuterContent}>
       <TouchableWithoutFeedback onPress={() => {}}>
@@ -37,14 +43,15 @@ export const ExchangeModal = ({
           </View>
           {showConfirmModal ? (
             <ExchangeConfirm
-              reqOnion={reqOnion}
-              resOnion={selectedOnion}
+              reqOnion={selectedOnion}
+              resOnion={resOnion}
               setShowExchangeModal={setShowExchangeModal}
+              resId={resId}
             />
           ) : (
             <ExchangeOnionsList
-              onions={dummyOnionsData.onions}
-              reqOnion={reqOnion}
+              onions={myOnions.data.onions}
+              reqOnion={resOnion}
               setShowConfimModal={setShowConfirmModal}
               setSelectedOnion={setSelectedOnion}
             />

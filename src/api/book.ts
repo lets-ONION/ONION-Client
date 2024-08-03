@@ -14,8 +14,16 @@ export const getRecievedTrade = async () => {
   return await httpClient.get("/book/trade_reqs/received");
 };
 
-export const postTrade = async (receiver: string) => {
-  return await httpClient.post(`/book/trade/${receiver}`);
+export const postTrade = async (
+  receiver: number,
+  reqOnion: string,
+  resOnion: string
+) => {
+  const result = await httpClient.post(`/trade/${receiver}`, {
+    req_onion: reqOnion,
+    res_onion: resOnion,
+  });
+  return result.data;
 };
 
 export const acceptTrade = async (tradeId: string) => {

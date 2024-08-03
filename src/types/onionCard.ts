@@ -7,9 +7,11 @@ export type OnionInfo = {
 export type OnionCardType = {
   onion: OnionInfo;
   showFriendsOnion: boolean;
+  resId: number;
 };
 
 export type OnionCardListType = {
   onions: OnionInfo[];
   showFriendsOnion: boolean;
+  resId: number;
 };

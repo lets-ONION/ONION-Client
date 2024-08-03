@@ -39,7 +39,11 @@ export default function Dictionary() {
           setData={setData}
         />
       </View>
-      <CommentDay comment={data.status_message} fetchData={fetchData} />
+      <CommentDay
+        comment={data.status_message}
+        fetchData={fetchData}
+        showFriendsOnion={showFriendsOnion}
+      />
       <View style={styles.requestIconWrapper}>
         <Text>내 양파도감</Text>
         <RequestIndex />
@@ -52,7 +56,11 @@ export default function Dictionary() {
             </Text>
           </View>
         ))}
-      <OnionCardList onions={data.onions} showFriendsOnion={showFriendsOnion} />
+      <OnionCardList
+        onions={data.onions}
+        showFriendsOnion={showFriendsOnion}
+        resId={data.resId}
+      />
     </ScrollView>
   );
 }

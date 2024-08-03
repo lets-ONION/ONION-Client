@@ -20,7 +20,7 @@ export const FriendCard: React.FC<FriendCardType> = ({
       try {
         const friendsData = await getFriendsBook(friend.member_id);
         console.log("fd data", friendsData);
-        setData(friendsData);
+        setData({ ...friendsData, resId: friend.member_id });
       } catch (error) {
         console.log(error);
       }

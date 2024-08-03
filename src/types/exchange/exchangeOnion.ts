@@ -5,8 +5,9 @@ export type OnionsInfo = {
   can_trade: boolean;
 };
 export type ExchangeOnionType = {
-  reqOnion: OnionsInfo;
+  resOnion: OnionsInfo;
   setShowExchangeModal: React.Dispatch<React.SetStateAction<boolean>>;
+  resId: number;
 };
 
 export type ExchangeOnionsType = {
@@ -25,5 +26,6 @@ export type ExchangeOnionListType = {
 export type ExchangeConfirmModalType = {
   reqOnion: OnionsInfo;
   resOnion: OnionsInfo;
+  resId: number;
   setShowExchangeModal: React.Dispatch<React.SetStateAction<boolean>>;
 };

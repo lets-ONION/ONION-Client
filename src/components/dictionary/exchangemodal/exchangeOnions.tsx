@@ -14,8 +14,8 @@ export const ExchangeOnion = ({
     <View style={styles.container}>
       <Image source={{ uri: onion.onion_image }} style={styles.image} />
       <Text style={styles.text}>
-        현재 {onion.onion_type} : {onion.amount}개
-        {onion.can_trade ? `\n교환 후 : ${onion.amount - 5}개 ` : null}
+        현재 {onion.onion_type} : {onion.quantity}개
+        {onion.can_trade ? `\n교환 후 : ${onion.quantity - 1}개 ` : null}
       </Text>
       <TouchableOpacity
         disabled={!onion.can_trade}
@@ -54,5 +54,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 13,
     textAlignVertical: "center",
+    width: "50%",
   },
 });
