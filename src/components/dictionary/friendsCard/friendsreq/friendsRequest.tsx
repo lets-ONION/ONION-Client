@@ -7,7 +7,7 @@ import { RequestedFriends } from "./requestedFriends/requestedFriends";
 
 export function FriendsRequest() {
   const [showFriendsModal, setShowFriendsModal] = useState<boolean>(false);
-  const [showRecommendList, setShowRecommendList] = useState<boolean>(false);
+  const [showRecommendList, setShowRecommendList] = useState<boolean>(true);
   const onPressRecommendList = () => setShowRecommendList(true);
   const onPressRequested = () => setShowRecommendList(false);
   const onPressIcon = () => setShowFriendsModal(true);
@@ -36,7 +36,7 @@ export function FriendsRequest() {
               <Text>보낸 요청</Text>
             </TouchableOpacity>
           </View>
-          {showRecommendList ? <RequestedFriends /> : <RecommendFriends />}
+          {showRecommendList ? <RecommendFriends /> : <RequestedFriends />}
         </View>
       </CustomModal>
     </>
@@ -46,6 +46,7 @@ export function FriendsRequest() {
 const styles = StyleSheet.create({
   icon: {
     position: "absolute",
+    top: 0,
     right: 0,
   },
   container: {

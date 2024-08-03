@@ -32,7 +32,7 @@ export default function Dictionary() {
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.friendsList}>
         <Text>친구들의 양파 보기</Text>
-        {/* <FriendsRequest /> */}
+        <FriendsRequest />
         <FriendsCardList
           friends={friendsList.data}
           setShowFriendsOnion={setShowFriendsOnion}
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   friendsList: {
+    width: "100%",
     flexWrap: "nowrap",
     flexDirection: "column",
     alignItems: "center",

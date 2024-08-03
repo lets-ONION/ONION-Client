@@ -3,17 +3,19 @@ import { Button } from "../../../../common/button";
 
 export const RecommendFriends = () => {
   return (
-    <TouchableWithoutFeedback>
-      <View style={styles.container}>
-        <Text style={styles.text}>wwww</Text>
-        <Button
-          background="lightgray"
-          onPress={() => {}}
-          text="취소하기"
-          width={80}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <View>
+      <TouchableWithoutFeedback>
+        <View style={styles.container}>
+          <Text style={styles.text}>wwww</Text>
+          <Button
+            background="lightgray"
+            onPress={() => {}}
+            text="취소하기"
+            width={80}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 

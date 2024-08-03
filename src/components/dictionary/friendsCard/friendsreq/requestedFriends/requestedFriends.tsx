@@ -25,8 +25,10 @@ export const RequestedFriends = () => {
   };
   if (requestFriendList.loading || requestFriendList.error)
     return <ActivityIndicator size={"large"} color="orange" />;
+  if (!requestFriendList.data.length)
+    return <Text style={styles.nodata}>받은 친구 요청이 없어요</Text>;
   return (
-    <TouchableWithoutFeedback>
+    <View>
       {requestFriendList.data.data.map((req: FriendReqType) => {
         <View style={styles.container}>
           <Text style={styles.text}>
@@ -38,7 +40,7 @@ export const RequestedFriends = () => {
               onPress={() => {
                 requestResponse(req.request_id, "ACCEPT");
               }}
-              text="확인"
+              text="수락"
               width={50}
             />
             <Button
@@ -46,13 +48,13 @@ export const RequestedFriends = () => {
               onPress={() => {
                 requestResponse(req.request_id, "REJECT");
               }}
-              text="취소"
+              text="거절"
               width={50}
             />
           </View>
         </View>;
       })}
-    </TouchableWithoutFeedback>
+    </View>
   );
 };
 
@@ -69,5 +71,12 @@ const styles = StyleSheet.create({
   },
   text: {
     width: "60%",
+  },
+  nodata: {
+    height: "70%",
+    textAlignVertical: "center",
+    textAlign: "center",
+    fontSize: 17,
+    color: "gray",
   },
 });
