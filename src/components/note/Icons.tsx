@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated } from 'react-native';
+import { TextModal } from './TextModal';
 
 interface Props {
     micIcon: 'mic-circle-outline' | 'mic-circle';
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
     const animation = useRef(new Animated.Value(1)).current;
     const [selected, setSelected] = useState<string | null>(null);
 
@@ -36,7 +39,18 @@ const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
                 setSelected(iconName);
             });
             setEnabled(!enabled)
+        } else if (iconName === "write") {
+            setModalVisible(true);
         }
+    };
+
+    const handleModalClose = () => {
+        setModalVisible(false);
+    };
+
+    const handleModalSubmit = (text: string) => {
+        console.log('Submitted text:', text);
+        // 텍스트 처리 로직 추가
     };
 
     return (
@@ -57,6 +71,11 @@ const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
                     <Text>글로 쓰기</Text>
                 </TouchableOpacity>
             </Animated.View>
+            <TextModal
+                visible={modalVisible}
+                onClose={handleModalClose}
+                onSubmit={handleModalSubmit}
+            />
         </View>
     );
 };
