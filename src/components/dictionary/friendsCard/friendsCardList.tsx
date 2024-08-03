@@ -1,18 +1,16 @@
 import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import { FriendCardListType, FriendCardType } from "../../../types/friendcard";
 import { FriendCard } from "./friendCard";
-import { dummyMyProfile } from "../../dummyData";
 import { useFetch } from "../../../hooks/useFetch";
 import { getUser } from "../../../api/auth";
+import { useLogin } from "../../../store/authStore";
 
 export const FriendsCardList: React.FC<FriendCardListType> = ({
   friends,
   setShowFriendsOnion,
   setData,
 }) => {
-  const myProfile = useFetch(getUser);
-  if (myProfile.loading)
-    return <ActivityIndicator size={"large"} color={"orange"} />;
+  const { nickname, profileImage, id } = useLogin.getState();
   return (
     <ScrollView
       style={styles.friendsListWrapper}
@@ -23,9 +21,9 @@ export const FriendsCardList: React.FC<FriendCardListType> = ({
       <FriendCard
         setData={setData}
         friend={{
-          member_id: myProfile.data.data.member_id,
-          nickname: myProfile.data.data.nickname,
-          profile_image: "https://imgur.com/vfcZzfs",
+          member_id: id,
+          nickname: nickname + "(나)",
+          image_url: profileImage,
         }}
         isMyProfile={true}
         setShowFriendsOnion={setShowFriendsOnion}
@@ -48,6 +46,7 @@ export const FriendsCardList: React.FC<FriendCardListType> = ({
 
 const styles = StyleSheet.create({
   friendsListWrapper: {
+    width: "100%",
     paddingHorizontal: 10,
     paddingTop: 10,
     borderBottomColor: "lightgrey",

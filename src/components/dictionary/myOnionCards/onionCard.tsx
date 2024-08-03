@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Button,
   Image,
   Modal,
@@ -10,6 +11,9 @@ import {
 } from "react-native";
 import { OnionCardType } from "../../../types/onionCard";
 import { ExchangeModal } from "../exchangemodal/exchangeModal";
+import { Feather } from "@expo/vector-icons";
+import { putMyProfile } from "../../../api/auth";
+import { useLogin } from "../../../store/authStore";
 
 const OnionCard: React.FC<OnionCardType> = ({
   onion,
@@ -18,8 +22,38 @@ const OnionCard: React.FC<OnionCardType> = ({
 }: OnionCardType) => {
   const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false);
   const onPressExchangeButton = () => setShowExchangeModal(true);
+  const { nickname } = useLogin.getState();
+  const onPressChangeProfile = () => {
+    Alert.alert("프로필 변경", "해당 양파로 프로필을 변경할까요?", [
+      {
+        onPress: changeProfile,
+        text: "넹",
+      },
+      {
+        text: "아니오",
+        style: "cancel",
+      },
+    ]);
+  };
+  const changeProfile = async () => {
+    try {
+      await putMyProfile(nickname, onion.onion_image);
+      Alert.alert("프로필 양파 변경이 완료됐어요.");
+    } catch (error) {
+      Alert.alert("오류", "프로필 설정 중 오류가 발생했어요.");
+    }
+  };
   return (
     <View style={styles.container}>
+      {!showFriendsOnion && (
+        <Feather
+          name="settings"
+          size={24}
+          color="orange"
+          style={styles.Feather}
+          onPress={onPressChangeProfile}
+        />
+      )}
       <View style={styles.imageAndNameWrapper}>
         <Image source={{ uri: onion.onion_image }} style={styles.image} />
         <Text style={styles.text}>
@@ -74,7 +108,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-
+    marginVertical: 10,
     textAlign: "center",
     textAlignVertical: "center",
   },
@@ -85,5 +119,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "orange",
+  },
+  Feather: {
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });

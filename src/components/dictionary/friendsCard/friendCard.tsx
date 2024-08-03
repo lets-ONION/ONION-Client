@@ -13,7 +13,7 @@ export const FriendCard: React.FC<FriendCardType> = ({
 }) => {
   const onPressFriendProfile = async () => {
     isMyProfile ? setShowFriendsOnion(false) : setShowFriendsOnion(true);
-    await friendInfo();
+    friendInfo();
   };
   const friendInfo = useCallback(() => {
     const fetchData = async () => {
@@ -29,10 +29,7 @@ export const FriendCard: React.FC<FriendCardType> = ({
   }, []);
   return (
     <TouchableOpacity style={styles.container} onPress={onPressFriendProfile}>
-      <Image
-        style={styles.profileImage}
-        source={{ uri: friend.profile_image }}
-      />
+      <Image style={styles.profileImage} source={{ uri: friend.image_url }} />
       <Text>{friend.nickname}</Text>
     </TouchableOpacity>
   );

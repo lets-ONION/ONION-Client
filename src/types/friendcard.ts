@@ -1,7 +1,7 @@
 export type FriendCardType = {
   friend: {
     member_id: number;
-    profile_image: string;
+    image_url: string;
     nickname: string;
   };
   isMyProfile: boolean;
@@ -10,7 +10,7 @@ export type FriendCardType = {
 };
 
 export type FriendCardListType = {
-  friends: { member_id: number; profile_image: string; nickname: string }[];
+  friends: { member_id: number; image_url: string; nickname: string }[];
   setShowFriendsOnion: React.Dispatch<React.SetStateAction<boolean>>;
   setData: React.Dispatch<React.SetStateAction<object>>;
 };

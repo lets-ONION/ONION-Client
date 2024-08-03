@@ -6,6 +6,7 @@ export const OnionCardList: React.FC<OnionCardListType> = ({
   onions,
   showFriendsOnion,
   resId,
+  fetchData,
 }: OnionCardListType) => {
   return (
     <View style={styles.dictionaryContent}>
@@ -16,6 +17,7 @@ export const OnionCardList: React.FC<OnionCardListType> = ({
             key={idx}
             showFriendsOnion={showFriendsOnion}
             resId={resId}
+            fetchData={fetchData}
           />
         );
       })}

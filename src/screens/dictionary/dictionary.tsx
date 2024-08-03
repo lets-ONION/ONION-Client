@@ -1,12 +1,8 @@
 import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
-import OnionCard from "../../components/dictionary/myOnionCards/onionCard";
 import { useState } from "react";
-import { ExchangeModal } from "../../components/dictionary/exchangemodal/exchangeModal";
 import { FriendsCardList } from "../../components/dictionary/friendsCard/friendsCardList";
-import { dummyFriendsData } from "../../components/dummyData";
 import { OnionCardList } from "../../components/dictionary/myOnionCards/onionCardList";
 import { CommentDay } from "../../components/dictionary/commentDay/commentDay";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RequestIndex } from "../../components/dictionary/requestmodal/requestIndex";
 import { FriendsRequest } from "../../components/dictionary/friendsCard/friendsreq/friendsRequest";
 import { useFetch } from "../../hooks/useFetch";
@@ -17,10 +13,10 @@ import { getFriendsList } from "../../api/friends";
 export default function Dictionary() {
   const [ismodalVisible, setModalVisible] = useState<boolean>(false);
   const [showFriendsOnion, setShowFriendsOnion] = useState<boolean>(false);
-  const { data, loading, fetchData, setData } = useFetch(getBook);
+  const bookList = useFetch(getBook);
   const friendsList = useFetch(getFriendsList);
 
-  if (loading || friendsList.loading)
+  if (bookList.loading || friendsList.loading)
     return (
       <ActivityIndicator
         size={"large"}
@@ -36,20 +32,20 @@ export default function Dictionary() {
         <FriendsCardList
           friends={friendsList.data}
           setShowFriendsOnion={setShowFriendsOnion}
-          setData={setData}
+          setData={bookList.setData}
         />
       </View>
       <CommentDay
-        comment={data.status_message}
-        fetchData={fetchData}
+        comment={bookList.data.status_message}
+        fetchData={bookList.fetchData}
         showFriendsOnion={showFriendsOnion}
       />
       <View style={styles.requestIconWrapper}>
         <Text>내 양파도감</Text>
         <RequestIndex />
       </View>
-      {!data ||
-        (!data.onions.length && (
+      {!bookList.data ||
+        (!bookList.data.onions.length && (
           <View style={styles.noContentWrapper}>
             <Text style={{ color: "gray" }}>
               아직 도감을 모으지 못했어요 =3
@@ -57,9 +53,10 @@ export default function Dictionary() {
           </View>
         ))}
       <OnionCardList
-        onions={data.onions}
+        onions={bookList.data.onions}
         showFriendsOnion={showFriendsOnion}
-        resId={data.resId}
+        resId={bookList.data.resId}
+        fetchData={bookList.fetchData}
       />
     </ScrollView>
   );

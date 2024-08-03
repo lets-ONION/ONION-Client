@@ -3,27 +3,20 @@ import { useCallback, useState } from "react";
 import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { getUser } from "../../api/auth";
 import { useFetch } from "../../hooks/useFetch";
+import { useLogin } from "../../store/authStore";
 
 export function Profile() {
-  let { data, loading, error } = useFetch(getUser);
-
-  if (data) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.profileImageWrapper}>
-          <Image
-            source={{ uri: "https://i.imgur.com/cpH5jvA.png" }}
-            style={styles.profileImage}
-          />
-        </View>
-        <View style={styles.profile}>
-          <Text style={styles.nickname}>
-            {error ? "정보를 가져오지 못했습니다." : data.data.nickname}
-          </Text>
-        </View>
+  const { nickname, profileImage } = useLogin.getState();
+  return (
+    <View style={styles.container}>
+      <View style={styles.profileImageWrapper}>
+        <Image source={{ uri: profileImage }} style={styles.profileImage} />
       </View>
-    );
-  }
+      <View style={styles.profile}>
+        <Text style={styles.nickname}>{nickname}</Text>
+      </View>
+    </View>
+  );
 }
 const styles = StyleSheet.create({
   container: {

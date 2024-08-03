@@ -79,4 +79,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "gray",
   },
+  ActivityIndicator: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+  },
 });

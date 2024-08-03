@@ -1,29 +1,19 @@
-import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import {
   login,
-  logout,
   getProfile as getKakaoProfile,
   shippingAddresses as getKakaoShippingAddresses,
-  unlink,
 } from "@react-native-seoul/kakao-login";
-import { backLogin, getUser } from "../api/auth";
-import { httpClient } from "../api/http";
+import { backLogin } from "../api/auth";
 import { useLogin } from "../store/authStore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LoginStackParamList } from "./loginStack";
 
 type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, "Login">;
 export const Login = ({ navigation }: LoginScreenProps) => {
-  const { setIsLogin, setToken, setRefresh } = useLogin.getState();
+  const { setId, setIsLogin, setToken, setRefresh, setNickname } =
+    useLogin.getState();
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
@@ -31,10 +21,15 @@ export const Login = ({ navigation }: LoginScreenProps) => {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
       });
+      console.log("로그인 데이터", data);
       setToken(data.access_token);
       setRefresh(data.refresh_token);
+      setId(data.member.member_id);
       if (!data.member.nickname) navigation.navigate("NicknameSetting");
-      else setIsLogin();
+      else {
+        setNickname(data.member.nickname);
+        setIsLogin();
+      }
     } catch (err) {
       console.error("login err", err);
     }

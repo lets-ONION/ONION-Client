@@ -8,10 +8,12 @@ export type OnionCardType = {
   onion: OnionInfo;
   showFriendsOnion: boolean;
   resId: number;
+  fetchData: () => Promise<void>;
 };
 
 export type OnionCardListType = {
   onions: OnionInfo[];
   showFriendsOnion: boolean;
   resId: number;
+  fetchData: () => Promise<void>;
 };

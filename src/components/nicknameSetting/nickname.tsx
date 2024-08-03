@@ -12,7 +12,7 @@ import { useState } from "react";
 import { patchUserNickname } from "../../api/auth";
 import { LoginStackParamList } from "../../screens/loginStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useIsLogin } from "../../store/authStore";
+import { useLogin } from "../../store/authStore";
 
 type NicknameScreenProps = NativeStackScreenProps<
   LoginStackParamList,
@@ -22,7 +22,8 @@ type NicknameScreenProps = NativeStackScreenProps<
 export function Nickname({ navigation, route }: NicknameScreenProps) {
   const [nickname, setNickname] = useState<string>("");
   const [unvalid, setUnvalid] = useState<boolean>(false);
-  const setLogin = useIsLogin((state) => state.setIsLogin);
+  const setLogin = useLogin((state) => state.setIsLogin);
+  const changeNickname = useLogin((state) => state.setNickname);
   const regex = /^.{2,10}/;
   const onPressSubmit = async () => {
     if (!regex.test(nickname)) {
@@ -32,6 +33,7 @@ export function Nickname({ navigation, route }: NicknameScreenProps) {
     }
     try {
       await patchUserNickname(nickname);
+      changeNickname(nickname);
       setLogin();
     } catch (error) {
       Alert.alert("오류", "닉네임 설정 과정에서 오류가 발생했습니다.");

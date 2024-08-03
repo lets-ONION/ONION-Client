@@ -32,3 +32,15 @@ export const tokenRefresh = async (refreshToken: string) => {
   ] = `Bearer ${data.data.access_token}`;
   setRefresh(data.data.refresh_token);
 };
+
+// 유저 정보 변경
+export const putMyProfile = async (nickname: string, image: string) => {
+  const { setNickname, setProfile } = useLogin.getState();
+  const { data } = await httpClient.put(`/mypage`, {
+    nickname: nickname,
+    user_image_url: image,
+  });
+  setNickname(nickname);
+  setProfile(image);
+  return data;
+};
