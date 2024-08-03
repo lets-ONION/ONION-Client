@@ -13,6 +13,7 @@ export const ReceivedReqItem = ({ trade, fetchData }: ReceivedTradeType) => {
   const onPressAccept = async () => {
     try {
       await acceptTrade(trade.id);
+      await fetchData();
     } catch (error) {
       Alert.alert("오류", "수락하는 과정에서 오류가 발생했어요!");
     }
@@ -20,6 +21,7 @@ export const ReceivedReqItem = ({ trade, fetchData }: ReceivedTradeType) => {
   const onPressReject = async () => {
     try {
       await rejectTrade(trade.id);
+      await fetchData();
     } catch (error) {
       Alert.alert("오류", "수락하는 과정에서 오류가 발생했어요!");
     }
