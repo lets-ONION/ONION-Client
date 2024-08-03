@@ -1,18 +1,40 @@
-import { View } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./home";
+import { Note } from "./Note";
 import Dictionary from "./dictionary/dictionary";
 import Setting from "./setting/setting";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
-const Tab = createMaterialBottomTabNavigator();
+export type MainTabParamList = {
+  home: undefined;
+  dictionary: undefined;
+  setting: undefined;
+};
+
+export type HomeStackParamList = {
+  Home: undefined;
+  Note: undefined;
+};
+
+const Tab = createMaterialBottomTabNavigator<MainTabParamList>();
+const Stack = createNativeStackNavigator<HomeStackParamList>();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Note" component={Note} />
+    </Stack.Navigator>
+  );
+}
 
 export default function MainTab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="home"
-        component={Home}
+        component={HomeStack}
         options={{ tabBarLabel: "홈" }}
       />
       <Tab.Screen
