@@ -30,6 +30,7 @@ export const useFetch = <T>(request: () => Promise<T>) => {
   const reFetch = async () => {
     try {
       await tokenRefresh();
+      console.log("토큰 업데이트");
       const data = await request();
       console.log("재요청", data);
       setData(data);
