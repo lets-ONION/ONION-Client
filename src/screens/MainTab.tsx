@@ -4,10 +4,19 @@ import { Home } from "./home";
 import { Note } from "./Note";
 import Dictionary from "./dictionary/dictionary";
 import Setting from "./setting/setting";
-import { Entypo } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Entypo,
+  Feather,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import { Diary } from "./diary/diary";
+import { useLogin } from "../store/authStore";
+import { useAccess } from "../hooks/useAccess";
 
 export type MainTabParamList = {
   home: undefined;
+  diary: undefined;
   dictionary: undefined;
   setting: undefined;
 };
@@ -30,12 +39,28 @@ function HomeStack() {
 }
 
 export default function MainTab() {
+  const { accessToken } = useAccess();
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="home"
         component={HomeStack}
-        options={{ tabBarLabel: "홈" }}
+        options={{
+          tabBarLabel: "홈",
+          tabBarIcon: () => {
+            return <Feather name="home" size={25} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="diary"
+        component={Diary}
+        options={{
+          tabBarLabel: "일기",
+          tabBarIcon: () => {
+            return <AntDesign name="book" size={25} />;
+          },
+        }}
       />
       <Tab.Screen
         name="dictionary"
@@ -43,14 +68,19 @@ export default function MainTab() {
         options={{
           tabBarLabel: "도감",
           tabBarIcon: () => {
-            return <Entypo name="open-book" size={30} />;
+            return <Entypo name="open-book" size={25} />;
           },
         }}
       />
       <Tab.Screen
         name="setting"
         component={Setting}
-        options={{ tabBarLabel: "설정" }}
+        options={{
+          tabBarLabel: "설정",
+          tabBarIcon: () => {
+            return <Feather name="settings" size={25} />;
+          },
+        }}
       />
     </Tab.Navigator>
   );

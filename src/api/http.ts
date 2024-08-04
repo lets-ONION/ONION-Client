@@ -1,18 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = '';
+const BASE_URL = "https://api.lets-onion.site";
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = () => {
-    const axiosInstance = axios.create({
-        baseURL: BASE_URL,
-        timeout: DEFAULT_TIMEOUT,
-        headers: {
+  const axiosInstance = axios.create({
+    baseURL: BASE_URL,
+    timeout: DEFAULT_TIMEOUT,
+    withCredentials: true,
+  });
 
-        }
-    });
-
-    return axiosInstance;
+  return axiosInstance;
 };
 
 export const httpClient = createClient();

@@ -1,36 +1,57 @@
-import { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { AxiosError } from "axios";
+import { ErrorInfo, useCallback, useEffect, useState } from "react";
+import { Alert } from "react-native";
+import { keyframes } from "styled-components";
+import { useLogin } from "../store/authStore";
+import { tokenRefresh } from "../api/auth";
+import { Logout } from "../components/setting/logout";
 
-type Status = "PENDING" | "FULFILLED" | "REJECTED";
-
-const useFetch = <T>(request: () => Promise<T>) => {
-  const [status, setStatus] = useState<Status>("PENDING");
-  const [result, setResult] = useState<T | null>(null);
+export const useFetch = <T>(request: () => Promise<T>) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const { refreshToken, setIsLogin } = useLogin.getState();
 
-  const resolve = (fetchedData: T) => {
-    setStatus("FULFILLED");
-    setResult(fetchedData);
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const data = await request();
+      console.log("데이타", data);
+      setData(data);
+    } catch (err) {
+      console.log("fetch중 에러", err);
+      reFetch();
+    } finally {
+      setLoading(false);
+    }
+  }, [request]);
+
+  const reFetch = async () => {
+    try {
+      await tokenRefresh(refreshToken);
+      fetchData();
+    } catch (error) {
+      console.log("refetch 중 오류 발생", error);
+      Alert.alert("오류", "정보를 불러들이다 실패했어요", [
+        {
+          text: "확인",
+          onPress: setIsLogin,
+        },
+      ]);
+    }
   };
-
-  const reject = (error: Error) => {
-    setStatus("REJECTED");
-    setError(error);
-  };
-
-  const fetch = () => {
-    setStatus("PENDING");
-    request().then(resolve, reject);
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [fetchData])
+  );
 
   return {
-    result,
-    status,
-    isLoading: status === "PENDING",
-    isError: status === "REJECTED",
+    data,
+    loading,
     error,
+    fetchData,
+    setData,
   };
 };
