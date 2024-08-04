@@ -11,7 +11,7 @@ export function PushSwitch({ navigation }: { navigation: any }) {
     >
       <View style={styles.textWrapper}>
         <Ionicons name="notifications" size={24} color="black" />
-        <Text style={styles.text}>푸시알림</Text>
+        <Text style={styles.text}>알림 설정</Text>
       </View>
     </Pressable>
   );

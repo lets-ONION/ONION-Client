@@ -23,37 +23,9 @@ const OnionCard: React.FC<OnionCardType> = ({
   const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false);
   const onPressExchangeButton = () => setShowExchangeModal(true);
   const { nickname } = useLogin.getState();
-  const onPressChangeProfile = () => {
-    Alert.alert("프로필 변경", "해당 양파로 프로필을 변경할까요?", [
-      {
-        onPress: changeProfile,
-        text: "넹",
-      },
-      {
-        text: "아니오",
-        style: "cancel",
-      },
-    ]);
-  };
-  const changeProfile = async () => {
-    try {
-      await putMyProfile(nickname, onion.onion_image);
-      Alert.alert("프로필 양파 변경이 완료됐어요.");
-    } catch (error) {
-      Alert.alert("오류", "프로필 설정 중 오류가 발생했어요.");
-    }
-  };
+
   return (
     <View style={styles.container}>
-      {!showFriendsOnion && (
-        <Feather
-          name="settings"
-          size={24}
-          color="orange"
-          style={styles.Feather}
-          onPress={onPressChangeProfile}
-        />
-      )}
       <View style={styles.imageAndNameWrapper}>
         <Image source={{ uri: onion.onion_image }} style={styles.image} />
         <Text style={styles.text}>
