@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     buttonText: {
         fontSize: 18,
+        textAlign: 'center'
     } as TextStyle,
 });
 
