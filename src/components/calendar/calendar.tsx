@@ -1,6 +1,9 @@
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { DiaryScreenProps } from "../../screens/diary/diary";
+import { useFetch } from "../../hooks/useFetch";
+import { getCalendar } from "../../api/calendar";
+import { CalendarGrowDataType } from "../../types/calendar/calendar";
 
 LocaleConfig.locales.fr = {
   monthNames: [
@@ -50,9 +53,24 @@ export const OnionCalendar = ({ navigation, route }: DiaryScreenProps) => {
   const onPressDate = ({ dateString }: { dateString: string }) => {
     navigation.navigate("DiaryDetail", { date: dateString });
   };
+  const diaryInfo = useFetch(getCalendar);
+  if (diaryInfo.loading)
+    return <ActivityIndicator size={"large"} color={"orange"} />;
+
+  const grewInfo: { [key: string]: { marked: boolean; dotColor: string } } = {};
+  if (diaryInfo.data && diaryInfo.data.data.dates) {
+    diaryInfo.data.data.dates.forEach((info: CalendarGrowDataType) => {
+      console.log(info);
+      grewInfo[info.date] = {
+        marked: true,
+        dotColor: "green",
+      };
+    });
+  }
+  console.log(grewInfo);
   return (
     <View>
-      <Calendar onDayPress={onPressDate} />
+      <Calendar onDayPress={onPressDate} markedDates={grewInfo} />
     </View>
   );
 };

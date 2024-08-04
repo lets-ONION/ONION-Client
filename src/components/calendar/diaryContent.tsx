@@ -17,28 +17,31 @@ export function DiaryContent({ navigation, route }: DiaryDetailScreenProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getDiaryDetail(route.params.date);
-        setData(data);
+        const { data } = await getDiaryDetail(route.params.date);
         console.log(data);
+        if (data.note) setData(data.note);
+        setLoading(false);
       } catch (error) {
         setError(error as AxiosError);
-        console.log("일기 에러", error);
-      } finally {
+        setData("해당 날에 작성된 긍정일기가 없어요ㅠ.ㅜ");
         setLoading(false);
       }
     };
-    fetchData();
-  }, []);
 
-  //   if (error && error?.response?.status !== 404) {
-  //     Alert.alert("오류", "일기를 불러들이는 중 오류가 발생했어요");
-  //     navigation.pop();
-  //   }
-  //   if (loading) return <ActivityIndicator size="large" color="orange" />;
-  //   if (error?.response?.status === 404)
-  //     return (
-  //       <Text style={styles.errorText}>해당 날에 작성된 긍정일기가 없어요</Text>
-  //     );
+    fetchData();
+  }, [route.params.date]);
+
+  useEffect(() => {
+    if (error && error.response?.status !== 404) {
+      Alert.alert("오류", "일기를 불러들이는 중 오류가 발생했어요");
+      navigation.pop();
+    }
+  }, [error, navigation]);
+
+  if (loading)
+    return (
+      <ActivityIndicator size="large" color="orange" style={styles.loading} />
+    );
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -64,5 +67,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 17,
     color: "gray",
+  },
+  loading: {
+    position: "absolute",
+    right: "50%",
+    top: "50%",
   },
 });
