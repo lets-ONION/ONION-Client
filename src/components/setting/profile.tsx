@@ -1,12 +1,23 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useState } from "react";
 import { Alert, Image, StyleSheet, Text, View } from "react-native";
-import { getUser } from "../../api/auth";
-import { useFetch } from "../../hooks/useFetch";
 import { useLogin } from "../../store/authStore";
 
 export function Profile() {
-  const { nickname, profileImage } = useLogin.getState();
+  const { nickname: initialNickname, profileImage: initialProfileImage } =
+    useLogin.getState();
+  const [nickname, setNickname] = useState(initialNickname);
+  const [profileImage, setProfileImage] = useState(initialProfileImage);
+
+  useFocusEffect(
+    useCallback(() => {
+      const { nickname: refreshNickname, profileImage: refreshProfile } =
+        useLogin.getState();
+      setNickname(refreshNickname);
+      setProfileImage(refreshProfile);
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.profileImageWrapper}>
@@ -18,6 +29,7 @@ export function Profile() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     width: "100%",

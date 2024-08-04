@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    width: "70%",
+    textAlignVertical: "center",
   },
   friendContainer: {
     width: "100%",
@@ -95,9 +95,12 @@ const styles = StyleSheet.create({
   },
   friendProfileWrapper: {
     flexDirection: "row",
+    alignItems: "center",
+    width: "70%",
   },
   friendImage: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
+    objectFit: "contain",
   },
 });

@@ -33,7 +33,7 @@ export function FriendsRequest() {
               <Text>추천하는 친구</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.menu} onPress={onPressRequested}>
-              <Text>보낸 요청</Text>
+              <Text>받은 친구요청</Text>
             </TouchableOpacity>
           </View>
           {showRecommendList ? <RecommendFriends /> : <RequestedFriends />}
