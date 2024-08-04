@@ -6,9 +6,11 @@ interface LoginState {
   isLogin: boolean;
   accessToken: string;
   refreshToken: string;
+  deviceToken: string;
   nickname: string;
   profileImage: string;
   id: number;
+  setDeviceToken: (token: string) => void;
   setIsLogin: () => void;
   setToken: (token: string) => void;
   setRefresh: (token: string) => void;
@@ -23,6 +25,7 @@ export const useLogin = create<LoginState>()(
       isLogin: false,
       accessToken: "",
       refreshToken: "",
+      deviceToken: "",
       nickname: "",
       profileImage: "",
       id: 0,
@@ -49,6 +52,10 @@ export const useLogin = create<LoginState>()(
       setId: (id: number) =>
         set(() => ({
           id: id,
+        })),
+      setDeviceToken: (token: string) =>
+        set(() => ({
+          deviceToken: token,
         })),
     }),
     {

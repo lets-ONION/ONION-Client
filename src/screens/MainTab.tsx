@@ -13,6 +13,7 @@ import { Diary } from "./diary/diary";
 import { useLogin } from "../store/authStore";
 import { useAccess } from "../hooks/useAccess";
 import { DiaryStack } from "./diary/diaryStack";
+import { SettingStack } from "./setting/settingStack";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -52,7 +53,7 @@ export default function MainTab() {
       />
       <Tab.Screen
         name="setting"
-        component={Setting}
+        component={SettingStack}
         options={{
           tabBarLabel: "설정",
           tabBarIcon: () => {

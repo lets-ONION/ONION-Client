@@ -1,25 +1,19 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
 
-export function PushSwitch() {
+export function PushSwitch({ navigation }: { navigation: any }) {
   const [isPushActive, setPushActive] = useState<boolean>(true);
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("SettingPushNotification")}
+    >
       <View style={styles.textWrapper}>
         <Ionicons name="notifications" size={24} color="black" />
         <Text style={styles.text}>푸시알림</Text>
       </View>
-      <Switch
-        style={styles.switch}
-        trackColor={{ true: "orange" }}
-        thumbColor={"white"}
-        value={isPushActive}
-        onValueChange={() => {
-          setPushActive(!isPushActive);
-        }}
-      />
-    </View>
+    </Pressable>
   );
 }
 

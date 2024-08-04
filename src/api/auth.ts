@@ -44,3 +44,55 @@ export const putMyProfile = async (nickname: string, image: string) => {
   setProfile(image);
   return data;
 };
+
+export const updateDeviceToken = async (token: string) => {
+  const { data } = await httpClient.post(`/member/device-token/save`, {
+    device_token: token,
+  });
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_NoQuery = async () => {
+  const { data } = await httpClient.get(`/push/notification/config`);
+  return data;
+};
+//알림 설정 변경
+export const pushSetting_FriendReq = async () => {
+  const { data } = await httpClient.get(
+    `/push/notification/config?type=FRIEND_REQUEST`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_FriendRes = async () => {
+  const { data } = await httpClient.get(
+    `/push/notification/config?type=FRIEND_RESPONSE`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_TradeReq = async () => {
+  const { data } = await httpClient.get(
+    `/push/notification/config?type=TRADE_REQUEST`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_TradeRes = async () => {
+  const { data } = await httpClient.get(
+    `/push/notification/config?type=TRADE_RESPONSE`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_Water = async () => {
+  const { data } = await httpClient.get(
+    `/push/notification/config?type=WATERING_TIME`
+  );
+  return data;
+};
