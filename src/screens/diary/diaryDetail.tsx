@@ -9,5 +9,5 @@ export type DiaryDetailScreenProps = NativeStackScreenProps<
 >;
 export function DiaryDetail({ navigation, route }: DiaryDetailScreenProps) {
   const { date } = route.params;
-  return <DiaryContent date={date} />;
+  return <DiaryContent navigation={navigation} route={route} />;
 }
