@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    height: "100%",
+    height: "90%",
   },
   selectWrapper: {
     borderBottomWidth: 2,

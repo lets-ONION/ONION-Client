@@ -12,19 +12,18 @@ import { NewCommentType } from "../../../types/comment";
 import { Button } from "../../common/button";
 import { useState } from "react";
 import { postStatusMessage } from "../../../api/book";
+import { useLogin } from "../../../store/authStore";
 
 export const NewComment = ({
-  myOnionImage,
-  nickname,
   setShowWriteModal,
   fetchData,
 }: NewCommentType) => {
   const onPressOuterContent = () => setShowWriteModal(false);
   const [content, setContent] = useState<string>("");
+  const { nickname, profileImage } = useLogin.getState();
   const onPressSubmit = async () => {
     try {
       await postStatusMessage(content);
-      console.log(content);
       Alert.alert("상태메시지 작성", "작성이 완료되었습니다");
       onPressOuterContent();
       await fetchData();
@@ -35,7 +34,7 @@ export const NewComment = ({
   return (
     <View style={styles.container}>
       <View style={styles.myOnionWrapper}>
-        <Image source={{ uri: myOnionImage }} style={styles.image} />
+        <Image source={{ uri: profileImage }} style={styles.image} />
         <Text>오늘 {nickname}님의 하루는 어땠나요?</Text>
       </View>
       <TextInput
@@ -67,7 +66,8 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
+    justifyContent: "center",
+    gap: 20,
   },
   image: {
     width: 70,

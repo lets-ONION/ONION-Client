@@ -1,14 +1,17 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useState } from "react";
-import { Alert, Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useLogin } from "../../store/authStore";
+import { CustomModal } from "../common/modal";
+import { ProfileChange } from "./profileChange";
 
 export function Profile() {
   const { nickname: initialNickname, profileImage: initialProfileImage } =
     useLogin.getState();
   const [nickname, setNickname] = useState(initialNickname);
   const [profileImage, setProfileImage] = useState(initialProfileImage);
-
+  const [showProfileChange, setShowProfileChange] = useState<boolean>(false);
+  const onPressProfile = () => setShowProfileChange(true);
   useFocusEffect(
     useCallback(() => {
       const { nickname: refreshNickname, profileImage: refreshProfile } =
@@ -20,12 +23,21 @@ export function Profile() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.profileImageWrapper}>
+      <Pressable style={styles.profileImageWrapper} onPress={onPressProfile}>
         <Image source={{ uri: profileImage }} style={styles.profileImage} />
-      </View>
+      </Pressable>
       <View style={styles.profile}>
         <Text style={styles.nickname}>{nickname}</Text>
       </View>
+      <CustomModal
+        visible={showProfileChange}
+        touchOuterContent={setShowProfileChange}
+      >
+        <ProfileChange
+          setProfile={setProfileImage}
+          showModal={setShowProfileChange}
+        />
+      </CustomModal>
     </View>
   );
 }

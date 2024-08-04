@@ -5,8 +5,6 @@ export type CommentType = {
 };
 
 export type NewCommentType = {
-  myOnionImage: string;
-  nickname: string;
   setShowWriteModal: React.Dispatch<React.SetStateAction<boolean>>;
   fetchData: () => Promise<void>;
 };
