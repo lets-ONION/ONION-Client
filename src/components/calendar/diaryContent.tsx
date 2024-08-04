@@ -1,5 +1,5 @@
 import { ActivityIndicator } from "react-native-paper";
-import { getDiaryDetail } from "../../api/calendar";
+import { deleteDiaryDetail, getDiaryDetail } from "../../api/calendar";
 import { useFetch } from "../../hooks/useFetch";
 import {
   Alert,
@@ -22,22 +22,50 @@ export function DiaryContent({ navigation, route }: DiaryDetailScreenProps) {
   const [data, setData] = useState<string>("현재 쓴 일기가 없어요");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError | null>(null);
+  const [showEditor, setShowEditor] = useState<boolean>(false);
   const { profileImage } = useLogin.getState();
+  const { date } = route.params;
+  const onPressDelete = async () => {
+    try {
+      await deleteDiaryDetail(date);
+      Alert.alert("삭제가 완료되었어요", "", [
+        {
+          text: "확인",
+          onPress: () => navigation.pop(),
+        },
+      ]);
+    } catch (error) {
+      Alert.alert("오류", "삭제 중에 오류가 발생했어요");
+      navigation.pop();
+    }
+  };
 
+  const onPressEdit = async () => {
+    Alert.alert("일기를 수정할까요?", "", [
+      {
+        text: "네",
+        onPress: () => setShowEditor(true),
+      },
+      {
+        text: "아니오",
+        style: "cancel",
+      },
+    ]);
+  };
+
+  const fetchData = async () => {
+    try {
+      const { data } = await getDiaryDetail(date);
+      console.log(data);
+      if (data.note) setData(data.note);
+      setLoading(false);
+    } catch (error) {
+      setError(error as AxiosError);
+      setData("해당 날에 작성된 긍정일기가 없어요ㅠ.ㅜ");
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getDiaryDetail(route.params.date);
-        console.log(data);
-        if (data.note) setData(data.note);
-        setLoading(false);
-      } catch (error) {
-        setError(error as AxiosError);
-        setData("해당 날에 작성된 긍정일기가 없어요ㅠ.ㅜ");
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [route.params.date]);
 
@@ -58,11 +86,27 @@ export function DiaryContent({ navigation, route }: DiaryDetailScreenProps) {
       <View style={styles.imageAndButtonWrapper}>
         <Image source={{ uri: profileImage }} style={styles.profileImage} />
         <View style={styles.buttonWrapper}>
-          <AntDesign name="edit" size={24} color="black" />
-          <AntDesign name="delete" size={24} color="black" />
+          <AntDesign
+            name="edit"
+            size={24}
+            color="orange"
+            onPress={onPressEdit}
+          />
+          <AntDesign
+            name="delete"
+            size={24}
+            color="crimson"
+            onPress={onPressEdit}
+          />
         </View>
       </View>
-      <MessageBubble text={data} />
+      <MessageBubble
+        text={data}
+        showEditor={showEditor}
+        setShowEditor={setShowEditor}
+        date={date}
+        fetchData={fetchData}
+      />
     </ScrollView>
   );
 }

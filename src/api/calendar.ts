@@ -7,12 +7,14 @@ export const getDiaryDetail = async (date: string) => {
 };
 
 //긍정일기 수정
-export const putDiaryDetail = async (date: string) => {
-  const { data } = await httpClient.put(`/calendar/${date}`);
+export const putDiaryDetail = async (date: string, note: string) => {
+  const { data } = await httpClient.put(`/calendar/${date}`, {
+    note: note,
+  });
   return data;
 };
 
-//긍정일기 조회
+//긍정일기 삭제
 export const deleteDiaryDetail = async (date: string) => {
   const { data } = await httpClient.delete(`/calendar/${date}`);
   return data;
