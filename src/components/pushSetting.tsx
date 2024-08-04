@@ -14,23 +14,31 @@ export function PushSettingSwitch({
   name,
   isOn,
   fetch,
+  refresh,
 }: {
   name: string;
   isOn: boolean;
   fetch: () => Promise<void>;
+  refresh: () => Promise<void>;
 }) {
   const switching = async () => {
     try {
       await fetch();
+      await refresh();
     } catch (error) {
       Alert.alert("알림 설정 중 오류가 발생했어요ㅜㅠ");
     }
   };
   return (
     <View style={styles.container}>
-      <View>
-        <Text>{name}</Text>
-        <Switch onValueChange={switching} value={isOn} />
+      <View style={styles.notiContainer}>
+        <Text style={styles.text}>{name}</Text>
+        <Switch
+          onValueChange={switching}
+          value={isOn}
+          thumbColor={"orange"}
+          trackColor={{ false: "gray", true: "lightgray" }}
+        />
       </View>
     </View>
   );
@@ -39,13 +47,15 @@ export function PushSettingSwitch({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%",
     padding: 20,
   },
   notiContainer: {
-    width: "100%",
     padding: 10,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  text: {
+    fontSize: 17,
   },
 });
