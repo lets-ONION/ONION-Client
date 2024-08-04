@@ -10,8 +10,13 @@ interface TextModalProps {
 
 export function TextModal({ visible, onClose, onSubmit }: TextModalProps) {
     const [inputText, setInputText] = React.useState('');
+    const [warningMessage, setWarningMessage] = React.useState('');
 
     const handleSubmit = () => {
+        if (inputText.trim() === '') {
+            setWarningMessage('텍스트를 입력해주세요.');
+            return;
+        }
         onSubmit(inputText);
         setInputText('');
         onClose();
@@ -44,6 +49,7 @@ export function TextModal({ visible, onClose, onSubmit }: TextModalProps) {
                             multiline
                             textAlignVertical="top"
                         />
+                        {warningMessage ? <Text style={styles.warning}>{warningMessage}</Text> : null}
                         <View style={styles.buttonContainer}>
                             <CustomButton title="제출" onPress={handleSubmit} />
                             <CustomButton title="취소" onPress={handleClose} />
@@ -77,6 +83,10 @@ const styles = StyleSheet.create({
         height: 150,
         padding: 15,
         marginBottom: 20,
+    },
+    warning: {
+        color: 'red',
+        marginBottom: 10,
     },
     buttonContainer: {
         flexDirection: 'row',
