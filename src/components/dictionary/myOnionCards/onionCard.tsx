@@ -65,7 +65,7 @@ const OnionCard: React.FC<OnionCardType> = ({
           style={styles.tradeButton}
           onPress={onPressExchangeButton}
         >
-          <Text>교환하기</Text>
+          <Text>선택하기</Text>
         </TouchableOpacity>
       )}
       <Modal

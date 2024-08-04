@@ -29,7 +29,7 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>내 양파와 상대의 양파를 교환합니다.</Text>
+      <Text style={styles.text}>내 양파와 상대의 양파를 교환 요청합니다.</Text>
       <View style={styles.exchangeContainer}>
         <View style={styles.onionWrapper}>
           <Text>보내는 양파</Text>
