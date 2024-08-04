@@ -13,6 +13,7 @@ import {
 import { Diary } from "./diary/diary";
 import { useLogin } from "../store/authStore";
 import { useAccess } from "../hooks/useAccess";
+import Watering from "./Watering";
 
 export type MainTabParamList = {
   home: undefined;
@@ -23,7 +24,8 @@ export type MainTabParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
-  Note: undefined;
+  Note: { type: 'positive' | 'negative' };
+  Watering: { type: 'positive' | 'negative' };
 };
 
 const Tab = createMaterialBottomTabNavigator<MainTabParamList>();
@@ -34,6 +36,7 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Note" component={Note} />
+      <Stack.Screen name="Watering" component={Watering} />
     </Stack.Navigator>
   );
 }

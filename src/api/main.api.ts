@@ -17,6 +17,7 @@ export const waterPositive = async () => {
 
 export const waterNegative = async () => {
     const response = await httpClient.patch(`/main/negative/water`);
+    console.log('물 준 결과', response.data)
     return response.data;
 };
 
@@ -27,5 +28,12 @@ export const checkPositive = async (note: string) => {
 
 export const checkNegative = async (note: string) => {
     const response = await httpClient.post(`/main/check/neg`, { note });
+    console.log('부정양파 글씀', response.data)
+    return response.data;
+};
+
+export const postOnionName = async (onion_name: string) => {
+    const response = await httpClient.patch(`/main/naming`, { onion_name });
+    console.log('양파이름 설정', response.data)
     return response.data;
 };

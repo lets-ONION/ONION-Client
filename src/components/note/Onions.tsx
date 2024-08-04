@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Image, Text, StyleSheet, Animated } from 'react-native';
+import { useMain } from '../../hooks/useMain';
 
 interface Props {
   type?: "positive" | "negative";
@@ -9,9 +10,12 @@ const positive1 = require("../../../assets/positive/1.png");
 const negative1 = require("../../../assets/negative/1.png");
 
 const Onions: React.FC<Props> = ({ type }) => {
+  const { mainData } = useMain();
   const animationOnion = useRef(new Animated.Value(0)).current; // 이동 애니메이션
   const opacityOnion = useRef(new Animated.Value(1)).current; // 투명도 애니메이션
   const scaleOnion = useRef(new Animated.Value(1)).current; // 크기 애니메이션
+
+  console.log('노트 양파 데이터', mainData)
 
   useEffect(() => {
     Animated.parallel([
@@ -48,8 +52,8 @@ const Onions: React.FC<Props> = ({ type }) => {
           },
         ]}
       >
-        <Image source={positive1} style={styles.onionStyle} />
-        <Text>럭키 양파</Text>
+        <Image source={{ uri: mainData?.pos_onion.image_url }} style={styles.onionStyle} />
+        <Text>{mainData?.pos_onion.name}</Text>
       </Animated.View>
       <Animated.View
         style={[
@@ -64,8 +68,8 @@ const Onions: React.FC<Props> = ({ type }) => {
           },
         ]}
       >
-        <Image source={negative1} style={styles.onionStyle} />
-        <Text>법규 양파</Text>
+        <Image source={{ uri: mainData?.neg_onion.image_url }} style={styles.onionStyle} />
+        <Text>{mainData?.neg_onion.name}</Text>
       </Animated.View>
     </View>
   );
@@ -73,7 +77,7 @@ const Onions: React.FC<Props> = ({ type }) => {
 
 const styles = StyleSheet.create({
   onionsStyle: {
-    marginBottom: 50,
+    marginBottom: 30,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },

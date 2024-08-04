@@ -1,21 +1,33 @@
 import { View, StyleSheet } from "react-native";
 import TextBalloon from "../components/note/TextBalloon";
 import Icons from "../components/note/Icons";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Onions from "../components/note/Onions";
 import Button from "../components/main/Button";
 import { Alert } from "../components/common/Alert";
-import { waterPositive } from "../api/main.api";
 import { useMain } from "../hooks/useMain";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { HomeStackParamList } from "./MainTab";
+import { WaterResult } from "../models/models";
+
+type NoteScreenRouteProp = RouteProp<HomeStackParamList, 'Note'>;
 
 export function Note() {
-    const { WaterPositive } = useMain();
+    const { mainData, WaterPositive } = useMain();
+    const route = useRoute<NoteScreenRouteProp>();
     const [micIcon, setMicIcon] = useState<'mic-circle-outline' | 'mic-circle'>('mic-circle-outline');
     const [speak, setSpeak] = useState(false);
     const [type, setType] = useState<'negative' | 'positive'>('negative');
     const [isAlertVisible, setAlertVisible] = useState(false);
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
-    const [checkFailed, setCheckFailed] = useState<boolean>(true);
+    const [checkFailed, setCheckFailed] = useState<boolean>(false);
+    const [waterResult, setWaterResult] = useState<WaterResult>();
+
+    useEffect(() => {
+        if (route.params?.type) {
+            setType(route.params.type);
+        }
+    }, [route.params?.type]);
 
     const handleSkipPress = () => {
         setAlertVisible(true);
@@ -34,10 +46,10 @@ export function Note() {
     const message = "오늘은 럭키 양파에게만\n물을 주시겠어요?";
 
     const renderActionButtons = () => {
-        if (checkFailed) {
+        if (checkFailed === true) {
             return (
                 <>
-                    <Button onPress={() => {setCheckFailed(false); setSpeak(true);}}>다시 말하기</Button>
+                    <Button onPress={() => { setCheckFailed(false); setSpeak(true); setIsSubmit(false) }}>다시 말하기</Button>
                     {type === 'positive' ? (
                         <Button onPress={() => WaterPositive()}>아니야, 럭키 기운이 맞아!</Button>
                     ) : (
@@ -61,7 +73,11 @@ export function Note() {
 
     return (
         <View style={styles.noteStyle}>
-            <TextBalloon type={type} checkFailed={checkFailed} isSubmit={isSubmit} />
+            <TextBalloon type={type} 
+            checkFailed={checkFailed} 
+            isSubmit={isSubmit} 
+            posOnionName={mainData?.pos_onion.name}
+            negOnionName={mainData?.neg_onion.name} />
             <Onions type={type} />
             {speak ? renderActionButtons() : (
                 <>

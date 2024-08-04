@@ -15,3 +15,10 @@ export interface FetchMainResponse {
     code: number;
     data: DataResponse;
 }
+
+export interface WaterResult {
+    name: string;
+    level: number;
+    image_url: string;
+    is_evolvable: boolean;
+}

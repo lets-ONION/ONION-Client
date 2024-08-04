@@ -4,6 +4,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated } from 'react-native';
 import { TextModal } from './TextModal';
 import { useMain } from '../../hooks/useMain';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { HomeStackParamList } from '../../screens/MainTab';
+import { WaterResult } from '../../models/models';
 
 interface Props {
     type: "positive" | "negative";
@@ -15,8 +18,8 @@ interface Props {
 }
 
 const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, setIsSubmit, isSubmit }) => {
+    const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
     const { NotePositive, WaterPositive, WaterNegative, CheckPositive, CheckNegative } = useMain();
-    const [checkResult, setCheckResult] = useState();
     const [modalVisible, setModalVisible] = useState(false);
     const [selected, setSelected] = useState<string | null>(null);
     const [enabled, setEnabled] = useState(false);
@@ -64,23 +67,54 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
                 result = await CheckNegative(text);
             }
             if (result) {
-                handleResponseStatus(result.data, text);
+                handleResponseStatus(result, text);
             }
         } catch (error) {
             console.error('handleModalSubmit Error:', error);
+            setCheckFailed(true);
         }
     };
 
     const handleResponseStatus = (status: string, text: string) => {
-        if (status === 'POSITIVE') {
-            if (type === 'positive') {
-                NotePositive(text);
-                WaterPositive();
-            } else {
-                WaterNegative();
+        if (type === 'positive') {
+            switch (status) {
+                case 'POSITIVE':
+                    NotePositive(text);
+                    WaterPositive();
+                    setTimeout(() => {
+                        navigation.navigate('Watering', { type });
+                        setIsSubmit(false);
+                    }, 3000);
+                    break;
+                case 'NEGATIVE':
+                    setCheckFailed(true);
+                    break;
+                case 'INVALID':
+                    setCheckFailed(true);
+                    break;
+                default:
+                    setCheckFailed(true);
+                    break;
             }
-        } else {
-            setCheckFailed(true);
+        } else if (type === 'negative') {
+            switch (status) {
+                case 'VALID':
+                    WaterNegative();
+                    setTimeout(() => {
+                        navigation.navigate('Watering', { type });
+                        setIsSubmit(false);
+                    }, 3000);
+                    break;
+                case 'INVALID':
+                    setCheckFailed(true);
+                    break;
+                case 'FAIL':
+                    setCheckFailed(true);
+                    break;
+                default:
+                    setCheckFailed(true);
+                    break;
+            }
         }
     };
 
@@ -91,8 +125,8 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
                     <Ionicons name={micIcon} size={70} color="black" />
                     <Text style={styles.text}>
                         {micIcon === 'mic-circle' ?
-                            '당신의 이야기를\n듣고 있습니다.' :
-                            (enabled ? '마이크를 누른 후, 당신의\n이야기를 들려주세요' : '말로 하기')}
+                            '이야기를\n듣고 있습니다' :
+                            (enabled ? '마이크를 누른 후,\n이야기를 들려주세요' : '말로 하기')}
                     </Text>
                 </TouchableOpacity>
             </Animated.View>

@@ -1,22 +1,31 @@
+import { useEffect, useState } from 'react';
 import { View, Image, StyleSheet, Text } from "react-native";
 
 interface Props {
     type: "positive" | "negative";
     checkFailed?: boolean;
     isSubmit?: boolean;
+    isWatered?: boolean;
+    posOnionName?: string;
+    negOnionName?: string;
 }
 
-const TextBalloon = ({ type, checkFailed, isSubmit }: Props) => {
+const TextBalloon = ({ type, checkFailed, isSubmit, isWatered, posOnionName, negOnionName }: Props) => {
+    console.log(posOnionName, negOnionName)
+    const posOnion = posOnionName || "럭키";
+    const negOnion = negOnionName || "법규";
     let message: string;
 
-    if (checkFailed) {
+    if (isWatered) {
+        message = `${type === 'negative' ? negOnion : posOnion} 양파가 자라납니다!`;
+    } else if (checkFailed) {
         message = "죄송해요. 양파가\n잘 이해되지 않는대요.";
     } else if (isSubmit) {
-        message = `${type === 'negative' ? '법규' : '럭키'} 양파가 사용자님의\n이야기를 듣는 중이예요...`;
+        message = `${type === 'negative' ? negOnion : posOnion} 양파가 사용자님의\n이야기를 듣는 중이예요...`;
     } else if (type === "positive") {
-        message = "오늘 좋은 있으셨나요?\n긍정 양파에게 말해보세요!";
+        message = `오늘 좋은 일이 있으셨나요?\n${posOnion} 양파에게\n말해보세요!`;
     } else if (type === "negative") {
-        message = "안 좋은 일이 있으셨나요?\n부정 양파에게 풀어보세요.";
+        message = `안 좋은 일이 있으셨나요?\n${negOnion} 양파에게\n풀어보세요.`;
     } else {
         message = '';
     }
