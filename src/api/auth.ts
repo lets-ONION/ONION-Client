@@ -22,8 +22,8 @@ export const patchUserNickname = async (nickname: string) => {
   });
 };
 
-export const tokenRefresh = async (refreshToken: string) => {
-  const { setRefresh } = useLogin.getState();
+export const tokenRefresh = async () => {
+  const { refreshToken, setRefresh } = useLogin.getState();
   const { data } = await httpClient.post(`/member/token/refresh`, {
     refresh_token: refreshToken,
   });
