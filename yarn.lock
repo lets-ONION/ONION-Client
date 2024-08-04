@@ -5495,7 +5495,7 @@ metro-cache-key@0.80.9:
   resolved "https://registry.yarnpkg.com/metro-cache-key/-/metro-cache-key-0.80.9.tgz#a04cbb0a7828509bb10dde9789ef761c0c60bc3d"
   integrity sha512-hRcYGhEiWIdM87hU0fBlcGr+tHDEAT+7LYNCW89p5JhErFt/QaAkVx4fb5bW3YtXGv5BTV7AspWPERoIb99CXg==
 
-metro-cache@0.80.9, metro-cache@^0.80.9, metro-cache@^0.80.9:
+metro-cache@0.80.9, metro-cache@^0.80.9:
   version "0.80.9"
   resolved "https://registry.yarnpkg.com/metro-cache/-/metro-cache-0.80.9.tgz#b914318a90dbcd51b4c27836184519c441ba5123"
   integrity sha512-ujEdSI43QwI+Dj2xuNax8LMo8UgKuXJEdxJkzGPU6iIx42nYa1byQ+aADv/iPh5sh5a//h5FopraW5voXSgm2w==
@@ -6459,6 +6459,21 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-gesture-handler@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.18.1.tgz#ec9206f34cd2f34a66c0430b2c416d31ee6dff17"
+  integrity sha512-WF2fxQ5kTaxHghlkBM4YxO86SyGWVwrSNgJ1E8z/ZtL2xD5B3bg5agvuVFfOzvceC114yq71s6E9vKPz94ZxRw==
+  dependencies:
+    "@egjs/hammerjs" "^2.0.17"
+    hoist-non-react-statics "^3.3.0"
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
+
+react-native-global-props@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-global-props/-/react-native-global-props-1.1.5.tgz#443e0ffc89d5402fa20ebedf37bcbca6d861c34d"
+  integrity sha512-QDeAdRel6zyJfbgyFxZi9QXZe78OdlANxJae0rJn76uTqdt/A+iWBVjJy3NmaN/fpKy0uV0HhW6Hu4xM0QCisQ==
 
 react-native-paper@^5.12.3:
   version "5.12.5"
@@ -8117,12 +8132,9 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod-validation-error@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-2.1.0.tgz#208eac75237dfed47c0018d2fe8fd03501bfc9ac"
-  integrity sha512-VJh93e2wb4c3tWtGgTa0OF/dTt/zoPCPzXq4V11ZjxmEAFaPi/Zss1xIZdEB5RD8GD00U0/iVXgqkF77RV7pdQ==
-
-zod@^3.22.4:
-  version "3.23.8"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
-  integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
+zustand@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.4.tgz#63abdd81edfb190bc61e0bbae045cc4d52158a05"
+  integrity sha512-/BPMyLKJPtFEvVL0E9E9BTUM63MNyhPGlvxk1XjrfWTUlV+BR8jufjsovHzrtR6YNcBEcL7cMHovL1n9xHawEg==
+  dependencies:
+    use-sync-external-store "1.2.0"

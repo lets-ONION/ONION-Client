@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { FetchMainResponse } from '../models/models';
+import { DataResponse } from '../models/models';
 import { checkNegative, checkPositive, fetchMain, notePositive, waterNegative, waterPositive } from '../api/main.api';
 
 export const useMain = () => {
-    const [mainData, setMainData] = useState<FetchMainResponse>();
+    const [mainData, setMainData] = useState<DataResponse>();
 
     useEffect(() => {
         fetchMain().then((response) => {
-            setMainData(response)
-        })
+            setMainData(response);
+        }).catch((error) => {
+            console.error('Failed to fetch main data in useMain', error);
+        });
     }, []);
 
     const NotePositive = (note: string) => {

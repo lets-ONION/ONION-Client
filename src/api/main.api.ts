@@ -2,7 +2,7 @@ import { httpClient } from "./http";
 
 export const fetchMain = async () => {
     const response = await httpClient.get(`/main`);
-    return response.data;
+    return response.data.data;
 };
 
 export const notePositive = async (note: string) => {

@@ -10,11 +10,10 @@ import { useMain } from "../hooks/useMain";
 
 export function Home() {
   const { mainData } = useMain();
-  const [is_spoken, setis_spoken] = useState(false);
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
   const handleButtonPress = () => {
-    if (!is_spoken) {
+    if (!mainData?.is_spoken) {
       navigation.navigate("Note");
     }
   };
@@ -22,9 +21,9 @@ export function Home() {
   return (
     <View style={styles.homeStyle}>
       <Text style={styles.date}>{getFormattedDate()}</Text>
-      <Onions />
+      <Onions data={mainData} />
       <Button onPress={handleButtonPress}>
-        {is_spoken ? '이미 양파에게 말했어요.' : '양파에게 말하기'}
+        {mainData?.is_spoken ? '이미 양파에게 말했어요.' : '양파에게 말하기'}
       </Button>
     </View>
   );
