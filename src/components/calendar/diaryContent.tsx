@@ -1,12 +1,22 @@
 import { ActivityIndicator } from "react-native-paper";
 import { getDiaryDetail } from "../../api/calendar";
 import { useFetch } from "../../hooks/useFetch";
-import { Alert, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Button,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useLogin } from "../../store/authStore";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import { DiaryDetailScreenProps } from "../../screens/diary/diaryDetail";
 import { MessageBubble } from "./messageBubble";
+import { AntDesign } from "@expo/vector-icons";
 
 export function DiaryContent({ navigation, route }: DiaryDetailScreenProps) {
   const [data, setData] = useState<string>("현재 쓴 일기가 없어요");
@@ -45,7 +55,13 @@ export function DiaryContent({ navigation, route }: DiaryDetailScreenProps) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image source={{ uri: profileImage }} style={styles.profileImage} />
+      <View style={styles.imageAndButtonWrapper}>
+        <Image source={{ uri: profileImage }} style={styles.profileImage} />
+        <View style={styles.buttonWrapper}>
+          <AntDesign name="edit" size={24} color="black" />
+          <AntDesign name="delete" size={24} color="black" />
+        </View>
+      </View>
       <MessageBubble text={data} />
     </ScrollView>
   );
@@ -60,6 +76,10 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 20,
   },
+  imageAndButtonWrapper: {
+    flexDirection: "row",
+    width: "100%",
+  },
   errorText: {
     width: "100%",
     height: "100%",
@@ -72,5 +92,18 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: "50%",
     top: "50%",
+  },
+  buttonWrapper: {
+    gap: 20,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    paddingLeft: 20,
+  },
+  button: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    height: 30,
+    justifyContent: "center",
+    borderRadius: 14,
   },
 });
