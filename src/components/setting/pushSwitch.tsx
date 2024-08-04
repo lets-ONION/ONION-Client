@@ -2,13 +2,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, Switch, Text, View } from "react-native";
 
+import MainText from "../mainText";
+
 export function PushSwitch() {
   const [isPushActive, setPushActive] = useState<boolean>(true);
   return (
     <View style={styles.container}>
       <View style={styles.textWrapper}>
         <Ionicons name="notifications" size={24} color="black" />
-        <Text style={styles.text}>푸시알림</Text>
+        <MainText style={styles.text}>푸시알림</MainText>
       </View>
       <Switch
         style={styles.switch}

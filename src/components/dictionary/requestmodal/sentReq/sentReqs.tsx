@@ -4,6 +4,8 @@ import { dummyReqData } from "../../../dummyData";
 import { useFetch } from "../../../../hooks/useFetch";
 import { getRecievedTrade, getSentTrade } from "../../../../api/book";
 
+import MainText from "../../../mainText";
+
 export const SentReqs = () => {
   const reqData = useFetch(getSentTrade);
   if (reqData.loading)
@@ -11,7 +13,7 @@ export const SentReqs = () => {
   if (reqData.error)
     return (
       <View>
-        <Text>정보를 가져올 수 없습니다.</Text>
+        <MainText>정보를 가져올 수 없습니다.</MainText>
       </View>
     );
   return (

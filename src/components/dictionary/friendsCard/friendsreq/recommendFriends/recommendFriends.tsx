@@ -1,12 +1,14 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { Button } from "../../../../common/button";
 
+import MainText from "../../../../mainText";
+
 export const RecommendFriends = () => {
   return (
     <View>
       <TouchableWithoutFeedback>
         <View style={styles.container}>
-          <Text style={styles.text}>wwww</Text>
+          <MainText style={styles.text}>wwww</MainText>
           <Button
             background="lightgray"
             onPress={() => {}}

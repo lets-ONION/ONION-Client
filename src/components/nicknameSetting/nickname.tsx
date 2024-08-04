@@ -14,6 +14,8 @@ import { LoginStackParamList } from "../../screens/loginStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useLogin } from "../../store/authStore";
 
+import MainText from "../mainText";
+
 type NicknameScreenProps = NativeStackScreenProps<
   LoginStackParamList,
   "NicknameSetting"
@@ -46,7 +48,7 @@ export function Nickname({ navigation, route }: NicknameScreenProps) {
         style={styles.image}
       />
       <View style={styles.nicknameInputWrapper}>
-        <Text style={styles.text}>닉네임을 입력해주세요!</Text>
+        <MainText style={styles.text}>닉네임을 입력해주세요!</MainText>
         <TextInput
           style={styles.input}
           value={nickname}
@@ -61,7 +63,7 @@ export function Nickname({ navigation, route }: NicknameScreenProps) {
         width={"50%"}
       />
       {unvalid && (
-        <Text style={styles.unvalid}>닉네임은 2-10글자까지만 가능해요!</Text>
+        <MainText style={styles.unvalid}>닉네임은 2-10글자까지만 가능해요!</MainText>
       )}
     </View>
   );

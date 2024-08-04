@@ -2,6 +2,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { useLogin } from "../../store/authStore";
 
+import MainText from "../mainText";
+
 export function Logout() {
   const logout = useLogin((state) => state.setIsLogin);
   const onPressLogout = () => {
@@ -23,7 +25,7 @@ export function Logout() {
   return (
     <Pressable style={styles.container} onPress={onPressLogout}>
       <MaterialIcons name="logout" size={30} color="black" />
-      <Text style={styles.text}>로그아웃</Text>
+      <MainText style={styles.text}>로그아웃</MainText>
     </Pressable>
   );
 }

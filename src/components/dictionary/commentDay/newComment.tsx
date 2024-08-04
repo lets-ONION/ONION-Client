@@ -13,6 +13,8 @@ import { Button } from "../../common/button";
 import { useState } from "react";
 import { postStatusMessage } from "../../../api/book";
 
+import MainText from "../../mainText";
+
 export const NewComment = ({
   myOnionImage,
   nickname,
@@ -35,7 +37,7 @@ export const NewComment = ({
     <View style={styles.container}>
       <View style={styles.myOnionWrapper}>
         <Image source={{ uri: myOnionImage }} style={styles.image} />
-        <Text>오늘 {nickname}님의 하루는 어땠나요?</Text>
+        <MainText>오늘 {nickname}님의 하루는 어땠나요?</MainText>
       </View>
       <TextInput
         style={styles.commentWrapper}
@@ -44,7 +46,7 @@ export const NewComment = ({
         placeholder="하루를 적어보세요."
         multiline
       />
-      <Text style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</Text>
+      <MainText style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</MainText>
       <Button
         background="orange"
         width={"80%"}

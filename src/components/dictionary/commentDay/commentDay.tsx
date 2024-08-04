@@ -12,6 +12,8 @@ import { NewComment } from "./newComment";
 import { dummyMyProfile } from "../../dummyData";
 import { CustomModal } from "../../common/modal";
 
+import MainText from "../../mainText";
+
 export const CommentDay = ({
   comment,
   fetchData,
@@ -25,13 +27,13 @@ export const CommentDay = ({
     <View style={styles.container}>
       <Pressable style={styles.commentWrapper} onPress={onPressNewComment}>
         {comment ? (
-          <Text>{comment}</Text>
+          <MainText>{comment}</MainText>
         ) : (
-          <Text>
+          <MainText>
             {showFriendsOnion
               ? "친구가 오늘의 상태를 적지 않았어요🥲"
               : "📝 오늘 상태를 한 마디로 하자면? 📝"}
-          </Text>
+          </MainText>
         )}
       </Pressable>
       <View style={styles.commentArrow} />
