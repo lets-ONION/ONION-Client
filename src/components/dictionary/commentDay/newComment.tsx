@@ -24,6 +24,7 @@ export const NewComment = ({
   const onPressSubmit = async () => {
     try {
       await postStatusMessage(content);
+      console.log(content);
       Alert.alert("상태메시지 작성", "작성이 완료되었습니다");
       onPressOuterContent();
       await fetchData();

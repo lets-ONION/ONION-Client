@@ -38,7 +38,6 @@ export const useFetch = <T>(request: () => Promise<T>) => {
       Alert.alert("오류", "정보를 불러들이다 실패했어요", [
         {
           text: "확인",
-          onPress: setIsLogin,
         },
       ]);
     }
