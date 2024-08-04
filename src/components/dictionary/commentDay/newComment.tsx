@@ -46,7 +46,9 @@ export const NewComment = ({
         placeholder="하루를 적어보세요."
         multiline
       />
-      <MainText style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</MainText>
+      <MainText style={styles.informText}>
+        한 번 작성한 글은 수정할 수 없어요
+      </MainText>
       <Button
         background="orange"
         width={"80%"}
