@@ -4,11 +4,12 @@ import Onions from "../components/main/Onions";
 import { getFormattedDate } from '../utils/dateUtils';
 import Button from "../components/main/Button";
 import { useState } from "react";
-import { useNavigation, NavigationProp  } from "@react-navigation/native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { HomeStackParamList } from "./MainTab";
+import { useMain } from "../hooks/useMain";
 
 export function Home() {
-  const [token] = useToken();
+  const { mainData } = useMain();
   const [is_spoken, setis_spoken] = useState(false);
   const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
 
