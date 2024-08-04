@@ -13,7 +13,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dup33333.lets-onion"
+      "bundleIdentifier": "com.dup33333.lets-onion",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app needs access to your microphone to record audio."
+      }
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -21,7 +24,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.dup33333.letsonion"
+      "package": "com.dup33333.letsonion",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -44,10 +50,9 @@
         }
       ],
       [
-        "@react-native-voice/voice",
+        "expo-av",
         {
-          "microphone": "CUSTOM: Allow let's onion to access the microphone",
-          "speechRecognition": "CUSTOM: Allow let's onion to securely recognize user speech"
+          "microphonePermission": "Allow letsonion to access your microphone."
         }
       ]
     ],
