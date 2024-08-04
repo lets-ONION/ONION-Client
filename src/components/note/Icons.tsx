@@ -1,22 +1,28 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Button } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated } from 'react-native';
 import { TextModal } from './TextModal';
+import { useMain } from '../../hooks/useMain';
 
 interface Props {
+    type: "positive" | "negative";
     micIcon: 'mic-circle-outline' | 'mic-circle';
     setMicIcon: React.Dispatch<React.SetStateAction<'mic-circle-outline' | 'mic-circle'>>;
+    setCheckFailed: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;
+    isSubmit: boolean;
 }
 
-const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
+const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, setIsSubmit, isSubmit }) => {
+    const { NotePositive, WaterPositive, WaterNegative, CheckPositive, CheckNegative } = useMain();
+    const [checkResult, setCheckResult] = useState();
     const [modalVisible, setModalVisible] = useState(false);
+    const [selected, setSelected] = useState<string | null>(null);
+    const [enabled, setEnabled] = useState(false);
 
     const animation = useRef(new Animated.Value(1)).current;
-    const [selected, setSelected] = useState<string | null>(null);
-
     const animationMic = useRef(new Animated.Value(0)).current;
-    const [enabled, setEnabled] = useState(false);
 
     useEffect(() => {
         Animated.timing(animationMic, {
@@ -48,15 +54,40 @@ const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
         setModalVisible(false);
     };
 
-    const handleModalSubmit = (text: string) => {
-        console.log('Submitted text:', text);
-        // 텍스트 처리 로직 추가
+    const handleModalSubmit = async (text: string) => {
+        try {
+            setIsSubmit(true);
+            let result;
+            if (type === 'positive') {
+                result = await CheckPositive(text);
+            } else {
+                result = await CheckNegative(text);
+            }
+            if (result) {
+                handleResponseStatus(result.data, text);
+            }
+        } catch (error) {
+            console.error('handleModalSubmit Error:', error);
+        }
+    };
+
+    const handleResponseStatus = (status: string, text: string) => {
+        if (status === 'POSITIVE') {
+            if (type === 'positive') {
+                NotePositive(text);
+                WaterPositive();
+            } else {
+                WaterNegative();
+            }
+        } else {
+            setCheckFailed(true);
+        }
     };
 
     return (
         <View style={styles.icons}>
             <Animated.View style={{ transform: [{ translateX: animationMic }] }}>
-                <TouchableOpacity style={styles.icon} onPress={() => handlePress("mic")}>
+                <TouchableOpacity style={styles.icon} onPress={() => handlePress("mic")} disabled={isSubmit}>
                     <Ionicons name={micIcon} size={70} color="black" />
                     <Text style={styles.text}>
                         {micIcon === 'mic-circle' ?
@@ -66,7 +97,7 @@ const Icons: React.FC<Props> = ({ micIcon, setMicIcon }) => {
                 </TouchableOpacity>
             </Animated.View>
             <Animated.View style={[styles.icon, { opacity: animation }]}>
-                <TouchableOpacity onPress={() => handlePress("write")}>
+                <TouchableOpacity onPress={() => handlePress("write")} disabled={isSubmit}>
                     <Ionicons name="create-outline" size={67} color="black" />
                     <Text>글로 쓰기</Text>
                 </TouchableOpacity>
