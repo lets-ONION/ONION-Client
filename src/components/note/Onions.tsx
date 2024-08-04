@@ -49,7 +49,7 @@ const Onions: React.FC<Props> = ({ type }) => {
         ]}
       >
         <Image source={positive1} style={styles.onionStyle} />
-        <Text>긍정 양파</Text>
+        <Text>럭키 양파</Text>
       </Animated.View>
       <Animated.View
         style={[
@@ -65,7 +65,7 @@ const Onions: React.FC<Props> = ({ type }) => {
         ]}
       >
         <Image source={negative1} style={styles.onionStyle} />
-        <Text>부정 양파</Text>
+        <Text>법규 양파</Text>
       </Animated.View>
     </View>
   );
