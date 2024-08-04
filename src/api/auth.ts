@@ -53,46 +53,46 @@ export const updateDeviceToken = async (token: string) => {
 };
 
 //알림 설정 변경
-export const pushSetting_NoQuery = async () => {
-  const { data } = await httpClient.get(`/push/notification/config`);
+export const getPushSettings = async () => {
+  const { data } = await httpClient.get(`/push/notification/config/get`);
   return data;
 };
 //알림 설정 변경
 export const pushSetting_FriendReq = async () => {
-  const { data } = await httpClient.get(
-    `/push/notification/config?type=FRIEND_REQUEST`
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=FRIEND_REQUEST`
   );
   return data;
 };
 
 //알림 설정 변경
 export const pushSetting_FriendRes = async () => {
-  const { data } = await httpClient.get(
-    `/push/notification/config?type=FRIEND_RESPONSE`
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=FRIEND_RESPONSE`
   );
   return data;
 };
 
 //알림 설정 변경
 export const pushSetting_TradeReq = async () => {
-  const { data } = await httpClient.get(
-    `/push/notification/config?type=TRADE_REQUEST`
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=TRADE_REQUEST`
   );
   return data;
 };
 
 //알림 설정 변경
 export const pushSetting_TradeRes = async () => {
-  const { data } = await httpClient.get(
-    `/push/notification/config?type=TRADE_RESPONSE`
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=TRADE_RESPONSE`
   );
   return data;
 };
 
 //알림 설정 변경
 export const pushSetting_Water = async () => {
-  const { data } = await httpClient.get(
-    `/push/notification/config?type=WATERING_TIME`
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=WATERING_TIME`
   );
   return data;
 };
