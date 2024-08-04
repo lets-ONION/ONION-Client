@@ -92,7 +92,7 @@ export const OnionCalendar = ({ navigation, route }: DiaryScreenProps) => {
             },
           },
           todayTextColor: "orange",
-          calendarBackground: "#fff",
+          calendarBackground: "transparent",
         }}
       />
     </View>
