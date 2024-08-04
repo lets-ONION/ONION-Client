@@ -18,6 +18,7 @@ export function Diary({ navigation, route }: DiaryScreenProps) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginTop: 70,
+    height: "100%",
+    alignItems: "center",
   },
 });
