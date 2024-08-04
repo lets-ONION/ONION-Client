@@ -5,6 +5,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SentReqs } from "./sentReq/sentReqs";
 import { ReceivedReqs } from "./receivedReq/receivedReqs";
 
+import MainText from "../../mainText";
+
 export const RequestIndex = () => {
   const [showRequestModal, setShowRequestModal] = useState<boolean>(false);
   const [showSentReqs, setShowSentReqs] = useState<boolean>(false);
@@ -28,10 +30,10 @@ export const RequestIndex = () => {
               style={{ ...styles.menu, borderRightWidth: 2 }}
               onPress={onPressReceivedReqs}
             >
-              <Text>받은 요청</Text>
+              <MainText>받은 요청</MainText>
             </TouchableOpacity>
             <TouchableOpacity style={styles.menu} onPress={onPressSentReqs}>
-              <Text>보낸 요청</Text>
+              <MainText>보낸 요청</MainText>
             </TouchableOpacity>
           </View>
           {showSentReqs ? <SentReqs /> : <ReceivedReqs />}

@@ -9,6 +9,8 @@ import { ReceivedTradeType } from "../../../../types/exchange/exchangeRequests";
 import { Button } from "../../../common/button";
 import { acceptTrade, rejectTrade } from "../../../../api/book";
 
+import MainText from "../../../mainText";
+
 export const ReceivedReqItem = ({ trade, fetchData }: ReceivedTradeType) => {
   const onPressAccept = async () => {
     try {
@@ -29,11 +31,11 @@ export const ReceivedReqItem = ({ trade, fetchData }: ReceivedTradeType) => {
   return (
     <TouchableWithoutFeedback>
       <View style={styles.container}>
-        <Text style={styles.text}>
+        <MainText style={styles.text}>
           {trade.req_member.nickname}님이 자신의 {trade.req_onion}을(를)
           회원님의
           {trade.res_onion}와(과) 교환하기를 원해요!
-        </Text>
+        </MainText>
         <View style={styles.buttonWrapper}>
           <Button
             background="orange"

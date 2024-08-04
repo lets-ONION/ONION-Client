@@ -5,6 +5,8 @@ import { getUser } from "../../api/auth";
 import { useFetch } from "../../hooks/useFetch";
 import { useLogin } from "../../store/authStore";
 
+import MainText from "../mainText";
+
 export function Profile() {
   const { nickname, profileImage } = useLogin.getState();
   return (
@@ -13,7 +15,7 @@ export function Profile() {
         <Image source={{ uri: profileImage }} style={styles.profileImage} />
       </View>
       <View style={styles.profile}>
-        <Text style={styles.nickname}>{nickname}</Text>
+        <MainText style={styles.nickname}>{nickname}</MainText>
       </View>
     </View>
   );

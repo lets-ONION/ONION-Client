@@ -5,6 +5,8 @@ import { getFriendsBook } from "../../../api/friends";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
 
+import MainText from "../../mainText";
+
 export const FriendCard: React.FC<FriendCardType> = ({
   friend,
   isMyProfile,
@@ -30,7 +32,7 @@ export const FriendCard: React.FC<FriendCardType> = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPressFriendProfile}>
       <Image style={styles.profileImage} source={{ uri: friend.image_url }} />
-      <Text>{friend.nickname}</Text>
+      <MainText>{friend.nickname}</MainText>
     </TouchableOpacity>
   );
 };

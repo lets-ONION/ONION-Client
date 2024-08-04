@@ -5,6 +5,8 @@ import { useState } from "react";
 import { RecommendFriends } from "./recommendFriends/recommendFriends";
 import { RequestedFriends } from "./requestedFriends/requestedFriends";
 
+import MainText from "../../../mainText";
+
 export function FriendsRequest() {
   const [showFriendsModal, setShowFriendsModal] = useState<boolean>(false);
   const [showRecommendList, setShowRecommendList] = useState<boolean>(true);
@@ -30,10 +32,10 @@ export function FriendsRequest() {
               style={{ ...styles.menu, borderRightWidth: 2 }}
               onPress={onPressRecommendList}
             >
-              <Text>추천하는 친구</Text>
+              <MainText>추천하는 친구</MainText>
             </TouchableOpacity>
             <TouchableOpacity style={styles.menu} onPress={onPressRequested}>
-              <Text>보낸 요청</Text>
+              <MainText>보낸 요청</MainText>
             </TouchableOpacity>
           </View>
           {showRecommendList ? <RecommendFriends /> : <RequestedFriends />}

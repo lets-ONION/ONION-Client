@@ -1,9 +1,11 @@
 import { View, Text } from "react-native";
 
+import MainText from "../mainText";
+
 const Onions = () => {
   return (
     <View>
-      <Text>Onions</Text>
+      <MainText>Onions</MainText>
     </View>
   );
 };

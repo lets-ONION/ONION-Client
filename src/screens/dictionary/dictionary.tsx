@@ -10,6 +10,8 @@ import { getBook } from "../../api/book";
 import { ActivityIndicator } from "react-native-paper";
 import { getFriendsList } from "../../api/friends";
 
+import MainText from "../../components/mainText";
+
 export default function Dictionary() {
   const [ismodalVisible, setModalVisible] = useState<boolean>(false);
   const [showFriendsOnion, setShowFriendsOnion] = useState<boolean>(false);
@@ -27,7 +29,7 @@ export default function Dictionary() {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.friendsList}>
-        <Text>친구들의 양파 보기</Text>
+        <MainText>친구들의 양파 보기</MainText>
         <FriendsRequest />
         <FriendsCardList
           friends={friendsList.data}
@@ -41,15 +43,15 @@ export default function Dictionary() {
         showFriendsOnion={showFriendsOnion}
       />
       <View style={styles.requestIconWrapper}>
-        <Text>내 양파도감</Text>
+        <MainText>내 양파도감</MainText>
         <RequestIndex />
       </View>
       {!bookList.data ||
         (!bookList.data.onions.length && (
           <View style={styles.noContentWrapper}>
-            <Text style={{ color: "gray" }}>
+            <MainText style={{ color: "gray" }}>
               아직 도감을 모으지 못했어요 =3
-            </Text>
+            </MainText>
           </View>
         ))}
       <OnionCardList
