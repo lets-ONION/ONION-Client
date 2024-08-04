@@ -2,20 +2,23 @@ import { View, Image, StyleSheet, Text } from "react-native";
 
 interface Props {
     type: "positive" | "negative";
-    micIcon: 'mic-circle-outline' | 'mic-circle';
+    checkFailed?: boolean;
+    isSubmit?: boolean;
 }
 
-const TextBalloon = ({ type, micIcon }: Props) => {
+const TextBalloon = ({ type, checkFailed, isSubmit }: Props) => {
     let message: string;
 
-    if (type === "positive") {
-        message = micIcon === 'mic-circle' ? 
-            "긍정 양파가 사용자님의\n이야기을 듣는 중이예요..." :
-            "그럼에도 좋은 일이 있었나요?\n긍정 양파에게 말해보세요!";
+    if (checkFailed) {
+        message = "죄송해요. 양파가\n잘 이해되지 않는대요.";
+    } else if (isSubmit) {
+        message = `${type === 'negative' ? '법규' : '럭키'} 양파가 사용자님의\n이야기를 듣는 중이예요...`;
+    } else if (type === "positive") {
+        message = "오늘 좋은 있으셨나요?\n긍정 양파에게 말해보세요!";
+    } else if (type === "negative") {
+        message = "안 좋은 일이 있으셨나요?\n부정 양파에게 풀어보세요.";
     } else {
-        message = micIcon === 'mic-circle' ?
-            "부정 양파가 사용자님의\n이야기을 듣는 중이예요..." :
-            "안 좋은 일이 있으셨나요?\n부정 양파에게 풀어보세요.";
+        message = '';
     }
 
     return (
