@@ -5,12 +5,17 @@ import React, { useState } from 'react';
 import Onions from "../components/note/Onions";
 import Button from "../components/main/Button";
 import { Alert } from "../components/common/Alert";
+import { waterPositive } from "../api/main.api";
+import { useMain } from "../hooks/useMain";
 
 export function Note() {
+    const { WaterPositive } = useMain();
     const [micIcon, setMicIcon] = useState<'mic-circle-outline' | 'mic-circle'>('mic-circle-outline');
     const [speak, setSpeak] = useState(false);
     const [type, setType] = useState<'negative' | 'positive'>('negative');
     const [isAlertVisible, setAlertVisible] = useState(false);
+    const [isSubmit, setIsSubmit] = useState<boolean>(false);
+    const [checkFailed, setCheckFailed] = useState<boolean>(true);
 
     const handleSkipPress = () => {
         setAlertVisible(true);
@@ -26,22 +31,44 @@ export function Note() {
         setAlertVisible(false);
     };
 
-    const handleCloseAlert = () => {
-        setAlertVisible(false);
-    };
+    const message = "오늘은 럭키 양파에게만\n물을 주시겠어요?";
 
-    const message = "오늘은 긍정양파에게만\n물을 주시겠어요?";
+    const renderActionButtons = () => {
+        if (checkFailed) {
+            return (
+                <>
+                    <Button onPress={() => {setCheckFailed(false); setSpeak(true);}}>다시 말하기</Button>
+                    {type === 'positive' ? (
+                        <Button onPress={() => WaterPositive()}>아니야, 럭키 기운이 맞아!</Button>
+                    ) : (
+                        <Button onPress={() => handleSkipPress()}>럭키 양파에게만 물주기</Button>
+                    )}
+                </>
+            );
+        } else {
+            return (
+                <Icons
+                    type={type}
+                    micIcon={micIcon}
+                    setMicIcon={setMicIcon}
+                    setCheckFailed={setCheckFailed}
+                    setIsSubmit={setIsSubmit}
+                    isSubmit={isSubmit}
+                />
+            );
+        }
+    };
 
     return (
         <View style={styles.noteStyle}>
-            <TextBalloon type={type} micIcon={micIcon} />
+            <TextBalloon type={type} checkFailed={checkFailed} isSubmit={isSubmit} />
             <Onions type={type} />
-            {speak ? <Icons micIcon={micIcon} setMicIcon={setMicIcon} /> :
+            {speak ? renderActionButtons() : (
                 <>
                     <Button onPress={() => setSpeak(true)}>말하기</Button>
                     <Button onPress={handleSkipPress}>건너뛰기</Button>
                 </>
-            }
+            )}
             <Alert
                 visible={isAlertVisible}
                 onConfirm={handleConfirm}
