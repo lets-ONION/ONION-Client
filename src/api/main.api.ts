@@ -12,28 +12,35 @@ export const notePositive = async (note: string) => {
 
 export const waterPositive = async () => {
     const response = await httpClient.patch(`/main/positive/water`);
+    console.log('긍정 물주기', response.data)
     return response.data;
 };
 
 export const waterNegative = async () => {
     const response = await httpClient.patch(`/main/negative/water`);
-    console.log('물 준 결과', response.data)
+    console.log('부정 물주기', response.data)
     return response.data;
 };
 
 export const checkPositive = async (note: string) => {
     const response = await httpClient.post(`/main/check/pos`, { note });
+    console.log('긍정 검사', response.data)
     return response.data;
 };
 
 export const checkNegative = async (note: string) => {
     const response = await httpClient.post(`/main/check/neg`, { note });
-    console.log('부정양파 글씀', response.data)
+    console.log('부정 검사했냐고', response.data)
     return response.data;
 };
 
 export const postOnionName = async (onion_name: string) => {
     const response = await httpClient.patch(`/main/naming`, { onion_name });
-    console.log('양파이름 설정', response.data)
+    return response.data;
+};
+
+export const growOnion = async (is_pos: number) => {
+    const response = await httpClient.post(`/main/grow/${is_pos}`);
+    console.log('양파 자람', response.data)
     return response.data;
 };

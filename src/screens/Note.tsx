@@ -8,7 +8,6 @@ import { Alert } from "../components/common/Alert";
 import { useMain } from "../hooks/useMain";
 import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "./MainTab";
-import { WaterResult } from "../models/models";
 
 type NoteScreenRouteProp = RouteProp<HomeStackParamList, 'Note'>;
 
@@ -23,6 +22,8 @@ export function Note() {
     const [isWaterAlertVisible, setWaterAlertVisible] = useState(false);
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
     const [checkFailed, setCheckFailed] = useState<boolean>(false);
+    const [isSubmitSpeak, setIsSubmitSpeak] = useState<boolean>(false);
+    const [isNegative, setIsNegative] = useState<boolean>(false);
 
     useEffect(() => {
         if (route.params?.type) {
@@ -35,6 +36,8 @@ export function Note() {
     };
 
     const handleConfirm = () => {
+        setCheckFailed(false);
+        setIsSubmit(false);
         setSpeak(true);
         setType('positive');
         setAlertVisible(false);
@@ -61,16 +64,22 @@ export function Note() {
 
     const renderActionButtons = () => {
         if (checkFailed === true) {
-            return (
-                <>
-                    <Button onPress={() => { setCheckFailed(false); setSpeak(true); setIsSubmit(false) }}>다시 말하기</Button>
-                    {type === 'positive' ? (
-                        <Button onPress={handleWaterPositivePress}>아니야, 럭키 기운이 맞아!</Button>
-                    ) : (
-                        <Button onPress={() => handleSkipPress()}>럭키 양파에게만 물주기</Button>
-                    )}
-                </>
-            );
+            if (type === 'positive' && !isNegative) {
+                return (
+                    <Button onPress={() => { setCheckFailed(false); setSpeak(true); setIsSubmit(false); setIsNegative(false) }}>다시 말하기</Button>
+                );
+            } else {
+                return (
+                    <>
+                        <Button onPress={() => { setCheckFailed(false); setSpeak(true); setIsSubmit(false); setIsNegative(false) }}>다시 말하기</Button>
+                        {type === 'positive' ? (
+                            <Button onPress={handleWaterPositivePress}>아니야,{'\n'}럭키 기운이 맞아!</Button>
+                        ) : (
+                            <Button onPress={() => handleSkipPress()}>럭키 양파에게만 물주기</Button>
+                        )}
+                    </>
+                );
+            }
         } else {
             return (
                 <Icons
@@ -80,6 +89,8 @@ export function Note() {
                     setCheckFailed={setCheckFailed}
                     setIsSubmit={setIsSubmit}
                     isSubmit={isSubmit}
+                    setIsSubmitSpeak={setIsSubmitSpeak}
+                    setIsNegative={setIsNegative}
                 />
             );
         }
@@ -91,14 +102,19 @@ export function Note() {
             checkFailed={checkFailed} 
             isSubmit={isSubmit} 
             posOnionName={mainData?.pos_onion.name}
-            negOnionName={mainData?.neg_onion.name} />
+            negOnionName={mainData?.neg_onion.name}
+            isSubmitSpeak={isSubmitSpeak}
+            isNegative={isNegative}
+            />
             <Onions type={type} />
             {speak ? renderActionButtons() : (
+            type === 'negative' ? (
                 <>
                     <Button onPress={() => setSpeak(true)}>말하기</Button>
                     <Button onPress={handleSkipPress}>건너뛰기</Button>
                 </>
-            )}
+            ) : null
+        )}
             <Alert
                 visible={isAlertVisible}
                 onConfirm={handleConfirm}

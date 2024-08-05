@@ -55,6 +55,13 @@
         {
           "microphonePermission": "Allow letsonion to access your microphone."
         }
+      ],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "마이크 허용",
+          "speechRecognitionPermission": "음성 텍스트 변환 허용"
+        }
       ]
     ],
     "extra": {

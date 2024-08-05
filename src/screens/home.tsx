@@ -7,6 +7,8 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { HomeStackParamList } from "./MainTab";
 import { useMain } from "../hooks/useMain";
 import MainText from '../components/mainText';
+import SpeechToText from '../utils/SpeechToText';
+import { growOnion } from '../api/main.api';
 
 export function Home() {
   const { mainData, setOnionName } = useMain();
@@ -14,8 +16,6 @@ export function Home() {
   const [onionName, setOnionNameState] = useState<boolean>(false);
   const [nameInput, setNameInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  console.log(mainData)
 
   useEffect(() => {
     const checkOnionName = async () => {
@@ -50,8 +50,11 @@ export function Home() {
   };
 
   const handleButtonPress = () => {
+    if (mainData?.is_spoken) {
+        return;
+    }
     navigation.navigate('Note', { type: 'negative' });
-  };
+};
 
   const dismissKeyboard = () => {
     Keyboard.dismiss();

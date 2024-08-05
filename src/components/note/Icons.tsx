@@ -6,7 +6,8 @@ import { TextModal } from './TextModal';
 import { useMain } from '../../hooks/useMain';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { HomeStackParamList } from '../../screens/MainTab';
-import { WaterResult } from '../../models/models';
+import Voice from '@react-native-voice/voice';
+import { SpeechError, SpeechResults } from '../../models/models';
 
 interface Props {
     type: "positive" | "negative";
@@ -14,15 +15,20 @@ interface Props {
     setMicIcon: React.Dispatch<React.SetStateAction<'mic-circle-outline' | 'mic-circle'>>;
     setCheckFailed: React.Dispatch<React.SetStateAction<boolean>>;
     setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsSubmitSpeak: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsNegative: React.Dispatch<React.SetStateAction<boolean>>;
     isSubmit: boolean;
 }
 
-const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, setIsSubmit, isSubmit }) => {
+const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed,
+    setIsSubmit, isSubmit, setIsSubmitSpeak, setIsNegative }) => {
     const navigation = useNavigation<NavigationProp<HomeStackParamList>>();
-    const { NotePositive, WaterPositive, WaterNegative, CheckPositive, CheckNegative } = useMain();
+    const { NotePositive, CheckPositive, CheckNegative } = useMain();
     const [modalVisible, setModalVisible] = useState(false);
     const [selected, setSelected] = useState<string | null>(null);
     const [enabled, setEnabled] = useState(false);
+    const [started, setStarted] = useState<boolean>(false);
+    const [results, setResults] = useState<string[]>([]);
 
     const animation = useRef(new Animated.Value(1)).current;
     const animationMic = useRef(new Animated.Value(0)).current;
@@ -37,7 +43,14 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
     const handlePress = (iconName: string) => {
         if (enabled && iconName === "mic") {
             setMicIcon(micIcon === 'mic-circle-outline' ? 'mic-circle' : 'mic-circle-outline')
-        }
+            if (micIcon === 'mic-circle-outline') {
+                startSpeech();
+            } else if (micIcon === 'mic-circle') {
+                stopSpeech();
+                setIsSubmitSpeak(true);
+                handleModalSubmit(results[0]);
+            }
+        };
 
         if (iconName === "mic" && selected !== "mic") {
             Animated.timing(animation, {
@@ -63,7 +76,7 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
             let result;
             if (type === 'positive') {
                 result = await CheckPositive(text);
-            } else {
+            } else if (type === 'negative') {
                 result = await CheckNegative(text);
             }
             if (result) {
@@ -80,14 +93,14 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
             switch (status) {
                 case 'POSITIVE':
                     NotePositive(text);
-                    WaterPositive();
                     setTimeout(() => {
+                        setEnabled(!enabled);
                         navigation.navigate('Watering', { type });
-                        setIsSubmit(false);
                     }, 3000);
                     break;
                 case 'NEGATIVE':
                     setCheckFailed(true);
+                    setIsNegative(true);
                     break;
                 case 'INVALID':
                     setCheckFailed(true);
@@ -99,8 +112,8 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
         } else if (type === 'negative') {
             switch (status) {
                 case 'VALID':
-                    WaterNegative();
                     setTimeout(() => {
+                        setEnabled(false);
                         navigation.navigate('Watering', { type });
                         setIsSubmit(false);
                     }, 3000);
@@ -118,6 +131,37 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
         }
     };
 
+    useEffect(() => {
+        Voice.onSpeechError = onSpeechError;
+        Voice.onSpeechResults = onSpeechResults;
+
+        return () => {
+            Voice.destroy().then(Voice.removeAllListeners);
+        }
+    }, []);
+
+    const startSpeech = async () => {
+        await Voice.start("ko-KR");
+        setStarted(true);
+    };
+
+    const stopSpeech = async () => {
+        await Voice.stop();
+        setStarted(false);
+    };
+
+    const onSpeechResults = (results: SpeechResults) => {
+        setResults(results.value || []);
+    };
+
+    const onSpeechError = (error: SpeechError) => {
+        console.log('Speech recognition error:', error);
+        if (error && error.error) {
+            console.log('Error Code:', error.error.code);
+            console.log('Error Message:', error.error.message);
+        }
+    };
+
     return (
         <View style={styles.icons}>
             <Animated.View style={{ transform: [{ translateX: animationMic }] }}>
@@ -128,6 +172,7 @@ const Icons: React.FC<Props> = ({ type, micIcon, setMicIcon, setCheckFailed, set
                             '이야기를\n듣고 있습니다' :
                             (enabled ? '마이크를 누른 후,\n이야기를 들려주세요' : '말로 하기')}
                     </Text>
+                    {/* <Text>{results[0]}</Text> */}
                 </TouchableOpacity>
             </Animated.View>
             <Animated.View style={[styles.icon, { opacity: animation }]}>

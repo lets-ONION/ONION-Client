@@ -22,3 +22,20 @@ export interface WaterResult {
     image_url: string;
     is_evolvable: boolean;
 }
+
+export interface GrowResult {
+    onion_name: string;
+    onion_type: string;
+    image_url: string;
+}
+
+export interface SpeechResults {
+    value?: string[];
+}
+
+export interface SpeechError {
+    error?: {
+        code?: string;
+        message?: string;
+    };
+}
