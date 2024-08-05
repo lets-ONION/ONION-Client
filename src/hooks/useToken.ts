@@ -1,8 +1,11 @@
 import messaging from "@react-native-firebase/messaging";
 import { useEffect, useState } from "react";
+import { updateDeviceToken } from "../api/auth";
+import { useLogin } from "../store/authStore";
 
 function useToken() {
   const [token, setToken] = useState<string>("");
+  const { deviceToken, setDeviceToken } = useLogin.getState();
   const requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
     const enabled =
@@ -11,6 +14,13 @@ function useToken() {
     if (enabled) {
       const token = await messaging().getToken();
       setToken(token);
+      if (deviceToken !== token) {
+        const data = await updateDeviceToken(token);
+        setDeviceToken(token);
+        console.log("디바이스토큰업데이트", data.response);
+      } else {
+        console.log("디바이스 토큰 변동없음");
+      }
     }
   };
   useEffect(() => {

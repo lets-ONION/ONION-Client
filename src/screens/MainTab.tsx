@@ -14,6 +14,8 @@ import { Diary } from "./diary/diary";
 import { useLogin } from "../store/authStore";
 import { useAccess } from "../hooks/useAccess";
 import Watering from "./Watering";
+import { DiaryStack } from "./diary/diaryStack";
+import { SettingStack } from "./setting/settingStack";
 
 export type MainTabParamList = {
   home: undefined;
@@ -57,7 +59,7 @@ export default function MainTab() {
       />
       <Tab.Screen
         name="diary"
-        component={Diary}
+        component={DiaryStack}
         options={{
           tabBarLabel: "일기",
           tabBarIcon: () => {
@@ -77,7 +79,7 @@ export default function MainTab() {
       />
       <Tab.Screen
         name="setting"
-        component={Setting}
+        component={SettingStack}
         options={{
           tabBarLabel: "설정",
           tabBarIcon: () => {

@@ -26,3 +26,17 @@ export const patchResponseFriendReq = async (
   );
   return data;
 };
+
+//카톡에서 친구지만 앱에서는 친구가 아닌 회원 조회
+export const getFriendRecommends = async () => {
+  const { data } = await httpClient.get(`/member/kakao/friends?offset=1`);
+  return data;
+};
+
+//친구에게 친구 요청 걸기
+export const postRequestFriend = async (id: number) => {
+  const { data } = await httpClient.post(
+    `/friend/request/create?target_id=${id}`
+  );
+  return data;
+};
