@@ -43,8 +43,6 @@ export const CommentDay = ({
       >
         <NewComment
           setShowWriteModal={setShowWriteModal}
-          myOnionImage={dummyMyProfile.profile_image}
-          nickname={dummyMyProfile.nickname}
           fetchData={fetchData}
         />
       </CustomModal>

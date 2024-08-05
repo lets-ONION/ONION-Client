@@ -22,8 +22,8 @@ export const patchUserNickname = async (nickname: string) => {
   });
 };
 
-export const tokenRefresh = async (refreshToken: string) => {
-  const { setRefresh } = useLogin.getState();
+export const tokenRefresh = async () => {
+  const { refreshToken, setRefresh } = useLogin.getState();
   const { data } = await httpClient.post(`/member/token/refresh`, {
     refresh_token: refreshToken,
   });
@@ -42,5 +42,57 @@ export const putMyProfile = async (nickname: string, image: string) => {
   });
   setNickname(nickname);
   setProfile(image);
+  return data;
+};
+
+export const updateDeviceToken = async (token: string) => {
+  const { data } = await httpClient.post(`/member/device-token/save`, {
+    device_token: token,
+  });
+  return data;
+};
+
+//알림 설정 변경
+export const getPushSettings = async () => {
+  const { data } = await httpClient.get(`/push/notification/config/get`);
+  return data;
+};
+//알림 설정 변경
+export const pushSetting_FriendReq = async () => {
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=FRIEND_REQUEST`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_FriendRes = async () => {
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=FRIEND_RESPONSE`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_TradeReq = async () => {
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=TRADE_REQUEST`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_TradeRes = async () => {
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=TRADE_RESPONSE`
+  );
+  return data;
+};
+
+//알림 설정 변경
+export const pushSetting_Water = async () => {
+  const { data } = await httpClient.patch(
+    `/push/notification/config/update?type=WATERING_TIME`
+  );
   return data;
 };

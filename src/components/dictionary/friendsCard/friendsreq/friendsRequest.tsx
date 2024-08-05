@@ -35,7 +35,7 @@ export function FriendsRequest() {
               <MainText>추천하는 친구</MainText>
             </TouchableOpacity>
             <TouchableOpacity style={styles.menu} onPress={onPressRequested}>
-              <MainText>보낸 요청</MainText>
+              <Text>받은 친구요청</Text>
             </TouchableOpacity>
           </View>
           {showRecommendList ? <RecommendFriends /> : <RequestedFriends />}
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    height: "100%",
+    height: "90%",
   },
   selectWrapper: {
     borderBottomWidth: 2,

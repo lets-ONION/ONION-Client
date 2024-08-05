@@ -29,14 +29,16 @@ export const useFetch = <T>(request: () => Promise<T>) => {
 
   const reFetch = async () => {
     try {
-      await tokenRefresh(refreshToken);
-      fetchData();
+      await tokenRefresh();
+      console.log("토큰 업데이트");
+      const data = await request();
+      console.log("재요청", data);
+      setData(data);
     } catch (error) {
       console.log("refetch 중 오류 발생", error);
       Alert.alert("오류", "정보를 불러들이다 실패했어요", [
         {
           text: "확인",
-          onPress: setIsLogin,
         },
       ]);
     }
