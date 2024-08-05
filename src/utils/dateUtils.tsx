@@ -4,5 +4,7 @@ export const getFormattedDate = () => {
     const dayIndex = today.getDay();
     const dayName = daysOfWeek[dayIndex];
 
-    return `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일 ${dayName}`;
+    return (
+        `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일 ${dayName}`
+    );
 };

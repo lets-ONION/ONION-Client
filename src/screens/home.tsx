@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import Onions from "../components/main/Onions";
 import { getFormattedDate } from '../utils/dateUtils';
@@ -6,6 +6,7 @@ import Button from "../components/main/Button";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { HomeStackParamList } from "./MainTab";
 import { useMain } from "../hooks/useMain";
+import MainText from '../components/mainText';
 
 export function Home() {
   const { mainData, setOnionName } = useMain();
@@ -13,6 +14,23 @@ export function Home() {
   const [onionName, setOnionNameState] = useState<boolean>(false);
   const [nameInput, setNameInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  console.log(mainData)
+
+  useEffect(() => {
+    const checkOnionName = async () => {
+      const posOnionName = mainData?.pos_onion.name;
+      const negOnionName = mainData?.neg_onion.name;
+
+      if (posOnionName === "null" || negOnionName === "null") {
+        setOnionNameState(false);
+      } else {
+        setOnionNameState(true);
+      }
+    };
+
+    checkOnionName();
+  }, [mainData]);
 
   const handleNameSubmit = async () => {
     if (nameInput.trim()) {
@@ -47,7 +65,7 @@ export function Home() {
       >
         <ScrollView contentContainerStyle={styles.scrollView}>
           <View style={styles.homeStyle}>
-            <Text style={styles.date}>{getFormattedDate()}</Text>
+            <MainText style={styles.date}>{getFormattedDate()}</MainText>
             <Onions data={mainData} onionName={onionName} />
             {!onionName ? (
               <View style={styles.nameArea}>
