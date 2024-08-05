@@ -14,6 +14,8 @@ import { useState } from "react";
 import { postStatusMessage } from "../../../api/book";
 import { useLogin } from "../../../store/authStore";
 
+import MainText from "../../mainText";
+
 export const NewComment = ({
   setShowWriteModal,
   fetchData,
@@ -44,7 +46,7 @@ export const NewComment = ({
         placeholder="하루를 적어보세요."
         multiline
       />
-      <Text style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</Text>
+      <MainText style={styles.informText}>한 번 작성한 글은 수정할 수 없어요</MainText>
       <Button
         background="orange"
         width={"80%"}

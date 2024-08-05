@@ -11,6 +11,8 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { Button } from "../../common/button";
 import { postTrade } from "../../../api/book";
 
+import MainText from "../../mainText";
+
 export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
   reqOnion,
   resOnion,
@@ -29,24 +31,24 @@ export const ExchangeConfirm: React.FC<ExchangeConfirmModalType> = ({
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>내 양파와 상대의 양파를 교환 요청합니다.</Text>
+      <MainText style={styles.text}>내 양파와 상대의 양파를 교환합니다.</MainText>
       <View style={styles.exchangeContainer}>
         <View style={styles.onionWrapper}>
-          <Text>보내는 양파</Text>
+          <MainText>보내는 양파</MainText>
           <Image
             source={{ uri: `${reqOnion.onion_image}.png` }}
             style={styles.image}
           />
-          <Text>{reqOnion.onion_type}</Text>
+          <MainText>{reqOnion.onion_type}</MainText>
         </View>
         <FontAwesome6 name="left-right" size={30} />
         <View style={styles.onionWrapper}>
-          <Text>받는 양파</Text>
+          <MainText>받는 양파</MainText>
           <Image
             source={{ uri: `${resOnion.onion_image}.png` }}
             style={styles.image}
           />
-          <Text>{resOnion.onion_type}</Text>
+          <MainText>{resOnion.onion_type}</MainText>
         </View>
       </View>
       <View style={styles.confirmWrapper}>

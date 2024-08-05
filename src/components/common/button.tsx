@@ -6,6 +6,8 @@ import {
 } from "react-native";
 import { ButtonType } from "../../types/common/buttonType";
 
+import MainText from "../mainText";
+
 export const Button: React.FC<ButtonType> = ({
   background,
   width,
@@ -16,7 +18,7 @@ export const Button: React.FC<ButtonType> = ({
   const onPressHandler = () => onPress();
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{text}</Text>
+      <MainText style={styles.text}>{text}</MainText>
     </TouchableOpacity>
   );
 };

@@ -9,6 +9,8 @@ import { ReqTradeType } from "../../../../types/exchange/exchangeRequests";
 import { Button } from "../../../common/button";
 import { patchCancelTrade } from "../../../../api/book";
 
+import MainText from "../../../mainText";
+
 export const SentReqItem = ({ trade, fetchData }: ReqTradeType) => {
   const onPressCancel = async () => {
     try {
@@ -21,11 +23,11 @@ export const SentReqItem = ({ trade, fetchData }: ReqTradeType) => {
   return (
     <TouchableWithoutFeedback>
       <View style={styles.container}>
-        <Text style={styles.text}>
+        <MainText style={styles.text}>
           {trade.res_member.nickname}님에게 {trade.req_onion}을(를){" "}
           {trade.res_member.nickname}님의
           {trade.res_onion}와 교환하기를 제안했어요
-        </Text>
+        </MainText>
         <Button
           background="lightgray"
           onPress={onPressCancel}

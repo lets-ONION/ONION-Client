@@ -18,6 +18,8 @@ import { ExchangeConfirm } from "./exchangeConfirm";
 import { useFetch } from "../../../hooks/useFetch";
 import { getBook } from "../../../api/book";
 
+import MainText from "../../mainText";
+
 export const ExchangeModal = ({
   resOnion,
   setShowExchangeModal,
@@ -39,7 +41,7 @@ export const ExchangeModal = ({
       <TouchableWithoutFeedback onPress={() => {}}>
         <View style={styles.exchangeListWrapper}>
           <View style={styles.textWrapper}>
-            <Text style={styles.text}>내 양파와 교환하기</Text>
+            <MainText style={styles.text}>내 양파와 교환하기</MainText>
           </View>
           {showConfirmModal ? (
             <ExchangeConfirm

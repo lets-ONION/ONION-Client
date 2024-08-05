@@ -15,6 +15,8 @@ import { Feather } from "@expo/vector-icons";
 import { putMyProfile } from "../../../api/auth";
 import { useLogin } from "../../../store/authStore";
 
+import MainText from "../../mainText";
+
 const OnionCard: React.FC<OnionCardType> = ({
   onion,
   showFriendsOnion,
@@ -28,16 +30,16 @@ const OnionCard: React.FC<OnionCardType> = ({
     <View style={styles.container}>
       <View style={styles.imageAndNameWrapper}>
         <Image source={{ uri: onion.onion_image }} style={styles.image} />
-        <Text style={styles.text}>
+        <MainText style={styles.text}>
           {onion.onion_type} ({onion.quantity})
-        </Text>
+        </MainText>
       </View>
       {showFriendsOnion && onion.can_trade && (
         <TouchableOpacity
           style={styles.tradeButton}
           onPress={onPressExchangeButton}
         >
-          <Text>선택하기</Text>
+          <MainText>교환하기</MainText>
         </TouchableOpacity>
       )}
       <Modal

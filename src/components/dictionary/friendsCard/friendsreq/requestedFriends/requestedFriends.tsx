@@ -13,6 +13,8 @@ import {
 } from "../../../../../api/friends";
 import { ActivityIndicator } from "react-native-paper";
 
+import MainText from "../../../../mainText";
+
 export const RequestedFriends = () => {
   const requestFriendList = useFetch(getFriendRequests);
   const requestResponse = async (id: number, res: "ACCEPT" | "REJECT") => {
@@ -26,14 +28,14 @@ export const RequestedFriends = () => {
   if (requestFriendList.loading || requestFriendList.error)
     return <ActivityIndicator size={"large"} color="orange" />;
   if (!requestFriendList.data.length)
-    return <Text style={styles.nodata}>받은 친구 요청이 없어요</Text>;
+    return <MainText style={styles.nodata}>받은 친구 요청이 없어요</MainText>;
   return (
     <View>
       {requestFriendList.data.data.map((req: FriendReqType) => {
         <View style={styles.container}>
-          <Text style={styles.text}>
+          <MainText style={styles.text}>
             {req.member.nickname}님이 친구요청을 보냈어요!
-          </Text>
+          </MainText>
           <View style={styles.buttonWrapper}>
             <Button
               background="orange"

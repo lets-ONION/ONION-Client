@@ -5,6 +5,8 @@ import { useLogin } from "../../store/authStore";
 import { CustomModal } from "../common/modal";
 import { ProfileChange } from "./profileChange";
 
+import MainText from "../mainText";
+
 export function Profile() {
   const { nickname: initialNickname, profileImage: initialProfileImage } =
     useLogin.getState();
@@ -27,7 +29,7 @@ export function Profile() {
         <Image source={{ uri: profileImage }} style={styles.profileImage} />
       </Pressable>
       <View style={styles.profile}>
-        <Text style={styles.nickname}>{nickname}</Text>
+        <MainText style={styles.nickname}>{nickname}</MainText>
       </View>
       <CustomModal
         visible={showProfileChange}

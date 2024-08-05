@@ -10,6 +10,8 @@ import { useLogin } from "../store/authStore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LoginStackParamList } from "./loginStack";
 
+import MainText from "../components/mainText";
+
 type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, "Login">;
 export const Login = ({ navigation }: LoginScreenProps) => {
   const { setId, setIsLogin, setToken, setRefresh, setNickname } =
@@ -53,7 +55,7 @@ export const Login = ({ navigation }: LoginScreenProps) => {
           }}
           style={{ width: 40, height: 40 }}
         />
-        <Text style={styles.text}>카카오톡으로 로그인하기</Text>
+        <MainText style={styles.text}>카카오톡으로 로그인하기</MainText>
       </Pressable>
     </View>
   );

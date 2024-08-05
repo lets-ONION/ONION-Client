@@ -16,6 +16,8 @@ import {
 import { RecommendFriendType } from "../../../../../types/friends/recommendFriendsType";
 import { ActivityIndicator } from "react-native-paper";
 
+import MainText from "../../../../mainText";
+
 export const RecommendFriends = () => {
   const friendsList = useFetch(getFriendRecommends);
   console.log(friendsList.data);

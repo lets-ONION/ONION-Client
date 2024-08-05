@@ -1,6 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ExchangeOnionsType } from "../../../types/exchange/exchangeOnion";
 
+import MainText from "../../mainText";
+
 export const ExchangeOnion = ({
   onion,
   setShowConfimModal,
@@ -13,10 +15,10 @@ export const ExchangeOnion = ({
   return (
     <View style={styles.container}>
       <Image source={{ uri: onion.onion_image }} style={styles.image} />
-      <Text style={styles.text}>
+      <MainText style={styles.text}>
         현재 {onion.onion_type} : {onion.quantity}개
         {onion.can_trade ? `\n교환 후 : ${onion.quantity - 1}개 ` : null}
-      </Text>
+      </MainText>
       <TouchableOpacity
         disabled={!onion.can_trade}
         style={{
@@ -25,7 +27,7 @@ export const ExchangeOnion = ({
         }}
         onPress={onPressShowConfimModal}
       >
-        <Text>교환하기</Text>
+        <MainText>교환하기</MainText>
       </TouchableOpacity>
     </View>
   );
