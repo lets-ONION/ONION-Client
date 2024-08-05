@@ -17,27 +17,27 @@ interface Theme {
 export const theme: Theme = {
     fontSize: {
         large: {
-            fontSize: ''
+            fontSize: '24px'
         },
         medium: {
-            fontSize: ''
+            fontSize: '18px'
         },
         small: {
-            fontSize: ''
+            fontSize: '14px'
         },
     },
     mainColor: {
         first: {
-            color: ''
+            color: '#cad3ff'
         },
         second: {
-            color: ''
+            color: '#f0f0f0'
         },
         third: {
-            color: ''
+            color: '#d3d3d3'
         },
         fourth: {
-            color: ''
+            color: '#a9a9a9'
         },
     },
 };

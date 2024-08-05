@@ -1,6 +1,7 @@
-import { View } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./home";
+import { Note } from "./Note";
 import Dictionary from "./dictionary/dictionary";
 import Setting from "./setting/setting";
 import {
@@ -12,10 +13,35 @@ import {
 import { Diary } from "./diary/diary";
 import { useLogin } from "../store/authStore";
 import { useAccess } from "../hooks/useAccess";
+import Watering from "./Watering";
 import { DiaryStack } from "./diary/diaryStack";
 import { SettingStack } from "./setting/settingStack";
 
-const Tab = createMaterialBottomTabNavigator();
+export type MainTabParamList = {
+  home: undefined;
+  diary: undefined;
+  dictionary: undefined;
+  setting: undefined;
+};
+
+export type HomeStackParamList = {
+  Home: undefined;
+  Note: { type: 'positive' | 'negative' };
+  Watering: { type: 'positive' | 'negative' };
+};
+
+const Tab = createMaterialBottomTabNavigator<MainTabParamList>();
+const Stack = createNativeStackNavigator<HomeStackParamList>();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Note" component={Note} />
+      <Stack.Screen name="Watering" component={Watering} />
+    </Stack.Navigator>
+  );
+}
 
 export default function MainTab() {
   const { accessToken } = useAccess();
@@ -23,7 +49,7 @@ export default function MainTab() {
     <Tab.Navigator>
       <Tab.Screen
         name="home"
-        component={Home}
+        component={HomeStack}
         options={{
           tabBarLabel: "홈",
           tabBarIcon: () => {
