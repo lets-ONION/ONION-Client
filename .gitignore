@@ -38,3 +38,5 @@ android/
 ios/
 
 google-services.json
+
+yarn.lock
